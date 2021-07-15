@@ -15,7 +15,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React obeid
+          Learn React with Obeid and Abdi
         </a>
       </header>
     </div>
