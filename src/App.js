@@ -1,5 +1,6 @@
 import './App.css';
 import NavBar from './Components/NavBar';
+import Footer from './Components/Footer';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 
@@ -10,10 +11,12 @@ function App() {
       <div className="App">
         <Switch>
           <Route path='/AboutUs'>
-            {/* <SearchBar /> */}
+            <NavBar />
             {/* <AboutUs /> */}
-            {/* <Footer /> */}
+            <Footer />
           </Route>
+
+
           <Route path='/Profile'>
             <NavBar />
             <div className='left'>
@@ -23,13 +26,15 @@ function App() {
             <div className='right'>
               {/* <MyProfile /> */}
             </div>
-            {/* <Footer /> */}
+            <Footer />
           </Route>
+
+
           <Route path='/'>
             <NavBar />
             {/* <SearchBar /> */}
             {/* <Books /> */}
-            {/* <Footer /> */}
+            <Footer />
           </Route>
         </Switch>
       </div>
