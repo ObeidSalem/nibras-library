@@ -9,11 +9,12 @@ function App() {
   return (
     <Router>
       <div className="App">
+        <div className="page_container">
         <Switch>
           <Route path='/AboutUs'>
             <NavBar />
             {/* <AboutUs /> */}
-            <Footer />
+           
           </Route>
 
 
@@ -26,7 +27,7 @@ function App() {
             <div className='right'>
               {/* <MyProfile /> */}
             </div>
-            <Footer />
+           
           </Route>
 
 
@@ -34,11 +35,14 @@ function App() {
             <NavBar />
             {/* <SearchBar /> */}
             {/* <Books /> */}
-            <Footer />
+            
           </Route>
         </Switch>
+        </div>
+        <Footer />
       </div>
     </Router>
+    
   );
 }
 

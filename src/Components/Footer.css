@@ -1,0 +1,55 @@
+hr {
+    border-color: #fe8d2d;
+    background-color:#fe8d2d;
+    height: 4px;
+    margin: auto;
+    width: 80%;
+}
+
+
+.main-footer{
+    text-align:center;
+    
+    position: absolute;
+    margin: 0;
+    left: 0;
+    bottom: 0;
+    height: 1;
+    width: 100%;
+    background-image: url("../img/footer-background.png");
+    background-size: 100% 100%;
+     
+}
+ul{
+    list-style: none ;
+    color: #221246;
+}
+.row{
+    margin:auto;
+    width: 85%;
+    height: 350 px;
+    display: table;
+    display: flex;
+    
+
+    
+}
+
+.col1{
+ 
+    float: left;
+    margin-left: auto;
+    width: 85%;
+    height: 350 px;
+    flex: 33.33%;
+    
+}
+
+.col2{
+   
+    float: right;
+    margin-right: auto;
+    width: 85%;
+    height: 350 px;
+    flex: 33.33%;
+  }
