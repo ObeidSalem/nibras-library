@@ -1,0 +1,138 @@
+* {
+    box-sizing: inherit;
+    transition-property: all;
+    transition-duration: .6s;
+    transition-timing-function: ease;
+} 
+
+.header {
+    height: 80px;
+    padding-bottom: 10px;
+    display: flex;
+    text-align: center;
+    /* width: 70%; */
+    flex-direction: row;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    /* box-shadow: 0px 2px 4px #221246; */
+
+
+}
+.one-edge-shadow {
+    -webkit-box-shadow: 0 8px 6px -6px  #221246;
+       -moz-box-shadow: 0 8px 6px -6px  #221246;
+            box-shadow: 0 8px 6px -6px  #221246;
+}
+
+img {
+    display: flex;
+    width: 85px;
+    object-fit: contain;
+    margin: 0 0 0 200px;
+    margin-top: 0px;
+}
+
+img:hover,
+img:active {
+    width: 100px;
+}
+
+
+.header__nav {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    
+}
+
+.header__option {
+    display: flex;
+    margin-left: 10px;
+    margin-right: 10px;
+    
+}
+
+.link {
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+
+.header__buttons {
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+}
+
+.header__login {
+    padding: 10px 25px;
+    font-size: 1.05em;
+    margin: 20px 5px;
+    border: 2px solid #221246;
+    border-radius: 8px;
+    color: #221246;
+    background-color: white;
+}
+
+.header__login:hover,
+.header__login:active {
+    font-size: 1.10em;
+    border: 3px solid #221246;
+}
+
+.header__signUp {
+    padding: 10px 25px;
+    font-size: 1.05em;
+    margin: 20px 200px 20px 5px;
+    border: 2px solid #221246;
+    border-radius: 8px;
+    color: white;
+    background-color: #221246;
+}
+
+.header__signUp:hover,
+.header__signUp:active {
+    font-size: 1.10em;
+    border: 3px solid #221246;
+    background-color: #472e85;
+}
+
+.btn {
+    letter-spacing: 0;
+}
+
+.btn:hover,
+.btn:active {
+  letter-spacing: 5px;
+}
+
+.btn:after,
+.btn:before {
+  backface-visibility: hidden;
+  border: 1px solid rgba(#221246, 0);
+  bottom: 0px;
+  content: " ";
+  display: block;
+  margin: 0 auto;
+  position: relative;
+  transition: all 280ms ease-in-out;
+  width: 0;
+}
+
+.btn:hover:after,
+.btn:hover:before {
+  backface-visibility: hidden;
+  border-color: #221246;
+  transition: width 350ms ease-in-out;
+  width: 70%;
+}
+
+.btn:hover:before {
+  bottom: auto;
+  top: 0;
+  width: 70%;
+}
+
+
+
