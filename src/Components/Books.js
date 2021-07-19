@@ -11,7 +11,7 @@ const Books = () => {
                 <input className='search__list' type="button" ></input> 
                 <input className='search__filter' type="button" ></input> 
             </div>
-            <hr></hr>
+            <hr className="searchLine"></hr>
 
         </div>
     )

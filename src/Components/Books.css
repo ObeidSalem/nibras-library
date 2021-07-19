@@ -27,7 +27,7 @@ html, body {
 
 }
 
-hr {
+.searchLine {
     border: 0.5px solid rgba(34, 18, 70, 0.50);
     width: 99%;
     margin: auto;

@@ -177,18 +177,25 @@ img:active {
         padding: 30px 150px 10px 0px;
         /* background-color:cyan; */
     }
-  
-    .header__navBtn{
+    
+    .header__navBtn {
         position: absolute;
         flex-direction: column;
         background-color: #221246;
         height: 100vh;
         width: 200px;
         top: 0;
-        right: 00px;
         text-align: left;
         z-index: 2;
     }
+    .active{
+        right: 0px;
+    }
+
+    .inActive{
+        right: -200px;
+    }
+
     .header__buttons:nth-child(3){
         margin-top: 10%;
         order: 1;

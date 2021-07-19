@@ -5,7 +5,9 @@ import logo from '../img/logo.jpeg'
 import './NavBar.css'
 
 const NavBar = () => {
-    // const [show, setShow] = useState(false);
+    const [show, setShow] = useState(1);
+
+    const menuStyle = ["header__navBtn active", "header__navBtn inActive"]
     return (
         <>
             <div className="header one-edge-shadow ">
@@ -13,10 +15,10 @@ const NavBar = () => {
                 <div className="header__container">
                     <Link className='link' to = '/'> <img className="header__logo" src={logo} alt='logo'/></Link>
                 
-                    <div className="header__navBtn" id='header__navBtn'>
+                    <div className={menuStyle[show]} id='header__navBtn'>
                         <div className="icon close" onClick={()=>{
-                            // setShow(false)
-                            console.log('Clicked')
+                            setShow(1)
+                            console.log('Hide the menu')
                         }}> 
                             <CgCloseO size='2em'/>
                         </div>
@@ -42,8 +44,9 @@ const NavBar = () => {
                             </input>
                         </div>
                     </div>
-                    <div className="icon menu" OnClick={()=>{
-                            
+                    <div className="icon menu" onClick={()=>{
+                            setShow(0)
+                            console.log('Show the menu')
                     }}>
                         <CgMenuRightAlt size='2em' />
                     </div>
