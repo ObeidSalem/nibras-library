@@ -35,11 +35,11 @@ function App() {
           <Route path='/'>
             <NavBar />
             <Books />
-            <Footer />
+            {/* <Footer /> */}
           </Route>
         </Switch>
         </div>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </Router>
     

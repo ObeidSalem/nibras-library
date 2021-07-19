@@ -1,6 +1,7 @@
 html {
     --maxWidth: 1920px;
     --gap: 15rem;
+    --theme: #221246;
 }
 
 .body {
@@ -28,7 +29,7 @@ html, body {
 }
 
 .searchLine {
-    border: 0.5px solid rgba(34, 18, 70, 0.50);
+    border: 0.5px solid var(--theme);
     width: 99%;
     margin: auto;
   
@@ -37,42 +38,145 @@ html, body {
     width: 80%;
     padding: 10px;
     background-color: white;
-    border-color: #221246;
+    border-color: var(--theme);
     border-radius: 5px;
+}
+
+.search__buttons{
+    width: 37px;
+    background-color: white;
+    border-color: var(--theme);
+    border-radius: 5px;
+    padding: 0px;
+    background-position: center;
+    background-size: 30px;
+    background-repeat: no-repeat;
+    position: relative;
 }
 
 .search__grid {
-    width: 37px;
-    background-color: white;
-    border-color: #221246;
-    border-radius: 5px;
-    background: url(../img/fluent_apps-list-20-regular.png)no-repeat scroll 0 0/90%;
-    background-position: center;
-    background-size: cover;
-    position: relative;
+    background-image: url(../img/fluent_apps-list-20-regular.png);
 }
 
 .search__list {
-    width: 37px;
-    background-color: white;
-    border-color: #221246;
-    border-radius: 5px;
-    background: url(../img/fluent_apps-list-20-regular.png)no-repeat scroll 0 0/90%;
-    background-position: center;
-    background-size: cover;
-    position: relative;
-
+    background-image: url(../img/fluent_grid-28-regular.png);
 }
 .search__filter {
-    width: 37px;
-    background-color: #221246;
-    border-color: #221246;
-    border-radius: 5px;
-    background: url(../img/fluent_apps-list-20-regular.png)no-repeat scroll 0 0/90%;
-    background-position: center;
-    background-size: cover;
+    background-color: var(--theme);
+    background-image: url(../img/Vector.png);
+}
+
+.books__container{
     position: relative;
+    display: flex;
+    flex-wrap: wrap; 
+    flex-direction: row;
+
+}
+
+.book__container{
+    position: relative;
+    background-color: white;
+    justify-content:stretch;
+    margin: 1% 1%;
+    padding: 2%;
+    border: 1px solid var(--theme);
+    border-radius: 3px;
+    flex: 1 11em;
+}
+
+
+
+.book__container:focus,
+.book__container:hover {
+    -webkit-box-shadow: 0 0px 10px 3px  rgba(34, 18, 70,0.1);
+       -moz-box-shadow: 0 0px 10px 3px  rgba(34, 18, 70,0.1);
+            box-shadow: 0 0px 10px 3px  rgba(34, 18, 70,0.1);
+}
+
+.book__container > *{
+    margin-top: 15px;
+}
+
+
+.book__container > .book__image{
+    display:block;
+    margin:auto;
     
+}
+
+.book__buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.book__buttons > .book__contact{
+    width: 70%;
+    padding: 10px;
+    margin-right:5px; 
+    color: white;
+    background-color: var(--theme);
+    border-color: var(--theme);
+    border-radius: 5px;
+}
+
+.book__contact:active,
+.book__contact:hover{
+    font-size: 1.05em;
+    border: 3px solid #221246;
+    background-color: #472e85;
+
+}
+
+.book__buttons > .book__favorite{
+    width: 37px;
+    background-color: white;
+    border-color: var(--theme);
+    border-radius: 5px;
+    padding: 0px;
+    background-position: center;
+    background-size: 30px;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+
+.book__favorite:hover,
+.book__favorite:active {
+    font-size: 1.10em;
+    border: 3px solid #221246;
+}
+
+.book__report {
+    position: absolute;
+    top: -5px;
+    right: 10px;
+    width: 35px;
+    height: 35px;
+    background-color: transparent;
+    border:0;
+    padding: 0px;
+    background-position: center;
+    background-size: 20px;
+    background-repeat: no-repeat;
+}
+
+.book__report:active,
+.book__report:hover {
+    background-size: 25px;
+}
+
+
+.reportIcon{
+    background-image: url(../img/reportIcon.png);
+}
+
+.InActiveFavorite{
+    background-image: url(../img/InActiveFavorite.png);
+}
+.left{
+    text-align: left;
 }
 
 @media (max-width:1160px){
@@ -84,7 +188,20 @@ html, body {
         width: 50%;
         padding: 10px;
         background-color: white;
-        border-color: #221246;
+        border-color: var(--theme);
         border-radius: 5px;
     }
+
+    .book__container{
+        flex: 1 8em;
+    }
+
+    .book__report {
+        top: -12px;
+        right: 0px;
+        width: 35px;
+        height: 35px;
+       
+    }
 }
+
