@@ -45,15 +45,16 @@
     padding: 0 var(--gap);
 }
 
-img {
+
+.header__logo {
     display: flex;
     width: 85px;
     object-fit: contain;
     margin-top: 0px;
 }
 
-img:hover,
-img:active {
+.header__logo:hover,
+.header__logo:active {
     width: 100px;
 }
 
@@ -89,9 +90,9 @@ img:active {
     padding: 10px 25px;
     font-size: 1.05em;
     margin: 20px 0px;
-    border: 2px solid #221246;
+    border: 2px solid var(--theme);
     border-radius: 8px;
-    color: #221246;
+    color: var(--theme);
     background-color: white;
 }
 

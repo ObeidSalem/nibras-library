@@ -6,7 +6,7 @@ import './NavBar.css'
 
 const NavBar = () => {
     const [show, setShow] = useState(1);
-
+    
     const menuStyle = ["header__navBtn active", "header__navBtn inActive"]
     return (
         <>
