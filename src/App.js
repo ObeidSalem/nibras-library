@@ -1,6 +1,7 @@
 import './App.css';
 import NavBar from './Components/NavBar';
 import Footer from './Components/Footer';
+import singUp from './Components/singUp';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Books from './Components/Books';
 
@@ -9,6 +10,7 @@ import Books from './Components/Books';
 function App() {
   return (
     <Router>
+      <singUp/>
       <div className="App">
         <div className="page_container">
         <Switch>
@@ -31,8 +33,17 @@ function App() {
            
           </Route>
 
+          <Route path='/singUp'>
+            <singUp/>
+            </Route>
+
+            <Route path='/loginIn'>
+            <singUp/>
+            </Route>
+
 
           <Route path='/'>
+          <singUp/>
             <NavBar />
             <Books />
             {/* <Footer /> */}
