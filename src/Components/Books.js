@@ -2,8 +2,9 @@ import React,{ useState } from 'react'
 import './Books.css'
 import BookList from './BookList'
 
-const Books = () => {
+const Books = ({books}) => {
 
+<<<<<<< HEAD
     const [books, setBooks] = useState([
         {id: 1, image: "/images/b1.jpg", title: "ABSALOM, ABSALOM! BY WILLIAM FAULKNER", author:"Obeid Salem", category: "Novel", code: "0001", description: "in the Ecclesiastes, again part of the Old Testament. The anonymous author is a King of Jerusalem who  in the Ecclesiastes, again part of the Old Testament. The anonymous author is a King of Jerusalem "},
         {id: 2, image: "/images/b2.jpeg", title: "ABSALOM, ABSALOM! BY WILLIAM FAULKNER", author:"Obeid Salem", category: "Novel", code: "0002", description: "in the Ecclesiastes, again part of the Old Testament. The anonymous author is a King of Jerusalem who  in the Ecclesiastes, again part of the Old Testament. The anonymous author is a King of Jerusalem "},
@@ -14,6 +15,9 @@ const Books = () => {
         {id: 7, image: "/images/b1.jpg", title: "ABSALOM, ABSALOM! BY WILLIAM FAULKNER", author:"Obeid Salem", category: "Novel", code: "0007", description: "in the Ecclesiastes, again part of the Old Testament. The anonymous author is a King of Jerusalem who  in the Ecclesiastes, again part of the Old Testament. The anonymous author is a King of Jerusalem "},
         
     ]);
+=======
+    
+>>>>>>> 31ca413f70cdff3ca577d00c83ade655ebc76610
 
 
     return (
