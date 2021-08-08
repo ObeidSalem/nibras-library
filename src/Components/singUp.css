@@ -1,0 +1,47 @@
+.main{
+    border-style: solid;
+    border-width: thin;
+    border-color: black;
+    background-color:white;
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 35%;
+    height: 60%;
+}
+.name-box{
+   flex: 1;
+   flex-direction:row;
+   background-color: white;
+
+   border-radius: 50px;
+}
+
+.pic{
+
+height: 80px;
+display: flex;
+justify-content: center;
+
+}
+
+/* input{
+ 
+    margin-top: 35px;
+    background-color: white;
+    border: 1px solid $red;
+    line-height: 0;
+    font-size: 17px;
+    display: inline-block;
+    box-sizing: border-box;
+    padding: 20px 15px ;
+    border-radius: 60px;
+    color: $red;
+    font-weight: 100;
+    letter-spacing: 0.01em;
+    position: relative;
+    z-index: 1;
+} */
