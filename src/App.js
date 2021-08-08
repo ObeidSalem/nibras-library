@@ -1,13 +1,10 @@
 import React, { useState } from 'react'
 import './App.css';
 import NavBar from './Components/NavBar';
-<<<<<<< HEAD
 import SingUp from './Components/SingUp';
 import Login from './Components/Login';
-=======
 import Profile from './Components/Profile';
 import Footer from './Components/Footer';
->>>>>>> 31ca413f70cdff3ca577d00c83ade655ebc76610
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Books from './Components/Books';
 
