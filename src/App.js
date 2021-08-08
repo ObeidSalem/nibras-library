@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import './App.css';
 import NavBar from './Components/NavBar';
-import SingUp from './Components/SingUp';
+import Profile from './Components/Profile.js';
+import SingUp from './Components/SingUp.js';
 import Login from './Components/Login';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Books from './Components/Books';
