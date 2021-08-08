@@ -38,10 +38,15 @@ const NavBar = () => {
                         </div>
 
                         <div className="header__buttons">
+                            
+                            <Link className='btnlink' to = '/login'>
                             <input type="button" className="header__login" value="Login">
                             </input>
+                            </Link>
+                            <Link className='btnlink' to = '/singUp'>
                             <input type="button" className="header__signUp" value="Sign Up">
                             </input>
+                            </Link>
                         </div>
                     </div>
                     <div className="icon menu" onClick={()=>{

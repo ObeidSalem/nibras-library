@@ -1,0 +1,38 @@
+.main{
+    border-style: solid;
+    border-width: thin;
+    border-color: black;
+    background-color:white;
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 35%;
+    height: 60%;
+}
+.name-box{
+   flex: 1;
+   flex-direction:row;
+   background-color: white;
+
+   border-radius: 50px;
+}
+
+.pic{
+
+height: 80px;
+display: flex;
+justify-content: center;
+
+}
+#emAndPass{
+    
+    width: 80%;
+    padding: 10px;
+    background-color: white;
+    border-color: var(--theme);
+    border-radius: 5px;
+    
+}
