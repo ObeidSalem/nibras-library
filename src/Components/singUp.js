@@ -28,7 +28,7 @@ const SignUp = () => {
             <br />     
             <input type="text" placeholder="phone number" />
 
-            <h5>Do you live Inside IIUM Gombak Campuss? </h5>
+            <h5>Do you live Inside IIUM Gombak Campus? </h5>
             
 
             <br />
