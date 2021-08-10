@@ -94,6 +94,8 @@
     border-radius: 8px;
     color: var(--theme);
     background-color: white;
+    cursor: pointer;
+
 }
 
 .header__login:hover,
@@ -110,6 +112,8 @@
     border-radius: 8px;
     color: white;
     background-color: #221246;
+    cursor: pointer;
+
 }
 
 .header__signUp:hover,

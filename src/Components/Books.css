@@ -127,6 +127,8 @@ html, body {
     background-color: var(--theme);
     border-color: var(--theme);
     border-radius: 5px;
+    cursor: pointer;
+
 }
 
 .book__contact:active,
@@ -146,7 +148,8 @@ html, body {
     background-position: center;
     background-size: 30px;
     background-repeat: no-repeat;
-    position: relative;
+    cursor: pointer;
+
 }
 
 

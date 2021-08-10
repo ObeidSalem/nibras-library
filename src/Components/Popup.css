@@ -21,24 +21,34 @@
     max-width: 700px;
     background-color: white;
     border-radius: 10px;
-
+    z-index: 5;
     display: flex;
     flex-wrap: wrap; 
     flex-direction: column;
+    text-align: center;
+
+}
+
+.popup__container .save__button{
+    bottom: 22px;
+    right: 130px;
 }
 
 .popup__container .close__button{
-    position: absolute;
-    color: #1976D2;
     bottom: 22px;
     right: 32px;
+}
+
+.popup__container .save__button, .close__button{
+    position: absolute;
+    color: #1976D2;
     background-color: white;
     border: solid 0px;
     font-size: 1.2rem;
 
 }
 
-.popup__container .close__button:hover{
+.popup__container .close__button:hover, .save__button:hover{
     text-decoration: underline;
     cursor: pointer;   
 }
@@ -49,7 +59,7 @@
 
 }
 
-.popup__container h5, textarea {
+.popup__container h5, textarea, .input__failed{
     border: solid 1px #221246;
     border-radius: 5px;
     margin: 5px auto;
@@ -58,6 +68,17 @@
     overflow-x: hidden; 
 
 }
+
+.row__inputs{
+    display: flex;
+    justify-content: space-between;
+}
+
+.ten__px__margin__to__right{
+    margin-right: 10px;
+}
+
+
 
 @media (max-width:1160px) {
     .popup__container{
