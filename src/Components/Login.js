@@ -1,7 +1,9 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import logo_pic from '../img/logo.jpeg'
 import './Login.css'
+
+
 
 const Login = () => {
     return (
@@ -29,7 +31,7 @@ const Login = () => {
 
         <input type="button" className="header__signUp" value="Log In"></input>
 
-        <h5>Don’t have an account?  Sing Up </h5>
+        <h5>Don’t have an account? <Link to="/SingUp">Sign Up</Link>  </h5>
 
 
 
