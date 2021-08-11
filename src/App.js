@@ -4,6 +4,7 @@ import NavBar from './Components/NavBar';
 import Profile from './Components/Profile.js';
 import SingUp from './Components/SingUp.js';
 import Login from './Components/Login';
+import Footer from './Components/Footer'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Books from './Components/Books';
 
@@ -46,12 +47,12 @@ function App() {
           <Route path='/SingUp'>
             {/* <NavBar /> */}
             <SingUp/>
-            </Route>
+          </Route>
 
-            <Route path='/Login' >
+          <Route path='/Login' >
             {/* <NavBar /> */}
             <Login/>
-            </Route>
+          </Route>
 
 
           <Route path='/'>
@@ -61,7 +62,7 @@ function App() {
           </Route>
         </Switch>
         </div>
-        {/* <Footer /> */}
+        <Footer />
       </div>
     </Router>
     

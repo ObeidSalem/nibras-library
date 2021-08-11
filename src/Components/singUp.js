@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import './SingUp.css'
 import logo_pic from '../img/logo.jpeg'
 

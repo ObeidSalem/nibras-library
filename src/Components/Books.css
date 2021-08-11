@@ -7,7 +7,9 @@ html {
 .body {
     position: sticky;
     /* width: 50%; */
-    height: 120vh;
+    min-height: 100vh;
+    display:flex;
+    flex-direction: column;
     padding: 0 var(--gap);
 }
 
