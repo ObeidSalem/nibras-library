@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import './SingUp.css'
+import './singUp.css'
 import logo_pic from '../img/logo.jpeg'
 
 const SignUp = () => {

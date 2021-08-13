@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './App.css';
 import NavBar from './Components/NavBar';
-import SingUp from './Components/SingUp';
+import SingUp from './Components/singUp';
 import Login from './Components/Login';
 import Profile from './Components/Profile';
 import Footer from './Components/Footer';
