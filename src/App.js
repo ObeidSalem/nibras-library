@@ -41,28 +41,27 @@ function App() {
               myFavorite={books.filter((book) => book.code === "0002")}
               myBooks={books.filter((book) => book.code === "0006")}
               />
-           
+            <Footer />
           </Route>
 
           <Route path='/SingUp'>
             {/* <NavBar /> */}
             <SingUp/>
-            </Route>
+          </Route>
 
-            <Route path='/Login' >
+          <Route path='/Login' >
             {/* <NavBar /> */}
             <Login/>
-            </Route>
+          </Route>
 
 
           <Route path='/'>
             <NavBar />
             <Books books={books}/>
-            {/* <Footer /> */}
+            <Footer />
           </Route>
         </Switch>
         </div>
-        {/* <Footer /> */}
       </div>
     </Router>
     

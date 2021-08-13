@@ -1,17 +1,32 @@
 import React from 'react'
+import { useState } from 'react'
 import './Profile.css'
 import { FiEdit } from "react-icons/fi";
+import ImageUpdatePopup from './ImageUpdatePopup';
 
 
 const Profile = ({myFavorite, myBooks}) => {
+    const [imageUpdateTrigger, setImageUpdateTrigger] = useState(false)
+    const [infoUpdateTrigger, setInfoUpdateTrigger] = useState(false)
+
     return (
         <div className="profile__container">
             <div className="profile__right">
                 <div className='profile__userInfo'>
                     <div>
                         <img className="profile__image" src='/images/blank-profile-image.png' alt="Profile Image"/>
+                        <ImageUpdatePopup trigger={imageUpdateTrigger} setTrigger={setImageUpdateTrigger}>
+                        <h3>Update Image Info</h3>
+                        <hr></hr>
+                        <form>
+                            <h2>yet to be developed</h2>
+                            <button type='submit' className="save__button">SAVE</button>
+                            <br></br>
+                            <br></br>
+                        </form>
+                     </ImageUpdatePopup>
                     </div>
-                    <div className='right'><FiEdit size='1.5em'/></div>
+                    <div onClick={() => setImageUpdateTrigger(true)} className='right'><FiEdit className = 'edit__icon' /></div>
 
                     <div className='profile__info'>
                         <h5 class='profile__details'>User Name should be here</h5>
@@ -19,7 +34,26 @@ const Profile = ({myFavorite, myBooks}) => {
                         <h5 class='profile__details'>User Email should be here</h5>
                         <h5 class='profile__details'>User Location should be here</h5>
                     </div>
-                    <div className='right'><FiEdit size='1.5em'/></div>
+                    <ImageUpdatePopup trigger={infoUpdateTrigger} setTrigger={setInfoUpdateTrigger}>
+                        <h3>Update your Info</h3>
+                        <hr></hr>
+                        <form>
+                            <div className='row__inputs'>
+                                <input  className='input__failed ten__px__margin__to__right' type="input" placeholder="First Name:" required></input > 
+                                <input  className='input__failed ' type="input" placeholder="last Name:" required></input > 
+                            </div>
+                            <div >
+                                <input  className='input__failed' type="input" placeholder="Phone Number:" required></input > 
+                                <input  className='input__failed' type="password" placeholder="Old Password:" required></input > 
+                                <input  className='input__failed' type="password" placeholder="New Password:" required></input > 
+                                <input  className='input__failed' type="password" placeholder="Confirm New Password:" required></input > 
+                            </div>
+                            <button type='submit' className="save__button">SAVE</button>
+                            <br></br>
+                            <br></br>
+                        </form>
+                     </ImageUpdatePopup>
+                    <div onClick={() => setInfoUpdateTrigger(true)} className='right'><FiEdit className = 'edit__icon' /></div>
                     <input className='sign__out' type='button' value='Sign Out'></input>
                 </div>
             </div>

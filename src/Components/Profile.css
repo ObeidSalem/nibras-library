@@ -16,10 +16,21 @@
 }
 
 .profile__left {
-    width: 60%;
+    width: 100%;
+    max-width: 500px;
     padding: 10px;
     border-color: var(--theme);
     border-radius: 5px;
+}
+
+.edit__icon {
+    cursor: pointer;
+    font-size: 1.5rem;
+}
+
+.edit__icon:hover,
+.edit__icon:active{
+    font-size: 2rem;
 }
 
 .profile__right{
@@ -54,14 +65,16 @@
     border-radius: 50px;
     color: var(--theme);
     background-color: white;
+    cursor: pointer;
 }
 
 .myProfileBook__container{
 
     display: flex;
-    position: relative;
+    /* position: relative; */
     background-color: white;
     justify-content:stretch;
+    min-width: 300px;
     margin: 1% 1%;
     padding: 2%;
     border: 1px solid var(--theme);
@@ -79,7 +92,6 @@
 
 .book__image__list{
     display: flex;
-    position: relative;
     height: 170px;
     object-fit: contain;
     margin-top: 0px;

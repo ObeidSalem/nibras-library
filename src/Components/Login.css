@@ -2,6 +2,7 @@
     border-style: solid;
     border-width: thin;
     border-color: black;
+    border-radius: 10px;
     background-color:white;
     position: absolute;
     top:0;
@@ -12,6 +13,7 @@
     width: 35%;
     height: 60%;
 }
+
 .name-box{
    flex: 1;
    flex-direction:row;
