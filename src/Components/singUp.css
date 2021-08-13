@@ -2,6 +2,7 @@
     border-style: solid;
     border-width: thin;
     border-color: black;
+    border-radius: 10px;
     background-color:white;
     position: absolute;
     top:0;
@@ -26,6 +27,10 @@ height: 80px;
 display: flex;
 justify-content: center;
 
+}
+
+.l-img{
+    cursor: pointer;
 }
 
 /* input{

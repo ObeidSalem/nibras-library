@@ -3,11 +3,14 @@ import { Link } from 'react-router-dom'
 import { CgMenuRightAlt, CgCloseO } from "react-icons/cg";
 import logo from '../img/logo.jpeg'
 import './NavBar.css'
+import { useAuth } from "../context/AuthContext"
+
+
 
 const NavBar = () => {
     const [show, setShow] = useState(1);
-    
     const menuStyle = ["header__navBtn active", "header__navBtn inActive"]
+    const { currentUser } = useAuth()
     return (
         <>
             <div className="header one-edge-shadow ">
@@ -38,15 +41,18 @@ const NavBar = () => {
                         </div>
 
                         <div className="header__buttons">
-                            
-                            <Link className='btnlink' to = '/login'>
+                            {currentUser &&  <Link className='btnlink' to = '/Profile'>
+                            <input type="button" className="sign__out" value="My Profile">
+                            </input>
+                            </Link> }
+                            {!currentUser && <><Link className='btnlink' to = '/login'>
                             <input type="button" className="header__login" value="Login">
                             </input>
                             </Link>
                             <Link className='btnlink' to = '/singUp'>
                             <input type="button" className="header__signUp" value="Sign Up">
                             </input>
-                            </Link>
+                            </Link> </>}
                         </div>
                     </div>
                     <div className="icon menu" onClick={()=>{
