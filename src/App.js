@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import './App.css';
 import NavBar from './Components/NavBar';
 import Profile from './Components/Profile.js';
-import SingUp from './Components/SingUp.js';
+import SingUp from './Components/singUp.js';
 import Login from './Components/Login';
 import Footer from './Components/Footer'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';

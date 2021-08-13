@@ -1,5 +1,5 @@
 import React from 'react'
-import './SingUp.css'
+import './singUp.css'
 import logo_pic from '../img/logo.jpeg'
 
 const SignUp = () => {
