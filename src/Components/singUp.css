@@ -29,6 +29,10 @@ justify-content: center;
 
 }
 
+.l-img{
+    cursor: pointer;
+}
+
 /* input{
  
     margin-top: 35px;

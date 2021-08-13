@@ -3,11 +3,27 @@ import { useState } from 'react'
 import './Profile.css'
 import { FiEdit } from "react-icons/fi";
 import ImageUpdatePopup from './ImageUpdatePopup';
+import { useAuth } from "../context/AuthContext"
+import { useHistory } from "react-router-dom"
 
 
 const Profile = ({myFavorite, myBooks}) => {
     const [imageUpdateTrigger, setImageUpdateTrigger] = useState(false)
     const [infoUpdateTrigger, setInfoUpdateTrigger] = useState(false)
+    const [error, setError] = useState("")
+    const { currentUser, logout } = useAuth()
+    const history = useHistory()
+
+    async function handleLogout() {
+        setError("")
+    
+        try {
+          await logout()
+          history.push("/")
+        } catch {
+          setError("Failed to log out")
+        }
+    }
 
     return (
         <div className="profile__container">
@@ -31,7 +47,7 @@ const Profile = ({myFavorite, myBooks}) => {
                     <div className='profile__info'>
                         <h5 class='profile__details'>User Name should be here</h5>
                         <h5 class='profile__details'>User Phone Number should be here</h5>
-                        <h5 class='profile__details'>User Email should be here</h5>
+                        <h5 class='profile__details'>{currentUser && currentUser.email}</h5>
                         <h5 class='profile__details'>User Location should be here</h5>
                     </div>
                     <ImageUpdatePopup trigger={infoUpdateTrigger} setTrigger={setInfoUpdateTrigger}>
@@ -54,7 +70,7 @@ const Profile = ({myFavorite, myBooks}) => {
                         </form>
                      </ImageUpdatePopup>
                     <div onClick={() => setInfoUpdateTrigger(true)} className='right'><FiEdit className = 'edit__icon' /></div>
-                    <input className='sign__out' type='button' value='Sign Out'></input>
+                    <input className='sign__out' type='button' onClick={handleLogout} value='Sign Out'></input>
                 </div>
             </div>
             <div className="profile__left">

@@ -2,10 +2,15 @@ import React from 'react'
 import ContactPopup from './ContactPopup'
 import ReportPopup from './ReportPopup'
 import {useState} from 'react'
+import { useAuth } from "../context/AuthContext"
+import { useHistory } from "react-router-dom"
+
 
 const BookList = ({books}) => {
     const [contactBtnPopUp, setContactBtnPopUp] = useState(false)
     const [reportBtnPopUp, setReportBtnPopUp] = useState(false)
+    const { currentUser } = useAuth()
+    const history = useHistory()
 
 
     return (
@@ -37,8 +42,11 @@ const BookList = ({books}) => {
                         {book.description}                        
                     </p> */}
                     <div className="book__buttons">
-                        <input onClick={() => setContactBtnPopUp(true)} className='book__contact' type="button" value="Contact"></input> 
-                        <input className='book__favorite InActiveFavorite' type="button" value=""></input> 
+                        {currentUser && <input onClick={() => setContactBtnPopUp(true)} className='book__contact' type="button" value="Contact"></input> }
+                        {!currentUser && <input onClick={() => history.push("/LogIn")} className='book__contact' type="button" value="Contact"></input> }
+                        {currentUser && <input onClick={() => alert("Added to favorite >> Yet to be developed")} className='book__favorite InActiveFavorite' type="button" value=""></input>  }
+                        {!currentUser && <input onClick={() => history.push("/LogIn")} className='book__favorite InActiveFavorite' type="button" value=""></input>  }
+
                         <ContactPopup trigger={contactBtnPopUp} setTrigger={setContactBtnPopUp}>
                             <h3>Contact Details</h3>
                             <hr></hr>

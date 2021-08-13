@@ -7,6 +7,9 @@ import Profile from './Components/Profile';
 import Footer from './Components/Footer';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Books from './Components/Books';
+import { AuthProvider } from './context/AuthContext';
+import PrivateRoute from "./Components/PrivateRoute"
+import ForgotPassword from "./Components/ForgotPassword"
 
 
 
@@ -24,47 +27,54 @@ function App() {
   ]);
 
   return (
-    <Router>
-      <div className="App">
-        <div className="page_container">
-        <Switch>
-          <Route path='/AboutUs'>
-            <NavBar />
-            {/* <AboutUs /> */}
-           
-          </Route>
+    <AuthProvider>
+      <Router>
+        <div className="App">
+          <div className="page_container">
+          <Switch>
+            <Route path='/AboutUs'>
+              <NavBar />
+              {/* <AboutUs /> */}
+            
+            </Route>
 
 
-          <Route path='/Profile'>
-            <NavBar />
-            <Profile 
-              myFavorite={books.filter((book) => book.code === "0002")}
-              myBooks={books.filter((book) => book.code === "0006")}
-              />
-            <Footer />
-          </Route>
+            <Route exact path='/Profile' >
+              <>
+                <NavBar />
+                <Profile 
+                  myFavorite={books.filter((book) => book.code === "0002")}
+                  myBooks={books.filter((book) => book.code === "0006")}
+                  />
+                <Footer />
+              </>
+            </Route>
 
-          <Route path='/SingUp'>
-            {/* <NavBar /> */}
-            <SingUp/>
-          </Route>
+            <Route path='/SingUp'>
+              {/* <NavBar /> */}
+              <SingUp/>
+            </Route>
 
-          <Route path='/Login' >
-            {/* <NavBar /> */}
-            <Login/>
-          </Route>
+            <Route path='/Login' >
+              {/* <NavBar /> */}
+              <Login/>
+            </Route>
 
+            <Route path='/ForgotPassword' >
+              {/* <NavBar /> */}
+              <ForgotPassword/>
+            </Route>
 
-          <Route path='/'>
-            <NavBar />
-            <Books books={books}/>
-            <Footer />
-          </Route>
-        </Switch>
+            <Route exact path="/">
+              <NavBar />
+              <Books books={books}/>
+              <Footer />
+            </Route>
+          </Switch>
+          </div>
         </div>
-      </div>
-    </Router>
-    
+      </Router>
+    </AuthProvider>
   );
 }
 

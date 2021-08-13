@@ -11,7 +11,17 @@
     right: 0;
     margin: auto;
     width: 35%;
+    height: 80%;
+}
+
+.log__In{
     height: 60%;
+
+}
+
+.forgot__password{
+    height: 50%;
+
 }
 
 .name-box{
@@ -29,8 +39,8 @@ display: flex;
 justify-content: center;
 
 }
-#emAndPass{
-    
+.input__style{
+    margin-top: 10px;
     width: 80%;
     padding: 10px;
     background-color: white;
