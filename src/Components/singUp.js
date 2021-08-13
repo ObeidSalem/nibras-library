@@ -1,6 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-import './SingUp.css'
+import './singUp.css'
 import logo_pic from '../img/logo.jpeg'
 
 const SignUp = () => {
@@ -28,9 +27,7 @@ const SignUp = () => {
             <br />     
             <input type="text" placeholder="phone number" />
 
-            <h5>Do you live Inside IIUM Gombak Campuss? </h5>
-
-            <h5> already have an account <Link to="/Login">Log In</Link>  </h5>
+            <h5>Do you live Inside IIUM Gombak Campus? </h5>
             
 
             <br />

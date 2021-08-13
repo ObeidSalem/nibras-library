@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './App.css';
 import NavBar from './Components/NavBar';
-import SingUp from './Components/SingUp';
+import SingUp from './Components/singUp.js';
 import Login from './Components/Login';
 import Profile from './Components/Profile';
 import Footer from './Components/Footer';
@@ -47,12 +47,12 @@ function App() {
           <Route path='/SingUp'>
             {/* <NavBar /> */}
             <SingUp/>
-            </Route>
+          </Route>
 
-            <Route path='/Login' >
+          <Route path='/Login' >
             {/* <NavBar /> */}
             <Login/>
-            </Route>
+          </Route>
 
 
           <Route path='/'>
@@ -62,7 +62,7 @@ function App() {
           </Route>
         </Switch>
         </div>
-        {/* <Footer /> */}
+        <Footer />
       </div>
     </Router>
     
