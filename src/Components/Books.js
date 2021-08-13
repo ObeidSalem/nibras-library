@@ -3,14 +3,11 @@ import './Books.css'
 import BookList from './BookList'
 
 const Books = ({books}) => {
-<<<<<<< HEAD
 
     
 
 
 
-=======
->>>>>>> master
     return (
         <div className="body">
             <div className="search__container">
