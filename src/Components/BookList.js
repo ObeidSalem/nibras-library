@@ -52,10 +52,10 @@ const BookList = ({books}) => {
                             <hr></hr>
                             <h5>Book Name:   {book.title}</h5>
                             <h5>Book Description:   {book.description}</h5> 
-                            <h5>Owner's Name:   {/*book.id*/}Obeid Salem Ahmed Bashwaer</h5> 
-                            <h5>Email:  {/*book.email*/}o.salem322@gmail.com</h5> 
-                            <h5>Location: {/*book.location*/}IIUM Gombak campus</h5> 
-                            <h5>Phone No.:  {/*book.phoneNo*/}+601116942582</h5> 
+                            <h5>Owner's Name:   {book.owner}</h5> 
+                            <h5>Email:  {book.email}</h5> 
+                            <h5>Location: {book.location}</h5> 
+                            <h5>Phone No.:  {book.phoneNo}</h5> 
                             <br></br>
                         </ContactPopup>
                     </div>
