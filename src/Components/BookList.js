@@ -8,6 +8,7 @@ import { useHistory } from "react-router-dom"
 
 const BookList = ({books}) => {
     const [contactBtnPopUp, setContactBtnPopUp] = useState(false)
+    const [targetBtn, setTargetBtn] = useState()
     const [reportBtnPopUp, setReportBtnPopUp] = useState(false)
     const { currentUser } = useAuth()
     const history = useHistory()
@@ -16,7 +17,7 @@ const BookList = ({books}) => {
     return (
         <>
             {books.map(book =>(
-                <div className="book__container" key={book.id}>
+                <div className="book__container" key={book.id} id={book.id}>
                     <input onClick={() => setReportBtnPopUp(true)} className='book__report reportIcon' type="button" value=""></input>
                      <ReportPopup trigger={reportBtnPopUp} setTrigger={setReportBtnPopUp}>
                         <h3>Report</h3>
@@ -42,21 +43,12 @@ const BookList = ({books}) => {
                         {book.description}                        
                     </p> */}
                     <div className="book__buttons">
-                        {currentUser && <input onClick={() => setContactBtnPopUp(true)} className='book__contact' type="button" value="Contact"></input> }
+                        {currentUser && <input onClick={() => (setTargetBtn(book), setContactBtnPopUp(true), console.log(books), console.log(book)) } className='book__contact' type="button" value="Contact"></input> }
                         {!currentUser && <input onClick={() => history.push("/LogIn")} className='book__contact' type="button" value="Contact"></input> }
                         {currentUser && <input onClick={() => alert("Added to favorite >> Yet to be developed")} className='book__favorite InActiveFavorite' type="button" value=""></input>  }
                         {!currentUser && <input onClick={() => history.push("/LogIn")} className='book__favorite InActiveFavorite' type="button" value=""></input>  }
 
-                        <ContactPopup trigger={contactBtnPopUp} setTrigger={setContactBtnPopUp}>
-                            <h3>Contact Details</h3>
-                            <hr></hr>
-                            <h5>Book Name:   {book.title}</h5>
-                            <h5>Book Description:   {book.description}</h5> 
-                            <h5>Owner's Name:   {book.owner}</h5> 
-                            <h5>Email:  {book.email}</h5> 
-                            <h5>Location: {book.location}</h5> 
-                            <h5>Phone No.:  {book.phoneNo}</h5> 
-                            <br></br>
+                        <ContactPopup book={targetBtn} trigger={contactBtnPopUp} setTrigger={setContactBtnPopUp}>
                         </ContactPopup>
                     </div>
                 </div>
