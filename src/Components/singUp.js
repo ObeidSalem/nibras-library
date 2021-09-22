@@ -4,6 +4,8 @@ import React, { useRef, useState } from "react"
 import { Form, Button, Card, Alert } from "react-bootstrap"
 import { useAuth } from "../context/AuthContext"
 import { Link, useHistory } from "react-router-dom"
+import { database } from "../firebase"
+// import { database } from 'firebase/app'
 
 export default function Signup() {
   const { signup } = useAuth()
@@ -16,6 +18,8 @@ export default function Signup() {
   const [error, setError] = useState("")
   const [loading, setLoading] = useState(false)
   const history = useHistory()
+  // const [firstname, setName] = useState("")
+  // const firstname =  useRef()
 
   async function handleSubmit(e) {
     e.preventDefault()
@@ -34,6 +38,14 @@ export default function Signup() {
     }
 
     setLoading(false)
+
+    database.accounts.add({
+      Fname: firstNameRef,
+      // Lname:
+      
+
+
+    })
   }
 
   return (
@@ -51,7 +63,7 @@ export default function Signup() {
           {error && <Alert variant="danger">{error}</Alert>}
           <Form onSubmit={handleSubmit}>
             <Form.Group id="first_name">
-              <Form.Control className="input__style" placeholder="First Name" type="text" ref={firstNameRef} />
+              <Form.Control className="input__style" placeholder="First Name" type="text" ref={firstNameRef}  />
             </Form.Group>
             <Form.Group id="last_name">
               <Form.Control className="input__style" placeholder="Last Name" type="text" ref={lastNameRef} required />
