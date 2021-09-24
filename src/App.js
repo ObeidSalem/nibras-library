@@ -42,7 +42,7 @@ function App() {
       });
       setBooks(items);
       setLoading(false);
-      console.log(items);
+      console.log(firebase.auth().currentUser);
     });
   }
 
