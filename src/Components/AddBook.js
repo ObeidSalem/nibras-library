@@ -22,25 +22,25 @@ export default function AddBook() {
   const passwordConfirmRef = useRef()
   const [error, setError] = useState("")
 
-    const [books, setBooks] = useState([])
-    const [isUploaded, setIsUploaded] = useState(false)
-    const [loading, setLoading] = useState(false);
-    const [coverPage, setCoverPage] = useState();
-    const [title, setTitle] = useState();
-    const [author, setAuthor] = useState();
-    const [category, setCategory] = useState();
-    const [description, setDescription] = useState();
-    const [owner, setOwner] = useState();
-    const [uid] = useState(firebase.auth().currentUser.uid);
-    const [email] = useState(firebase.auth().currentUser.email);
-    const [location, setLocation] = useState();
-    const [phoneNo, setPhoneNo] = useState();
-    const [fileUrl, setFileUrl] = React.useState(null);
+  const [books, setBooks] = useState([])
+  const [isUploaded, setIsUploaded] = useState(false)
+  const [loading, setLoading] = useState(false);
+  const [coverPage, setCoverPage] = useState();
+  const [title, setTitle] = useState();
+  const [author, setAuthor] = useState();
+  const [category, setCategory] = useState();
+  const [description, setDescription] = useState();
+  const [owner, setOwner] = useState();
+  const [uid] = useState(firebase.auth().currentUser.uid);
+  const [email] = useState(firebase.auth().currentUser.email);
+  const [location, setLocation] = useState();
+  const [phoneNo, setPhoneNo] = useState();
+  const [fileUrl, setFileUrl] = React.useState(null);
 
-    const history = useHistory()
+  const history = useHistory()
 
-    const ref = firebase.firestore().collection("Books");
-    console.log(firebase.auth().currentUser)
+  const ref = firebase.firestore().collection("Books");
+  console.log(firebase.auth().currentUser)
 
     async function addBook(newBook) {
         // uploadImage();
@@ -55,9 +55,9 @@ export default function AddBook() {
         history.push("/")
     }
 
-    const uploadImage = async (e) => {
+    // const uploadImage = async (e) => {
       
-    }
+    // }
 
     const onFileChange = async (e) => {
         setIsUploaded(true)
@@ -74,17 +74,17 @@ export default function AddBook() {
         setIsUploaded(false)
       };
 
-    const onSubmit = async (e) => {
-        e.preventDefault();
-        const username = e.target.username.value;
-        if (!username || !fileUrl) {
-          return;
-        }
-        await db.collection("users").doc(username).set({
-          name: username,
-          avatar: fileUrl,
-        });
-      };
+    // const onSubmit = async (e) => {
+    //     e.preventDefault();
+    //     const username = e.target.username.value;
+    //     if (!username || !fileUrl) {
+    //       return;
+    //     }
+    //     await db.collection("users").doc(username).set({
+    //       name: username,
+    //       avatar: fileUrl,
+    //     });
+    //   };
 
   return (
      <>

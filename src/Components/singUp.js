@@ -1,61 +1,58 @@
 import './singUp.css'
-import firebase from "firebase/app"
+import firebase from "../firebase";
+// import firebase from "firebase/app"
 import "firebase/auth"
 import logo_pic from '../img/logo.jpeg'
 import React, { useRef, useState } from "react"
 import { Form, Button, Card, Alert } from "react-bootstrap"
 import { useAuth } from "../context/AuthContext"
 import { Link, useHistory } from "react-router-dom"
+import { v4 as uuidv4 } from "uuid";
 
 export default function Signup() {
   const { signup } = useAuth()
-  const firstNameRef = useRef()
-  const lastNameRef = useRef()
-  const phoneRef = useRef()
-  const addressRef = useRef()
-  const emailRef = useRef()
-  const passwordRef = useRef()
-  const passwordConfirmRef = useRef()
+  const [firstNameRef, setName] = useState("")
+  const [phoneRef, setPhoneNo] = useState("")
+  const [addressRef, setAddress] = useState("")
+  const [emailRef, setEmail] = useState("")
+  const [passwordRef, setPassword] = useState("")
+  const [passwordConfirmRef, setPasswordConfirm] = useState("")
   const [error, setError] = useState("")
   const [loading, setLoading] = useState(false)
   const history = useHistory()
+  
+  const ref = firebase.firestore().collection("Users");
+  function createAccount() {
+    console.log("createAccount has been called")
+    return new Promise(function(resolve, reject) {
+      if (passwordRef === passwordConfirmRef) {
+        signup(emailRef, passwordRef).then(() => {
+          resolve()
+          console.log("account has been created")
+        })
+      } else {
+        reject("Failed to create an account")
+      }
+    })
+  }
 
-  async function handleSubmit(e) {
-    e.preventDefault()
-    // const ref = firebase.firestore().collection("Users");
 
-    if (passwordRef.current.value !== passwordConfirmRef.current.value) {
-      return setError("Passwords do not match")
-    }
-
+  async function handleSubmit(newUser) {
     try {
       setError("")
       setLoading(true)
-      await signup(emailRef, passwordRef)
-      .then(() =>{
-        let user = firebase.auth().currentUser;
-
-        //save this user into fireStore
-        let databaseRef = firebase.database().ref()
-
-        //Create user data
-        let userData = {
-          email : emailRef,
-          fname : firstNameRef,
-          lname : lastNameRef,
-          address : addressRef,
-          phone : phoneRef,
-          last_login : Date.now()
-        }
-
-        databaseRef.child('users/' + user.id).set(userData)
-      })
+      await createAccount()
+      await ref
+      .doc(newUser.id)
+      .set(newUser)
+      .catch((err) => {
+          console.error(err);
+      });
       history.push("/")
-    } catch {
-      setError(error)
-      setError("Failed to create an account")
-    }
-
+    } catch (err) {
+      setError("Failed to save")
+      console.log(err)
+    }     
     setLoading(false)
   }
 
@@ -70,32 +67,53 @@ export default function Signup() {
           <br />
           <h2 >Sign Up</h2>
           <br />
-
           {error && <Alert variant="danger">{error}</Alert>}
-          <Form onSubmit={handleSubmit}>
-            <Form.Group id="first_name">
-              <Form.Control className="input__style" placeholder="First Name" type="text" ref={firstNameRef} />
-            </Form.Group>
-            <Form.Group id="last_name">
-              <Form.Control className="input__style" placeholder="Last Name" type="text" ref={lastNameRef} required />
-            </Form.Group>
-            <Form.Group id="email">
-              <Form.Control className="input__style" placeholder="Email" type="email" ref={emailRef} required />
-            </Form.Group>
-            <Form.Group id="password">
-              <Form.Control className="input__style" placeholder="Password" type="password" ref={passwordRef} required />
-            </Form.Group>
-            <Form.Group id="password-confirm">
-              <Form.Control className="input__style" placeholder="Password Confirmation" type="password" ref={passwordConfirmRef} required />
-            </Form.Group>
-            <Form.Group id="phone_number">
-              <Form.Control className="input__style" placeholder="Phone Number" type="text" ref={phoneRef} required />
-            </Form.Group>
-            <Form.Group id="address">
-              <Form.Control className="input__style" placeholder="Address" type="text" ref={addressRef} required />
-            </Form.Group>
-            <input type="submit" className="header__signUp" value="Sign Up"></input>
-          </Form>
+          <input
+                className="input__style"   
+                placeholder="Name"
+                type="text"
+                value={firstNameRef}
+                onChange={(e) => setName(e.target.value)}
+                required 
+            />
+            <input
+                className="input__style"   
+                placeholder="Email"
+                type="email"
+                value={emailRef}
+                onChange={(e) => setEmail(e.target.value)}
+            />
+            <input
+                className="input__style"   
+                placeholder="password"
+                type="Password"
+                value={passwordRef}
+                onChange={(e) => setPassword(e.target.value)}
+            />
+            <input
+                className="input__style"   
+                placeholder="Password Confirmation"
+                type="Password"
+                value={passwordConfirmRef}
+                onChange={(e) => setPasswordConfirm(e.target.value)}
+            />
+            <input
+                className="input__style"   
+                placeholder="Phone Number"
+                type="text"
+                value={phoneRef}
+                onChange={(e) => setPhoneNo(e.target.value)}
+            />
+            <input
+                className="input__style"   
+                placeholder="Address"
+                type="Address"
+                value={addressRef}
+                onChange={(e) => setAddress(e.target.value)}
+            />
+           
+            <input onClick={() =>handleSubmit({ firstNameRef, emailRef, phoneRef, addressRef, id: uuidv4() })}
+              type="submit" className="header__signUp" value="Sign Up"></input>
         </div> 
         <div>
         Already have an account? <Link to="/login">Log In</Link>
