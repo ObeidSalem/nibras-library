@@ -30,12 +30,17 @@ export default function AddBook() {
     const [author, setAuthor] = useState();
     const [category, setCategory] = useState();
     const [description, setDescription] = useState();
+    const [owner, setOwner] = useState();
+    const [uid] = useState(firebase.auth().currentUser.uid);
+    const [email] = useState(firebase.auth().currentUser.email);
+    const [location, setLocation] = useState();
+    const [phoneNo, setPhoneNo] = useState();
     const [fileUrl, setFileUrl] = React.useState(null);
 
     const history = useHistory()
 
     const ref = firebase.firestore().collection("Books");
-
+    console.log(firebase.auth().currentUser)
 
     async function addBook(newBook) {
         // uploadImage();
@@ -99,7 +104,7 @@ export default function AddBook() {
                 value={setFileUrl || ""}
                 onChange={onFileChange}
             />
-            {isUploaded && <p>Loading...</p>}
+            {isUploaded && <p>Uploading...</p>}
             <input
                 className="input__style"   
                 placeholder="Book Title"
@@ -146,7 +151,7 @@ export default function AddBook() {
         </div>
         ))} */}
         </div>
-      : null}
+      : history.push("/login")}
     </>
   )
 }

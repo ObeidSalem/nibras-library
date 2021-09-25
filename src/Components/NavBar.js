@@ -33,13 +33,11 @@ const NavBar = () => {
                             <div className="header__option">
                                 <Link className='link btn' to = '/AboutUs'>About Us</Link>
 
-                            </div>
-                            {currentUser && 
+                            </div> 
                             <div className="header__option">
                                 <Link className='link btn' to = '/AddBook'>Add Book</Link>
 
                             </div>
-                            }
                         </div>
 
                         <div className="header__buttons">

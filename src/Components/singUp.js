@@ -1,4 +1,6 @@
 import './singUp.css'
+import firebase from "firebase/app"
+import "firebase/auth"
 import logo_pic from '../img/logo.jpeg'
 import React, { useRef, useState } from "react"
 import { Form, Button, Card, Alert } from "react-bootstrap"
@@ -10,6 +12,7 @@ export default function Signup() {
   const firstNameRef = useRef()
   const lastNameRef = useRef()
   const phoneRef = useRef()
+  const addressRef = useRef()
   const emailRef = useRef()
   const passwordRef = useRef()
   const passwordConfirmRef = useRef()
@@ -19,6 +22,7 @@ export default function Signup() {
 
   async function handleSubmit(e) {
     e.preventDefault()
+    // const ref = firebase.firestore().collection("Users");
 
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
       return setError("Passwords do not match")
@@ -27,10 +31,28 @@ export default function Signup() {
     try {
       setError("")
       setLoading(true)
-      await signup(emailRef.current.value, passwordRef.current.value)
-      
+      await signup(emailRef, passwordRef)
+      .then(() =>{
+        let user = firebase.auth().currentUser;
+
+        //save this user into fireStore
+        let databaseRef = firebase.database().ref()
+
+        //Create user data
+        let userData = {
+          email : emailRef,
+          fname : firstNameRef,
+          lname : lastNameRef,
+          address : addressRef,
+          phone : phoneRef,
+          last_login : Date.now()
+        }
+
+        databaseRef.child('users/' + user.id).set(userData)
+      })
       history.push("/")
     } catch {
+      setError(error)
       setError("Failed to create an account")
     }
 
@@ -68,6 +90,9 @@ export default function Signup() {
             </Form.Group>
             <Form.Group id="phone_number">
               <Form.Control className="input__style" placeholder="Phone Number" type="text" ref={phoneRef} required />
+            </Form.Group>
+            <Form.Group id="address">
+              <Form.Control className="input__style" placeholder="Address" type="text" ref={addressRef} required />
             </Form.Group>
             <input type="submit" className="header__signUp" value="Sign Up"></input>
           </Form>
