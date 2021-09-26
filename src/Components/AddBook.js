@@ -55,9 +55,6 @@ export default function AddBook() {
         history.push("/")
     }
 
-    // const uploadImage = async (e) => {
-      
-    // }
 
     const onFileChange = async (e) => {
         setIsUploaded(true)
@@ -73,18 +70,6 @@ export default function AddBook() {
         setCoverPage(imageURL)
         setIsUploaded(false)
       };
-
-    // const onSubmit = async (e) => {
-    //     e.preventDefault();
-    //     const username = e.target.username.value;
-    //     if (!username || !fileUrl) {
-    //       return;
-    //     }
-    //     await db.collection("users").doc(username).set({
-    //       name: username,
-    //       avatar: fileUrl,
-    //     });
-    //   };
 
   return (
      <>
