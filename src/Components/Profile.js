@@ -46,10 +46,10 @@ const Profile = ({users, myFavorite, myBooks}) => {
                     <div onClick={() => setImageUpdateTrigger(true)} className='right'><FiEdit className = 'edit__icon' /></div>
 
                     <div className='profile__info'>
-                        <h5 class='profile__details'>{user.firstNameRef}</h5>
-                        <h5 class='profile__details'>{user.phoneRef}</h5>
+                        <h5 class='profile__details'>{currentUser && user.firstNameRef}</h5>
+                        <h5 class='profile__details'>{currentUser && user.phoneRef}</h5>
                         <h5 class='profile__details'>{currentUser && currentUser.email}</h5>
-                        <h5 class='profile__details'>{user.addressRef}</h5>
+                        <h5 class='profile__details'>{currentUser && user.addressRef}</h5>
                     </div>
                     <ImageUpdatePopup trigger={infoUpdateTrigger} setTrigger={setInfoUpdateTrigger}>
                         <h3>Update your Info</h3>
