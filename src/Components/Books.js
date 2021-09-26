@@ -19,7 +19,7 @@ const Books = ({books}) => {
             <hr className="searchLine"></hr>
 
             <div className="books__container">
-                <BookList books={books}/>
+                <BookList books={books} />
             </div>
 
         </div>

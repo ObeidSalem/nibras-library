@@ -19,7 +19,8 @@ function App() {
   // const { currentUser } = useAuth()
 
   const [loading, setLoading] = useState(false);
-
+  const email = firebase.auth().currentUser.email;
+  const [users, setUsers] = useState([])
   const [books, setBooks] = useState([
     {id: 1, image: "/images/b1.jpg", title: "ABSALOM, ABSALOM! ", author:"Obeid Salem", category: "Novel", code: "0001", description: "in the Ecclesiastes, again part of the Old Testament. The anonymous author is a King of Jerusalem who  in the Ecclesiastes, again part of the Old Testament. The anonymous author is a King of Jerusalem "},
     {id: 2, image: "/images/b2.jpeg", title: "lkfjsdfs skfjkldj fl", author:"Salem", category: "Novel", code: "0002", description: "in the Ecclesiastes, again part of the Old Testament. The anonymous author is a King of Jerusalem who  in the Ecclesiastes, again part of the Old Testament. The anonymous author is a King of Jerusalem "},
@@ -30,12 +31,13 @@ function App() {
     {id: 7, image: "/images/b1.jpg", title: "lgkdfjg ldg dflk", author:"Tariq", category: "Novel", code: "0007", description: "in the Ecclesiastes, again part of the Old Testament. The anonymous author is a King of Jerusalem who  in the Ecclesiastes, again part of the Old Testament. The anonymous author is a King of Jerusalem "},
   ]);
 
-  const ref = firebase.firestore().collection("Books");
+  const refBooks = firebase.firestore().collection("Books");
+  const refUsers = firebase.firestore().collection("Users");
 
   //REALTIME GET FUNCTION
   function getBooks() {
     setLoading(true);
-    ref.onSnapshot((querySnapshot) => {
+    refBooks.onSnapshot((querySnapshot) => {
       const items = [];
       querySnapshot.forEach((doc) => {
         items.push(doc.data());
@@ -46,7 +48,21 @@ function App() {
     });
   }
 
+  function getUsers() {
+    setLoading(true);
+    refUsers.onSnapshot((querySnapshot) => {
+      const items = [];
+      querySnapshot.forEach((doc) => {
+        items.push(doc.data());
+      });
+      setUsers(items);
+      setLoading(false);
+      console.log(firebase.auth().currentUser);
+    });
+  }
+
   useEffect(() => {
+    getUsers()
     getBooks();
   }, []);
 
@@ -64,17 +80,16 @@ function App() {
 
             <Route path='/AddBook'>
               <NavBar />
-              <AddBook />
+              <AddBook  users={users.filter((user) => user.emailRef === email)}/>
             </Route>
 
             <Route exact path='/Profile' >
               <>
                 <NavBar />
                 <Profile 
-                  myFavorite={books.filter((book) => book.id === "1"
-                    // currentUser.uid
-                    )}
-                  myBooks={books.filter((book) => book.id === "6")}
+                  users={users.filter((user) => user.emailRef === email)}
+                  myFavorite={books.filter((book) => book.id === "1")}
+                  myBooks={books.filter((book) => book.email === email)}
                   />
                 <Footer />
               </>
@@ -96,7 +111,7 @@ function App() {
             </Route>
             <Route exact path="/">
               <NavBar />
-              <Books books={books}/>
+              <Books books={books} />
               <Footer />
             </Route>
           </Switch>

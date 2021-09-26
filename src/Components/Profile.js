@@ -7,12 +7,13 @@ import { useAuth } from "../context/AuthContext"
 import { useHistory } from "react-router-dom"
 
 
-const Profile = ({myFavorite, myBooks}) => {
+const Profile = ({users, myFavorite, myBooks}) => {
     const [imageUpdateTrigger, setImageUpdateTrigger] = useState(false)
     const [infoUpdateTrigger, setInfoUpdateTrigger] = useState(false)
     const [error, setError] = useState("")
     const { currentUser, logout } = useAuth()
     const history = useHistory()
+    const user = users[0]
 
     async function handleLogout() {
         setError("")
@@ -45,10 +46,10 @@ const Profile = ({myFavorite, myBooks}) => {
                     <div onClick={() => setImageUpdateTrigger(true)} className='right'><FiEdit className = 'edit__icon' /></div>
 
                     <div className='profile__info'>
-                        <h5 class='profile__details'>User Name should be here</h5>
-                        <h5 class='profile__details'>User Phone Number should be here</h5>
+                        <h5 class='profile__details'>{user.firstNameRef}</h5>
+                        <h5 class='profile__details'>{user.phoneRef}</h5>
                         <h5 class='profile__details'>{currentUser && currentUser.email}</h5>
-                        <h5 class='profile__details'>User Location should be here</h5>
+                        <h5 class='profile__details'>{user.addressRef}</h5>
                     </div>
                     <ImageUpdatePopup trigger={infoUpdateTrigger} setTrigger={setInfoUpdateTrigger}>
                         <h3>Update your Info</h3>

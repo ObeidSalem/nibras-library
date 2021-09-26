@@ -6,7 +6,7 @@ import { useAuth } from "../context/AuthContext"
 import { useHistory } from "react-router-dom"
 
 
-const BookList = ({books}) => {
+const BookList = (props) => {
     const [contactBtnPopUp, setContactBtnPopUp] = useState(false)
     const [targetBtn, setTargetBtn] = useState()
     const [reportBtnPopUp, setReportBtnPopUp] = useState(false)
@@ -16,7 +16,7 @@ const BookList = ({books}) => {
 
     return (
         <>
-            {books.map(book =>(
+            {props.books.map(book =>(
                 <div className="book__container" key={book.id} id={book.id}>
                     <input onClick={() => setReportBtnPopUp(true)} className='book__report reportIcon' type="button" value=""></input>
                      <ReportPopup trigger={reportBtnPopUp} setTrigger={setReportBtnPopUp}>
@@ -37,13 +37,13 @@ const BookList = ({books}) => {
                     Author: {book.author}
                     </h6>
                     <h6 className="left">
-                    code: {book.code}
+                    email: {book.email}
                     </h6>
                     {/* <p className="left">
                         {book.description}                        
                     </p> */}
                     <div className="book__buttons">
-                        {currentUser && <input onClick={() => (setTargetBtn(book), setContactBtnPopUp(true), console.log(books), console.log(book)) } className='book__contact' type="button" value="Contact"></input> }
+                        {currentUser && <input onClick={() => (setTargetBtn(book), setContactBtnPopUp(true), console.log(props), console.log(book)) } className='book__contact' type="button" value="Contact"></input> }
                         {!currentUser && <input onClick={() => history.push("/LogIn")} className='book__contact' type="button" value="Contact"></input> }
                         {currentUser && <input onClick={() => alert("Added to favorite >> Yet to be developed")} className='book__favorite InActiveFavorite' type="button" value=""></input>  }
                         {!currentUser && <input onClick={() => history.push("/LogIn")} className='book__favorite InActiveFavorite' type="button" value=""></input>  }
