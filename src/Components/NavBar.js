@@ -33,9 +33,9 @@ const NavBar = () => {
                             <div className="header__option">
                                 <Link className='link btn' to = '/AboutUs'>About Us</Link>
 
-                            </div>
+                            </div> 
                             <div className="header__option">
-                                <Link className='link btn' to = '/'>Add Book</Link>
+                                <Link className='link btn' to = '/AddBook'>Add Book</Link>
 
                             </div>
                         </div>
