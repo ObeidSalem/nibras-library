@@ -1,5 +1,5 @@
-import React from 'react'
-import { useState } from 'react'
+import React, { useRef, useState } from 'react'
+// import { useState } from 'react'
 import './Profile.css'
 import { FiEdit } from "react-icons/fi";
 import ImageUpdatePopup from './ImageUpdatePopup';
@@ -7,7 +7,14 @@ import { useAuth } from "../context/AuthContext"
 import { useHistory } from "react-router-dom"
 
 
+
+
 const Profile = ({myFavorite, myBooks}) => {
+
+    const [NameRef, setName] = useState("")
+    const [phoneRef, setPhoneNo] = useState("")
+    const [addressRef, setAddress] = useState("")
+
     const [imageUpdateTrigger, setImageUpdateTrigger] = useState(false)
     const [infoUpdateTrigger, setInfoUpdateTrigger] = useState(false)
     const [error, setError] = useState("")
@@ -24,6 +31,30 @@ const Profile = ({myFavorite, myBooks}) => {
           setError("Failed to log out")
         }
     }
+
+    async function handleSubmit(curent_User) {}
+    //     try {
+    //       setError("")
+    //       setLoading(true)
+    //     //   await createAccount()
+    //       await ref
+    //       if (NameRef) {
+    //           newuser.firstNameRef=curent_User.Nameref
+    //       }
+    //       .doc(newUser.id)
+    //       .set(newUser)
+    //       .catch((err) => {
+    //           console.error(err);
+    //       });
+
+    //       history.push("/")
+    //     } catch (err) {
+    //       setError("Failed to save")
+    //       console.log(err)
+    //     }     
+    //     setLoading(false)
+    
+    //   }
 
     return (
         <div className="profile__container">
@@ -55,16 +86,18 @@ const Profile = ({myFavorite, myBooks}) => {
                         <hr></hr>
                         <form>
                             <div className='row__inputs'>
-                                <input  className='input__failed ten__px__margin__to__right' type="input" placeholder="First Name:" required></input > 
-                                <input  className='input__failed ' type="input" placeholder="last Name:" required></input > 
+                                <input  className='input__failed ten__px__margin__to__right' type="input" placeholder="Name:" value={NameRef} ></input > 
+                                {/* <input  className='input__failed ' type="input" placeholder="last Name:" required></input >  */}
                             </div>
                             <div >
-                                <input  className='input__failed' type="input" placeholder="Phone Number:" required></input > 
-                                <input  className='input__failed' type="password" placeholder="Old Password:" required></input > 
-                                <input  className='input__failed' type="password" placeholder="New Password:" required></input > 
-                                <input  className='input__failed' type="password" placeholder="Confirm New Password:" required></input > 
+                                <input  className='input__failed' type="input" placeholder="Phone Number:" valeu={phoneRef} ></input > 
+                                <input  className='input__failed' type="password" placeholder="address:" value={addressRef}></input > 
+                                {/* <input  className='input__failed' type="password" placeholder="New Password:" required></input > 
+                                <input  className='input__failed' type="password" placeholder="Confirm New Password:" required></input >  */}
                             </div>
-                            <button type='submit' className="save__button">SAVE</button>
+                            <input onClick={() =>handleSubmit({ NameRef, phoneRef, addressRef })}
+                            type="submit" className="save__button" value="save"></input>
+                            {/* <button type='submit' className="save__button">SAVE</button> */}
                             <br></br>
                             <br></br>
                         </form>
