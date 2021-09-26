@@ -54,7 +54,71 @@ export default function Signup() {
       console.log(err)
     }     
     setLoading(false)
+
   }
+  
+//  const handleSubmit = (newUser) => 
+
+ 
+  // async function handleSubmit(e,dispatch, getState, {getFirebase, getFirestore} , newUser) {
+
+  //     e.preventDefault()
+      
+  //   const firebase = getFirebase();
+  //   const firestore = getFirestore();
+    
+  //   firebase.auth().createUserWithEmailAndPassword(
+  //     newUser.email, 
+  //     newUser.password
+  //   ).then(resp => {
+  //     return firestore.collection('users').doc(resp.user.uid).set({
+  //       firstName: newUser.firstName,
+  //       lastName: newUser.lastName,
+  //       initials: newUser.firstName[0] + newUser.lastName[0]
+  //     });
+  //   }).then(() => {
+  //     dispatch({ type: 'SIGNUP_SUCCESS' });
+  //   }).catch((err) => {
+  //     dispatch({ type: 'SIGNUP_ERROR', err});
+  //   });
+  // }
+
+
+
+
+
+  // async function handleSubmit(e , {getFirestore} , newUser) {
+  //   e.preventDefault()
+
+  //   if (passwordRef.current.value !== passwordConfirmRef.current.value) {
+  //     return setError("Passwords do not match")
+  //   }
+  
+  //   try {
+  //     setError("")
+  //     setLoading(true)
+  //     const firestore = getFirestore()
+  //     await signup(emailRef.current.value, passwordRef.current.value)
+      
+     
+  //   // .then(resp => {
+  //   //   console.log("2")
+  //   //   return firestore.collection('users').doc(resp.user.uid).set({
+  //   //     firstName: newUser.firstName,
+  //   //     lastName: newUser.lastName,
+      
+  //   //   });
+  //   // })
+  //   // console.log("3")
+  //   history.push("/")
+
+  // } catch {
+  //   setError("Failed to create an account")
+  // }
+
+  //   setLoading(false)
+  // }
+
 
   return (
     <>
@@ -122,3 +186,5 @@ export default function Signup() {
     </>
   )
 }
+
+// export default handleSubmit;
