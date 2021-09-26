@@ -4,6 +4,8 @@ import React, { useRef, useState } from "react"
 import { Form, Button, Card, Alert } from "react-bootstrap"
 import { useAuth } from "../context/AuthContext"
 import { Link, useHistory } from "react-router-dom"
+import firebase from 'firebase'
+import "firebase/database"
 
 export default function Signup() {
   const { signup } = useAuth()
@@ -17,8 +19,39 @@ export default function Signup() {
   const [loading, setLoading] = useState(false)
   const history = useHistory()
 
+
+ 
+
+
+
+
   async function handleSubmit(e) {
     e.preventDefault()
+    // constructor() ; {
+      // super();
+      
+    // }
+
+    const db = firebase.firestore();
+  db.settings({
+    timestampsInSnapshots: true
+  });
+  const userRef = db.collection("users").add({
+    firstname: this.state.firstname,
+    lasttname:this.state.lasttname,
+    email: this.state.email,
+    phonenumber:this.state.phoneRef
+  }); 
+
+  this.state = {
+    firstname: firstNameRef,
+    lasttname: "",
+    email:"",
+    phonenumber:""
+   };
+
+
+
 
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
       return setError("Passwords do not match")
@@ -27,15 +60,78 @@ export default function Signup() {
     try {
       setError("")
       setLoading(true)
-      await signup(emailRef.current.value, passwordRef.current.value)
-      
+      await signup(emailRef.current.value, passwordRef.current.value)    
       history.push("/")
     } catch {
       setError("Failed to create an account")
     }
 
     setLoading(false)
+
   }
+  
+//  const handleSubmit = (newUser) => 
+
+ 
+  // async function handleSubmit(e,dispatch, getState, {getFirebase, getFirestore} , newUser) {
+
+  //     e.preventDefault()
+      
+  //   const firebase = getFirebase();
+  //   const firestore = getFirestore();
+    
+  //   firebase.auth().createUserWithEmailAndPassword(
+  //     newUser.email, 
+  //     newUser.password
+  //   ).then(resp => {
+  //     return firestore.collection('users').doc(resp.user.uid).set({
+  //       firstName: newUser.firstName,
+  //       lastName: newUser.lastName,
+  //       initials: newUser.firstName[0] + newUser.lastName[0]
+  //     });
+  //   }).then(() => {
+  //     dispatch({ type: 'SIGNUP_SUCCESS' });
+  //   }).catch((err) => {
+  //     dispatch({ type: 'SIGNUP_ERROR', err});
+  //   });
+  // }
+
+
+
+
+
+  // async function handleSubmit(e , {getFirestore} , newUser) {
+  //   e.preventDefault()
+
+  //   if (passwordRef.current.value !== passwordConfirmRef.current.value) {
+  //     return setError("Passwords do not match")
+  //   }
+  
+  //   try {
+  //     setError("")
+  //     setLoading(true)
+  //     const firestore = getFirestore()
+  //     await signup(emailRef.current.value, passwordRef.current.value)
+      
+     
+  //   // .then(resp => {
+  //   //   console.log("2")
+  //   //   return firestore.collection('users').doc(resp.user.uid).set({
+  //   //     firstName: newUser.firstName,
+  //   //     lastName: newUser.lastName,
+      
+  //   //   });
+  //   // })
+  //   // console.log("3")
+  //   history.push("/")
+
+  // } catch {
+  //   setError("Failed to create an account")
+  // }
+
+  //   setLoading(false)
+  // }
+
 
   return (
     <>
@@ -51,8 +147,8 @@ export default function Signup() {
 
           {error && <Alert variant="danger">{error}</Alert>}
           <Form onSubmit={handleSubmit}>
-            <Form.Group id="first_name">
-              <Form.Control className="input__style" placeholder="First Name" type="text" ref={firstNameRef} />
+            <Form.Group id="first_name"  > 
+              <Form.Control className="input__style"  placeholder="First Name" type="text" ref={firstNameRef} required />
             </Form.Group>
             <Form.Group id="last_name">
               <Form.Control className="input__style" placeholder="Last Name" type="text" ref={lastNameRef} required />
@@ -79,3 +175,5 @@ export default function Signup() {
     </>
   )
 }
+
+// export default handleSubmit;
