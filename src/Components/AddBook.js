@@ -12,7 +12,7 @@ import { v4 as uuidv4 } from "uuid";
 const db = firebase.firestore();
 
 
-export default function AddBook({users}) {
+export default function AddBook() {
   const { signup } = useAuth()
   const firstNameRef = useRef()
   const lastNameRef = useRef()
@@ -22,6 +22,7 @@ export default function AddBook({users}) {
   const passwordConfirmRef = useRef()
   const [error, setError] = useState("")
 
+  const [books, setBooks] = useState([])
   const [isUploaded, setIsUploaded] = useState(false)
   const [loading, setLoading] = useState(false);
   const [coverPage, setCoverPage] = useState();
@@ -29,22 +30,19 @@ export default function AddBook({users}) {
   const [author, setAuthor] = useState();
   const [category, setCategory] = useState();
   const [description, setDescription] = useState();
-  const [owner, setOwner] = useState("");
-  // const uid = firebase.auth().currentUser.uid;
-  const email = firebase.auth().currentUser.email;
-  const [location, setLocation] = useState("");
-  const [phoneNo, setPhoneNo] = useState("");
+  const [owner, setOwner] = useState();
+  const [uid] = useState(firebase.auth().currentUser.uid);
+  const [email] = useState(firebase.auth().currentUser.email);
+  const [location, setLocation] = useState();
+  const [phoneNo, setPhoneNo] = useState();
   const [fileUrl, setFileUrl] = React.useState(null);
-  const user = users[0];
 
   const history = useHistory()
 
   const ref = firebase.firestore().collection("Books");
   console.log(firebase.auth().currentUser)
-  console.log(user)
 
     async function addBook(newBook) {
-        // console.log(newBook)
         // uploadImage();
         ref
         //.doc() use if for some reason you want that firestore generates the id
@@ -56,6 +54,10 @@ export default function AddBook({users}) {
         
         history.push("/")
     }
+
+    // const uploadImage = async (e) => {
+      
+    // }
 
     const onFileChange = async (e) => {
         setIsUploaded(true)
@@ -71,6 +73,18 @@ export default function AddBook({users}) {
         setCoverPage(imageURL)
         setIsUploaded(false)
       };
+
+    // const onSubmit = async (e) => {
+    //     e.preventDefault();
+    //     const username = e.target.username.value;
+    //     if (!username || !fileUrl) {
+    //       return;
+    //     }
+    //     await db.collection("users").doc(username).set({
+    //       name: username,
+    //       avatar: fileUrl,
+    //     });
+    //   };
 
   return (
      <>
@@ -96,13 +110,7 @@ export default function AddBook({users}) {
                 placeholder="Book Title"
                 type="text"
                 value={title}
-                onChange={(e) => {
-                  setTitle(e.target.value)
-                  setOwner(user.firstNameRef)
-                  setLocation(user.addressRef)
-                  setPhoneNo(user.phoneRef)
-                  // console.log(owner + location + phoneNo + uid)
-                }}
+                onChange={(e) => setTitle(e.target.value)}
                 required 
             />
             <input
@@ -124,12 +132,9 @@ export default function AddBook({users}) {
                 placeholder="Description"
                 type="text"
                 value={description}
-                onChange={(e) => {setDescription(e.target.value)}}
+                onChange={(e) => setDescription(e.target.value)}
             />
-            <input onClick={() => { 
-              title && author && category && description && 
-              addBook({ coverPage, title, description, author, category, id: uuidv4(), owner, email, phoneNo, location})
-            }}
+            <input onClick={() => { title && author && category && description && addBook({ coverPage, title, description, author, category, id: uuidv4() })}}
                 type="submit" className="header__signUp" value="Save">
             </input>
             {/* <button onClick={() => addBook({ title, desc, author, category, id: uuidv4() })}>
