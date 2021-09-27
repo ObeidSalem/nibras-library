@@ -177,11 +177,11 @@ export default function Signup() {
             />
            
             <input onClick={() =>handleSubmit({ firstNameRef, emailRef, phoneRef, addressRef, id: uuidv4() })}
-              type="submit" className="header__signUp" value="Sign Up"></input>
+              type="submit" id="signup__button" className="header__signUp" value="Sign Up"></input>
+          <div >
+          Already have an account? <Link to="/login">Log In</Link>
+          </div>
         </div> 
-        <div>
-        Already have an account? <Link to="/login">Log In</Link>
-        </div>
       </div>   
     </>
   )

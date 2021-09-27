@@ -45,14 +45,16 @@ const NavBar = () => {
                             <input type="button" className="sign__out" value="My Profile">
                             </input>
                             </Link> }
-                            {!currentUser && <><Link className='btnlink' to = '/login'>
-                            <input type="button" className="header__login" value="Login">
-                            </input>
-                            </Link>
-                            <Link className='btnlink' to = '/singUp'>
-                            <input type="button" className="header__signUp" value="Sign Up">
-                            </input>
-                            </Link> </>}
+                            {!currentUser && 
+                            <>
+                                <Link className='btnlink' to = '/login'>
+                                    <input type="button" className="header__signUp header__login" value="Login"></input>
+                                </Link>
+                                <Link className='btnlink' to = '/singUp'>
+                                    <input type="button" className="header__signUp" value="Sign Up"></input>
+                                </Link> 
+                            </>
+                            }
                         </div>
                     </div>
                     <div className="icon menu" onClick={()=>{

@@ -31,34 +31,57 @@ const BookList = (props) => {
                             </form>
                         </ReportPopup>
                         <img className="book__image" src={book.coverPage || "https://static.scientificamerican.com/sciam/cache/file/1DDFE633-2B85-468D-B28D05ADAE7D1AD8_source.jpg?w=590&h=800&D80F3D79-4382-49FA-BE4B4D0C62A5C3ED"}/>
-                        <h5 className="left">{book.title}</h5>
-                        <h6 className="left">
-                        Category: {book.category}
-                        </h6>
+                        <h4 className="left">{book.title}</h4>
                         <h6 className="left">
                         Author: {book.author}
                         </h6>
                         <h6 className="left">
-                        email: {book.email}
+                        Category: {book.category}
                         </h6>
-                        {/* <p className="left">
-                            {book.description}                        
-                        </p> */}
-                        
                         </div>
                     <div className="book__buttons__home">
-                        {currentUser && 
-                            <input onClick={() => (setTargetBtn(book), setContactBtnPopUp(true), console.log(props), console.log(book)) } 
-                            className='book__contact' type="button" value="Contact"></input> }
+                        {currentUser && (book.isAvailable) ?
+                            <input 
+                                onClick={() => (setTargetBtn(book), setContactBtnPopUp(true), console.log(props), console.log(book)) } 
+                                className='book__contact' 
+                                type="button" 
+                                value="Contact"
+                            ></input> 
+                        : 
+                            <input 
+                                onClick={() => (alert(`This book currently unavailable. 
+You may add this book to your favorite list.`)) } 
+                                className='book__contact' 
+                                type="button"
+                                style={{
+                                    borderColor: "#221246",
+                                    color: "#221246",
+                                    backgroundColor: "#eee"
+                                }}  
+                                value="Unavailable"
+                            ></input> 
+                        }
                         {!currentUser && 
                             <input onClick={() => history.push("/LogIn")} 
-                            className='book__contact' type="button" value="Contact"></input> }
+                                className='book__contact' 
+                                type="button" 
+                                value="Contact"
+                            ></input> 
+                        }
                         {currentUser && 
                             <input onClick={() => alert("Added to favorite >> Yet to be developed")} 
-                            className='book__favorite InActiveFavorite' type="button" value=""></input>  }
+                                className='book__favorite InActiveFavorite' 
+                                type="button" 
+                                value=""
+                            ></input>  
+                        }
                         {!currentUser && 
                             <input onClick={() => history.push("/LogIn")} 
-                            className='book__favorite InActiveFavorite' type="button" value=""></input>  }
+                                className='book__favorite InActiveFavorite' 
+                                type="button" 
+                                value=""
+                            ></input>  
+                        }
 
                         <ContactPopup book={targetBtn} trigger={contactBtnPopUp} setTrigger={setContactBtnPopUp}>
                         </ContactPopup>
