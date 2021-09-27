@@ -1,4 +1,4 @@
-import "./AddBook.css";
+// import "./AddBook.css";
 import './singUp.css'
 import logo_pic from '../img/logo.jpeg'
 import React, { useRef, useState } from "react"
@@ -30,10 +30,11 @@ export default function AddBook({users}) {
   const [category, setCategory] = useState();
   const [description, setDescription] = useState();
   const [owner, setOwner] = useState("");
-  // const uid = firebase.auth().currentUser.uid;
+  const uid = firebase.auth().currentUser.uid;
   const email = firebase.auth().currentUser.email;
   const [location, setLocation] = useState("");
   const [phoneNo, setPhoneNo] = useState("");
+  const [isAvailable, setIsAvailable] = useState(true)
   const [fileUrl, setFileUrl] = React.useState(null);
   const user = users[0];
 
@@ -102,6 +103,7 @@ export default function AddBook({users}) {
                   setOwner(user.firstNameRef)
                   setLocation(user.addressRef)
                   setPhoneNo(user.phoneRef)
+                  setIsAvailable(true)
                   // console.log(owner + location + phoneNo + uid)
                 }}
                 required 
@@ -129,9 +131,9 @@ export default function AddBook({users}) {
             />
             <input onClick={() => { 
               title && author && category && description && 
-              addBook({ coverPage, title, description, author, category, id: uuidv4(), owner, email, phoneNo, location})
+              addBook({ coverPage, title, description, author, category, id: uuidv4(), isAvailable, owner, email, phoneNo, location})
             }}
-                type="submit" className="header__signUp" value="Save">
+                type="submit" className="header__signUp center" value="Save">
             </input>
             {/* <button onClick={() => addBook({ title, desc, author, category, id: uuidv4() })}>
                 Submit

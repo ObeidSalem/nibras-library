@@ -86,23 +86,7 @@
     margin: 0;
 }
 
-.header__login {
-    padding: 10px 25px;
-    font-size: 1.05em;
-    margin: 20px 0px;
-    border: 2px solid var(--theme);
-    border-radius: 8px;
-    color: var(--theme);
-    background-color: white;
-    cursor: pointer;
 
-}
-
-.header__login:hover,
-.header__login:active {
-    font-size: 1.10em;
-    border: 3px solid #221246;
-}
 
 .header__signUp {
     padding: 10px 25px;
@@ -113,7 +97,7 @@
     color: white;
     background-color: #221246;
     cursor: pointer;
-
+    min-width: 50px;
 }
 
 .header__signUp:hover,
@@ -121,6 +105,10 @@
     font-size: 1.10em;
     border: 3px solid #221246;
     background-color: #472e85;
+}
+
+.btnlink{
+    align-items: stretch;
 }
 
 .btn {
@@ -161,6 +149,31 @@
 
 .icon{
     display:none;
+}
+
+.header__login {
+    padding: 10px 25px;
+    font-size: 1.05em;
+    margin: 20px 0px;
+    border: 2px solid var(--theme);
+    border-radius: 8px;
+    color: var(--theme);
+    background-color: white;
+    cursor: pointer;
+
+}
+
+.header__login{
+    background-color: white;
+    border-bottom: 1px solid #221246;
+
+}
+
+.header__login:hover,
+.header__login:active {
+    font-size: 1.10em;
+    background-color: white;
+    border: 3px solid #221246;
 }
 
 @media (max-width:1160px) {
@@ -247,22 +260,34 @@
         display: flex;
         flex-direction: column;
         width:100%;
+        min-width: 50px;
         margin: 0;
 
     }
-    .header__login, .header__signUp {
+    .header__login,  .header__signUp {
         text-align: left;
         padding: 15px 0px;
         font-size: 1.2em;
-        margin: 2px 10px;
+        margin: 10px 10px;
         border-bottom: 1px solid white;
-        border-radius: 0px;
+        /* border-radius: 0px; */
         color: white;
         background-color: #221246;
+        min-width: 100px;
+        text-align:center;
+    }
+    
+
+    #signup__button, #login__button {
+        min-width: 100px;
+        margin: 10px 10px;
+        text-align:center; 
     }
 
     .header__login {
         align-items: flex-end;
+        margin: 10px 10px;
+        text-align:left;
     }
     
     .header__login:hover,

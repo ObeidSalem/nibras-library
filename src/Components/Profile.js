@@ -11,6 +11,7 @@ import { useHistory } from "react-router-dom"
 const Profile = ({firebase, refBooks, email, users, myFavorite, myBooks , refUsers, Userid}) => {
     const [imageUpdateTrigger, setImageUpdateTrigger] = useState(false)
     const [infoUpdateTrigger, setInfoUpdateTrigger] = useState(false)
+    const [isAvailable, setIsAvailable] = useState(true)
     const [error, setError] = useState("")
     const { currentUser, logout } = useAuth()
     const history = useHistory()
@@ -45,6 +46,16 @@ const Profile = ({firebase, refBooks, email, users, myFavorite, myBooks , refUse
     function handleDelete(book) {
         console.log(book.id)
         refBooks.doc(book.id).delete();
+    }
+
+    function handleAvailability(book) {
+        console.log("before " + book.isAvailable)
+        setIsAvailable(book.isAvailable)
+        isAvailable ? setIsAvailable(false) : setIsAvailable(true);
+        refBooks.doc(book.id).update({ 
+            isAvailable: isAvailable
+        });
+        console.log("after " + book.isAvailable)
     }
 
     console.log(currentUser)
@@ -156,7 +167,29 @@ const Profile = ({firebase, refBooks, email, users, myFavorite, myBooks , refUse
                                 </div>
                             </div>
                             <div className="book__buttons__profile">
-                                <input className='book__contact' type="button" value="Mark as Unavailable"></input> 
+                                {(book.isAvailable)? 
+                                    <input 
+                                        onClick={() => (handleAvailability(book))}  
+                                        type="button" 
+                                        id="book__is__available" 
+                                        className= 'book__contact'
+                                        style={{
+                                            borderColor: "#221246",
+                                            color: "#221246",
+                                            backgroundColor: "#eee"
+                                        }} 
+                                        value="Mark as Unavailable" 
+                                    >
+                                    </input> 
+                                :
+                                    <input 
+                                        onClick={() => (handleAvailability(book))}  
+                                        type="button"  
+                                        className= 'book__contact' 
+                                        value="Mark as Available" 
+                                    >
+                                    </input>
+                                }
                                 <input onClick={() => (handleDelete(book))} className='book__delete' type="button" value="Delete"></input> 
                             </div>
                         </div>
