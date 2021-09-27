@@ -7,7 +7,8 @@ import { useAuth } from "../context/AuthContext"
 import { useHistory } from "react-router-dom"
 
 
-const Profile = ({email, users, myFavorite, myBooks}) => {
+
+const Profile = ({firebase, refBooks, email, users, myFavorite, myBooks}) => {
     const [imageUpdateTrigger, setImageUpdateTrigger] = useState(false)
     const [infoUpdateTrigger, setInfoUpdateTrigger] = useState(false)
     const [error, setError] = useState("")
@@ -24,6 +25,11 @@ const Profile = ({email, users, myFavorite, myBooks}) => {
         } catch {
           setError("Failed to log out")
         }
+    }
+
+    function handleDelete(book) {
+        console.log(book.id)
+        refBooks.doc(book.id).delete();
     }
 
     console.log(currentUser)
@@ -47,10 +53,10 @@ const Profile = ({email, users, myFavorite, myBooks}) => {
                     <div onClick={() => setImageUpdateTrigger(true)} className='right'><FiEdit className = 'edit__icon' /></div>
 
                     <div className='profile__info'>
-                        <h5 class='profile__details'>{(email) ? user.firstNameRef : ""}</h5>
-                        <h5 class='profile__details'>{email && user.phoneRef || ''}</h5>
-                        <h5 class='profile__details'>{email && currentUser.email || ''}</h5>
-                        <h5 class='profile__details'>{email && user.addressRef || ''}</h5>
+                        <h4 class='profile__details'>{(email) ? user.firstNameRef : ""}</h4>
+                        <h4 class='profile__details'>{email && currentUser.email || ''}</h4>
+                        <h4 class='profile__details'>{email && user.phoneRef || ''}</h4>
+                        <h4 class='profile__details'>{email && user.addressRef || ''}</h4>
                     </div>
                     <ImageUpdatePopup trigger={infoUpdateTrigger} setTrigger={setInfoUpdateTrigger}>
                         <h3>Update your Info</h3>
@@ -83,27 +89,25 @@ const Profile = ({email, users, myFavorite, myBooks}) => {
                     <hr></hr>
                     {myFavorite.map(book =>(
                         <div className="myProfileBook__container" key={book.id}>
-                            <div className="myBook__left">
-                                <img className="book__image__list" src={book.image}/>
-                            </div>
-                            <div className='book__right__list'>
-                                <h5 className="left">{book.title}</h5>
-                                <h6 className="left">
-                                Category: {book.category}
-                                </h6>
-                                <h6 className="left">
-                                Author: {book.author}
-                                </h6>
-                                <h6 className="left">
-                                code: {book.code}
-                                </h6>
-                                {/* <p className="left">
-                                    {book.description}                        
-                                </p> */}
-                                <div className="book__buttons">
-                                    <input className='book__contact' type="button" value="Contact"></input> 
-                                    <input className='book__favorite InActiveFavorite' type="button" value=""></input> 
+                            <div className="myProfileBook__book">
+                                <div className="myBook__left">
+                                    <img className="book__image" src={book.coverPage || "https://static.scientificamerican.com/sciam/cache/file/1DDFE633-2B85-468D-B28D05ADAE7D1AD8_source.jpg?w=590&h=800&D80F3D79-4382-49FA-BE4B4D0C62A5C3ED"}/>
                                 </div>
+                                <div className='book__right__list'>
+                                    <h5 className="left">{book.title}</h5>
+                                    <h6 className="left">
+                                    Category: {book.category}
+                                    </h6>
+                                    <h6 className="left">
+                                    Author: {book.author}
+                                    </h6>
+        
+                                    
+                                </div>
+                            </div>
+                            <div className="book__buttons__profile">
+                            <input className='book__contact' type="button" value="Contact"></input> 
+                                    <input className='book__favorite InActiveFavorite' type="button" value=""></input> 
                             </div>
                         </div>
                     ))}
@@ -116,27 +120,25 @@ const Profile = ({email, users, myFavorite, myBooks}) => {
                     <hr></hr>
                     {myBooks.map(book =>(
                         <div className="myProfileBook__container" key={book.id}>
-                            <div className="myBook__left">
-                                <img className="book__image__list" src={book.image}/>
-                            </div>
-                            <div className='book__right__list'>
-                                <h5 className="left">{book.title}</h5>
-                                <h6 className="left">
-                                Category: {book.category}
-                                </h6>
-                                <h6 className="left">
-                                Author: {book.author}
-                                </h6>
-                                <h6 className="left">
-                                code: {book.code}
-                                </h6>
-                                {/* <p className="left">
-                                    {book.description}                        
-                                </p> */}
-                                <div className="book__buttons">
-                                    <input className='book__contact' type="button" value="Mark as Unavailable"></input> 
-                                    <input className='book__favorite' type="button" value="Delete"></input> 
+                            <div className="myProfileBook__book">
+                                <div className="myBook__left">
+                                    <img className="book__image" src={book.coverPage || "https://static.scientificamerican.com/sciam/cache/file/1DDFE633-2B85-468D-B28D05ADAE7D1AD8_source.jpg?w=590&h=800&D80F3D79-4382-49FA-BE4B4D0C62A5C3ED"}/>
                                 </div>
+                                <div className='book__right__list'>
+                                    <h5 className="left">{book.title}</h5>
+                                    <h6 className="left">
+                                    Category: {book.category}
+                                    </h6>
+                                    <h6 className="left">
+                                    Author: {book.author}
+                                    </h6>
+        
+                                    
+                                </div>
+                            </div>
+                            <div className="book__buttons__profile">
+                                <input className='book__contact' type="button" value="Mark as Unavailable"></input> 
+                                <input onClick={() => (handleDelete(book))} className='book__delete' type="button" value="Delete"></input> 
                             </div>
                         </div>
                     ))}

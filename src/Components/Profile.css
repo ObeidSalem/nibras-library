@@ -18,6 +18,7 @@
 .profile__left {
     width: 100%;
     max-width: 500px;
+    min-width: 300px;
     padding: 10px;
     border-color: var(--theme);
     border-radius: 5px;
@@ -54,6 +55,7 @@
     width: 185px;
     object-fit: contain;
     margin-top: 0px;
+    border-radius: 100px;
 }
 
 
@@ -71,23 +73,36 @@
 .myProfileBook__container{
 
     display: flex;
+    flex-direction: column;
     /* position: relative; */
     background-color: white;
     justify-content:stretch;
-    min-width: 300px;
+    min-width: 260px;
     margin: 1% 1%;
     padding: 2%;
     border: 1px solid var(--theme);
-    border-radius: 3px;
+    border-radius: 5px;
     flex: 1 11em;
 }
 
+.myProfileBook__book {
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+}
+
 .book__right__list > *{
-    margin-bottom: 15px;
+    margin-bottom: 10px;
+
 }
 
 .book__right__list {
     margin-left: 15px;
+}
+
+.book__image {
+    margin-bottom: 10px;
+
 }
 
 .book__image__list{
@@ -95,6 +110,7 @@
     height: 170px;
     object-fit: contain;
     margin-top: 0px;
+
 }
 
 .right{

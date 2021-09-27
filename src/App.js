@@ -31,6 +31,7 @@ function App() {
     {id: 7, image: "/images/b1.jpg", title: "lgkdfjg ldg dflk", author:"Tariq", category: "Novel", code: "0007", description: "in the Ecclesiastes, again part of the Old Testament. The anonymous author is a King of Jerusalem who  in the Ecclesiastes, again part of the Old Testament. The anonymous author is a King of Jerusalem "},
   ]);
 
+  // const firebase = firebase
   const refBooks = firebase.firestore().collection("Books");
   const refUsers = firebase.firestore().collection("Users");
 
@@ -88,6 +89,8 @@ function App() {
               <>
                 <NavBar />
                 <Profile 
+                  // firebase={firebase}
+                  refBooks={refBooks}
                   email={email}
                   users={users.filter((user) => user.emailRef === email)}
                   myFavorite={books.filter((book) => book.id === "1")}
