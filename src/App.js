@@ -19,7 +19,7 @@ function App() {
   // const { currentUser } = useAuth()
 
   const [loading, setLoading] = useState(false);
-  const email = firebase.auth().currentUser.email;
+  const [email, setEmail] = useState("")
   const [users, setUsers] = useState([])
   const [books, setBooks] = useState([
     {id: 1, image: "/images/b1.jpg", title: "ABSALOM, ABSALOM! ", author:"Obeid Salem", category: "Novel", code: "0001", description: "in the Ecclesiastes, again part of the Old Testament. The anonymous author is a King of Jerusalem who  in the Ecclesiastes, again part of the Old Testament. The anonymous author is a King of Jerusalem "},
@@ -57,6 +57,7 @@ function App() {
       });
       setUsers(items);
       setLoading(false);
+      setEmail(firebase.auth().currentUser.email)
       console.log(firebase.auth().currentUser);
     });
   }
@@ -87,6 +88,7 @@ function App() {
               <>
                 <NavBar />
                 <Profile 
+                  email={email}
                   users={users.filter((user) => user.emailRef === email)}
                   myFavorite={books.filter((book) => book.id === "1")}
                   myBooks={books.filter((book) => book.email === email)}

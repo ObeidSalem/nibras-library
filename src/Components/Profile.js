@@ -7,7 +7,7 @@ import { useAuth } from "../context/AuthContext"
 import { useHistory } from "react-router-dom"
 
 
-const Profile = ({users, myFavorite, myBooks}) => {
+const Profile = ({email, users, myFavorite, myBooks}) => {
     const [imageUpdateTrigger, setImageUpdateTrigger] = useState(false)
     const [infoUpdateTrigger, setInfoUpdateTrigger] = useState(false)
     const [error, setError] = useState("")
@@ -26,7 +26,8 @@ const Profile = ({users, myFavorite, myBooks}) => {
         }
     }
 
-    return (
+    console.log(currentUser)
+    return (currentUser) ?  (
         <div className="profile__container">
             <div className="profile__right">
                 <div className='profile__userInfo'>
@@ -46,10 +47,10 @@ const Profile = ({users, myFavorite, myBooks}) => {
                     <div onClick={() => setImageUpdateTrigger(true)} className='right'><FiEdit className = 'edit__icon' /></div>
 
                     <div className='profile__info'>
-                        <h5 class='profile__details'>{currentUser && user.firstNameRef}</h5>
-                        <h5 class='profile__details'>{currentUser && user.phoneRef}</h5>
-                        <h5 class='profile__details'>{currentUser && currentUser.email}</h5>
-                        <h5 class='profile__details'>{currentUser && user.addressRef}</h5>
+                        <h5 class='profile__details'>{(email) ? user.firstNameRef : ""}</h5>
+                        <h5 class='profile__details'>{email && user.phoneRef || ''}</h5>
+                        <h5 class='profile__details'>{email && currentUser.email || ''}</h5>
+                        <h5 class='profile__details'>{email && user.addressRef || ''}</h5>
                     </div>
                     <ImageUpdatePopup trigger={infoUpdateTrigger} setTrigger={setInfoUpdateTrigger}>
                         <h3>Update your Info</h3>
@@ -142,7 +143,7 @@ const Profile = ({users, myFavorite, myBooks}) => {
                 </div>
             </div>
         </div>
-    )
+    ) : "";
 }
 
 export default Profile
