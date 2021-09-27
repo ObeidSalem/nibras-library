@@ -80,8 +80,12 @@ html, body {
 
 .book__container{
     position: relative;
+    display: flex;
+    flex-direction: column;
+    align-self: stretch;
+
     background-color: white;
-    justify-content:stretch;
+    justify-content:space-between;
     margin: 1% 1%;
     padding: 2%;
     border: 1px solid var(--theme);
@@ -90,10 +94,14 @@ html, body {
 }
 
 
-.book__image
- {
-    display: flex;
-    width: 85px;
+.book__content> .book__image {
+    height: 100px;
+    object-fit: contain;
+    margin-top: 0px;
+}
+
+.myBook__left> .book__image {
+    width: 90px;
     object-fit: contain;
     margin-top: 0px;
 }
@@ -107,23 +115,34 @@ html, body {
 }
 
 .book__container > *{
-    margin-top: 15px;
+    margin-top: 10px;
 }
 
 
 .book__container > .book__image{
-    display:block;
-    margin:auto;
-    
+    display: flex;
+    justify-content: center; /* align horizontal */
+    align-items: center; /* align vertical */
 }
 
-.book__buttons{
+.book__buttons__profile{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    
 }
 
-.book__buttons > .book__contact{
+.book__buttons__home{
+    display: flex;
+    flex-direction: row;
+    justify-content: stretch;
+    align-self: flex-end;
+    width: 100%;
+
+
+}
+
+.book__buttons__profile > .book__contact{
     width: 70%;
     padding: 10px;
     margin-right:5px; 
@@ -132,7 +151,19 @@ html, body {
     border-color: var(--theme);
     border-radius: 5px;
     cursor: pointer;
+    
+}
 
+.book__buttons__home > .book__contact{
+    width: 70%;
+    padding: 10px;
+    margin-right:5px; 
+    color: white;
+    background-color: var(--theme);
+    border-color: var(--theme);
+    border-radius: 5px;
+    cursor: pointer;
+    
 }
 
 .book__contact:active,
@@ -143,7 +174,7 @@ html, body {
 
 }
 
-.book__buttons > .book__favorite{
+.book__buttons__profile > .book__favorite, .book__delete{
     width: 37px;
     background-color: white;
     border-color: var(--theme);
@@ -156,16 +187,40 @@ html, body {
 
 }
 
+.book__buttons__home > .book__favorite {
+    width: 37px;
+    background-color: white;
+    border-color: var(--theme);
+    border-radius: 5px;
+    padding: 0px;
+    background-position: center;
+    background-size: 30px;
+    background-repeat: no-repeat;
+    cursor: pointer;
 
-.book__favorite:hover,
-.book__favorite:active {
+}
+
+.book__buttons__profile > .book__favorite{
+    width: 90px;
+}
+
+.book__buttons__profile >  .book__delete {
+    width: 90px;
+}
+
+/* .book__buttons__home > .book__favorite {
+    width: 60px;
+} */
+
+.book__favorite, .book__delete:hover,
+.book__favorite, .book__delete:active {
     font-size: 1.10em;
     border: 3px solid #221246;
 }
 
 .book__report {
     position: absolute;
-    top: -5px;
+    top: 5px;
     right: 10px;
     width: 35px;
     height: 35px;
@@ -212,7 +267,7 @@ html, body {
     }
 
     .book__report {
-        top: -12px;
+        top: 0px;
         right: 0px;
         width: 35px;
         height: 35px;
