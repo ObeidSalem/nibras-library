@@ -11,13 +11,13 @@
     right: 0;
     margin: auto;
     width: 35%;
-    height: 60%;
+    /* min-height: 70vh; */
+    min-width: 300px;
 }
 .name-box{
    flex: 1;
    flex-direction:row;
    background-color: white;
-
    border-radius: 50px;
 }
 
@@ -31,6 +31,16 @@ justify-content: center;
 
 .l-img{
     cursor: pointer;
+}
+
+.header__signUp{
+    min-width: 50px;
+    margin: 10px;
+    text-align: center
+
+}
+.margin10px{
+    margin: 10px;
 }
 
 /* input{

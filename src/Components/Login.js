@@ -48,16 +48,17 @@ export default function Login() {
             <Form.Group id="password">
               <Form.Control className="input__style" placeholder="Password" type="password" ref={passwordRef} required />
             </Form.Group>
-            <input disabled={loading} type="submit" className="header__signUp" value="Log In"></input>
+            <input disabled={loading} type="submit" id="login__button" className="header__signUp" value="Log In"></input>
           </Form>
           <div className="w-100 text-center mt-3">
             <Link to="/ForgotPassword">Forgot Password?</Link>
           </div>
         </div>
         <br/> 
-        <div>
+        <div className="margin10px">
         Need an account? <Link to="/SingUp">Sign Up</Link>
       </div>
+      
       </div>   
     </>
   )

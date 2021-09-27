@@ -118,6 +118,10 @@
     /* background-color: aqua; */
 }
 
+#book__is__available {
+    border-color: gray;
+}
+
 
 
 
