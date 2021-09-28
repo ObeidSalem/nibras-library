@@ -34,6 +34,29 @@ function App() {
   // const firebase = firebase
   const refBooks = firebase.firestore().collection("Books");
   const refUsers = firebase.firestore().collection("Users");
+  
+
+  function createAccount() {
+    console.log("createAccount has been called")
+    return new Promise(function(resolve, reject) {
+      if (firebase.auth().currentUser.email) {
+          resolve()
+          console.log("Loged in")
+      } else {
+        reject("No current user")
+      }
+    })
+  }
+
+
+  async function handleSubmit(newUser) {
+    try {
+      await setEmail(firebase.auth().currentUser.email)
+    } catch (err) {
+      console.log(err)
+    }     
+  }
+
 
   //REALTIME GET FUNCTION
   function getBooks() {
@@ -58,7 +81,6 @@ function App() {
       });
       setUsers(items);
       setLoading(false);
-      setEmail(firebase.auth().currentUser.email)
       console.log(firebase.auth().currentUser);
     });
   }
