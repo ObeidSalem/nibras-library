@@ -82,8 +82,6 @@ const Profile = ({firebase, refBooks, email, users, myFavorite, myBooks , refUse
                         <h4 class='profile__details'>{email && currentUser.email || ''}</h4>
                         <h4 class='profile__details'>{email && user.phoneRef || ''}</h4>
                         <h4 class='profile__details'>{email && user.addressRef || ''}</h4>
-                        <h4 class='profile__details'>{email && user.id || ''}</h4>
-
                     </div>
                     <ImageUpdatePopup trigger={infoUpdateTrigger} setTrigger={setInfoUpdateTrigger}>
                         <h3>Update your Info</h3>
