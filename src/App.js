@@ -37,7 +37,7 @@ function App() {
   const refUsers = firebase.firestore().collection("Users");
   
 
-  function createAccount() {
+  function gitcreateAccount() {
     console.log("createAccount has been called")
     return new Promise(function(resolve, reject) {
       if (firebase.auth().currentUser.email) {
