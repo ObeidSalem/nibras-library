@@ -19,6 +19,7 @@ function App() {
   // const { currentUser } = useAuth()
 
   const [loading, setLoading] = useState(false);
+  const [Userid, setId] = useState("")
   const [email, setEmail] = useState("")
   const [users, setUsers] = useState([])
   const [books, setBooks] = useState([
@@ -68,7 +69,7 @@ function App() {
       });
       setBooks(items);
       setLoading(false);
-      console.log(firebase.auth().currentUser);
+     
     });
   }
 
@@ -76,12 +77,27 @@ function App() {
     setLoading(true);
     refUsers.onSnapshot((querySnapshot) => {
       const items = [];
+      var index = 0
+      var item = ""
+      let Cid = "1"
       querySnapshot.forEach((doc) => {
         items.push(doc.data());
+        item = items[index]
+      
+        if (item.emailRef === firebase.auth().currentUser.email){
+         
+
+          Cid=item.id
+          
+      
+        }
+        index++
       });
+      setId(Cid)
+    
       setUsers(items);
-      setLoading(false);
-      console.log(firebase.auth().currentUser);
+      setLoading(false);   
+      setEmail(firebase.auth().currentUser.email)
     });
   }
 
@@ -113,7 +129,9 @@ function App() {
                 <Profile 
                   // firebase={firebase}
                   refBooks={refBooks}
+                  refUsers={refUsers}
                   email={email}
+                  Userid= {Userid}
                   users={users.filter((user) => user.emailRef === email)}
                   myFavorite={books.filter((book) => book.id === "1")}
                   myBooks={books.filter((book) => book.email === email)}

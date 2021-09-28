@@ -8,7 +8,7 @@ import { useHistory } from "react-router-dom"
 
 
 
-const Profile = ({firebase, refBooks, email, users, myFavorite, myBooks}) => {
+const Profile = ({firebase, refBooks, email, users, myFavorite, myBooks , refUsers, Userid}) => {
     const [imageUpdateTrigger, setImageUpdateTrigger] = useState(false)
     const [infoUpdateTrigger, setInfoUpdateTrigger] = useState(false)
     const [isAvailable, setIsAvailable] = useState(true)
@@ -16,6 +16,21 @@ const Profile = ({firebase, refBooks, email, users, myFavorite, myBooks}) => {
     const { currentUser, logout } = useAuth()
     const history = useHistory()
     const user = users[0]
+    const [loading, setLoading] = useState(false)
+    const [NameRef, setName] = useState("")
+    const [phoneRef, setPhoneNo] = useState("")
+    const [addressRef, setAddress] = useState("")
+ 
+
+    async function handleSubmit(update) {
+       
+
+        refUsers.doc(Userid).update({
+        firstNameRef:NameRef,
+        phoneRef:phoneRef,
+        addressRef:addressRef
+    });
+}
 
     async function handleLogout() {
         setError("")
@@ -74,16 +89,20 @@ const Profile = ({firebase, refBooks, email, users, myFavorite, myBooks}) => {
                         <hr></hr>
                         <form>
                             <div className='row__inputs'>
-                                <input  className='input__failed ten__px__margin__to__right' type="input" placeholder="First Name:" required></input > 
-                                <input  className='input__failed ' type="input" placeholder="last Name:" required></input > 
+                                <input  className='input__failed ten__px__margin__to__right' type="input" placeholder="new Name:" Value={NameRef} 
+                                   onChange={(e) =>{ setName(e.target.value)}} required ></input > 
+                            
                             </div>
                             <div >
-                                <input  className='input__failed' type="input" placeholder="Phone Number:" required></input > 
-                                <input  className='input__failed' type="password" placeholder="Old Password:" required></input > 
-                                <input  className='input__failed' type="password" placeholder="New Password:" required></input > 
-                                <input  className='input__failed' type="password" placeholder="Confirm New Password:" required></input > 
+                                <input  className='input__failed' type="input" placeholder="new Phone Number:" value={phoneRef} 
+                                onChange={(e) => setPhoneNo(e.target.value)} required ></input > 
+                                <input  className='input__failed' type="input" placeholder="new address" value={addressRef} 
+                                onChange={(e) => setAddress(e.target.value)} required></input > 
+                           
                             </div>
-                            <button type='submit' className="save__button">SAVE</button>
+                            <input onClick={() =>handleSubmit({ NameRef, phoneRef, addressRef})}
+                             type="submit" className="save__button" value="SAVE"></input>
+                
                             <br></br>
                             <br></br>
                         </form>
@@ -180,5 +199,6 @@ const Profile = ({firebase, refBooks, email, users, myFavorite, myBooks}) => {
         </div>
     ) : "";
 }
+
 
 export default Profile
