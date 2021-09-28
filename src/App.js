@@ -20,6 +20,7 @@ function App() {
 
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("")
+  const [Userid, setId] = useState("")
   const [users, setUsers] = useState([])
   const [books, setBooks] = useState([
     {id: 1, image: "/images/b1.jpg", title: "ABSALOM, ABSALOM! ", author:"Obeid Salem", category: "Novel", code: "0001", description: "in the Ecclesiastes, again part of the Old Testament. The anonymous author is a King of Jerusalem who  in the Ecclesiastes, again part of the Old Testament. The anonymous author is a King of Jerusalem "},
@@ -76,12 +77,23 @@ function App() {
     setLoading(true);
     refUsers.onSnapshot((querySnapshot) => {
       const items = [];
+      var index = 0
+      var item = ""
+      let Cid = "1"
       querySnapshot.forEach((doc) => {
         items.push(doc.data());
+        item = items[index]
+        if (item.emailRef === firebase.auth().currentUser.email){
+          Cid=item.id
+          // console.log(Cid)
+        }
+        index++
       });
+      setId(Cid)
+      // console.log(Userid)
       setUsers(items);
       setLoading(false);
-      console.log(firebase.auth().currentUser);
+      setEmail(firebase.auth().currentUser.email)
     });
   }
 
@@ -113,7 +125,9 @@ function App() {
                 <Profile 
                   // firebase={firebase}
                   refBooks={refBooks}
+                  refUsers={refUsers}
                   email={email}
+                  Userid= {Userid}
                   users={users.filter((user) => user.emailRef === email)}
                   myFavorite={books.filter((book) => book.id === "1")}
                   myBooks={books.filter((book) => book.email === email)}
