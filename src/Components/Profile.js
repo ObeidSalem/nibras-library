@@ -8,7 +8,7 @@ import { useHistory } from "react-router-dom"
 
 
 
-const Profile = ({firebase, refBooks, email, users, myFavorite, myBooks , refUsers, Userid}) => {
+const Profile = ({books, refBooks, email, users, myFavorite, myBooks , refUsers, Userid}) => {
     const [imageUpdateTrigger, setImageUpdateTrigger] = useState(false)
     const [infoUpdateTrigger, setInfoUpdateTrigger] = useState(false)
     const [isAvailable, setIsAvailable] = useState(true)
@@ -16,12 +16,13 @@ const Profile = ({firebase, refBooks, email, users, myFavorite, myBooks , refUse
     const { currentUser, logout } = useAuth()
     const history = useHistory()
     const user = users[0]
+    const [userFavorite, userUserFavorite] = useState([])
     const [loading, setLoading] = useState(false)
     const [NameRef, setName] = useState("")
     const [phoneRef, setPhoneNo] = useState("")
     const [addressRef, setAddress] = useState("")
     
-    console.log(Userid)
+    // console.log(Userid)
 
     async function handleSubmit() {
         refUsers.doc(Userid).update({
@@ -43,21 +44,21 @@ const Profile = ({firebase, refBooks, email, users, myFavorite, myBooks , refUse
     }
 
     function handleDelete(book) {
-        console.log(book.id)
+        // console.log(book.id)
         refBooks.doc(book.id).delete();
     }
 
     function handleAvailability(book) {
-        console.log("before " + book.isAvailable)
+        // console.log("before " + book.isAvailable)
         setIsAvailable(book.isAvailable)
         isAvailable ? setIsAvailable(false) : setIsAvailable(true);
         refBooks.doc(book.id).update({ 
             isAvailable: isAvailable
         });
-        console.log("after " + book.isAvailable)
+        // console.log("after " + book.isAvailable)
     }
 
-    console.log(currentUser)
+
     return (currentUser) ?  (
         <div className="profile__container">
             <div className="profile__right">
@@ -147,7 +148,7 @@ const Profile = ({firebase, refBooks, email, users, myFavorite, myBooks , refUse
                             </div>
                             <div className="book__buttons__profile">
                             <input className='book__contact' type="button" value="Contact"></input> 
-                                    <input className='book__favorite InActiveFavorite' type="button" value=""></input> 
+                                    <input className='book__favorite ActiveFavorite' type="button" value=""></input> 
                             </div>
                         </div>
                     ))}

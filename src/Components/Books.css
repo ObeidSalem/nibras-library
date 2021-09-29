@@ -245,6 +245,10 @@ html, body {
 .InActiveFavorite{
     background-image: url(../img/InActiveFavorite.png);
 }
+
+.ActiveFavorite{
+    background-image: url(../img/ActiveFavorite.png);
+}
 .left{
     text-align: left;
 }
