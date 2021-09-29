@@ -23,7 +23,7 @@ export default function AddBook({users}) {
   const [error, setError] = useState("")
 
   const [isUploaded, setIsUploaded] = useState(false)
-  const [loading, setLoading] = useState(false);
+  const [desabled, setDesabled] = useState(true);
   const [coverPage, setCoverPage] = useState();
   const [title, setTitle] = useState();
   const [author, setAuthor] = useState();
@@ -60,6 +60,7 @@ export default function AddBook({users}) {
 
 
     const onFileChange = async (e) => {
+        setDesabled(false)
         setIsUploaded(true)
         const file = e.target.files[0];
         const storageRef = firebase.storage().ref();
@@ -72,6 +73,7 @@ export default function AddBook({users}) {
         }));    
         setCoverPage(imageURL)
         setIsUploaded(false)
+        setDesabled(true)
       };
 
   return (
@@ -130,8 +132,8 @@ export default function AddBook({users}) {
                 onChange={(e) => {setDescription(e.target.value)}}
             />
             <input onClick={() => { 
-              title && author && category && description && 
-              addBook({ coverPage, title, description, author, category, id: uuidv4(), isAvailable, owner, email, phoneNo, location})
+              {desabled && title && author && category && description && 
+              addBook({ coverPage, title, description, author, category, id: uuidv4(), isAvailable, owner, email, phoneNo, location})}
             }}
                 type="submit" className="header__signUp center" value="Save">
             </input>
@@ -139,7 +141,6 @@ export default function AddBook({users}) {
                 Submit
             </button> */}
         </div>
-        {loading ? <h1>Loading...</h1> : null}
         {/* {books.map((Book) => (
         <div className="Book" key={Book.id}>
             <p>{Book.title}</p>

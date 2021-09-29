@@ -7,27 +7,36 @@ import { useAuth } from "../context/AuthContext"
 import { useHistory } from "react-router-dom"
 
 
-const BookList = (props) => {
+const BookList = ({books, refReports}) => {
     const [contactBtnPopUp, setContactBtnPopUp] = useState(false)
     const [reportBtnPopUp, setReportBtnPopUp] = useState(false)
     const [availabilityBtnPopUp, setAvailabilityBtnPopUp] = useState(false)
+    const [description, setDescription] = useState("")
     const [targetBtn, setTargetBtn] = useState()
     const { currentUser } = useAuth()
     const history = useHistory()
 
-
+    
     return (
         <>
-            {props.books.map(book =>(
+            {books.map(book =>(
                 <div className="book__container" key={book.id} id={book.id}>
                     <div className="book__content">
                         <input onClick={() => setReportBtnPopUp(true)}
                          className='book__report reportIcon' type="button" value=""></input>
-                        <ReportPopup book={targetBtn} trigger={reportBtnPopUp} setTrigger={setReportBtnPopUp}>
+                        <ReportPopup refReports={refReports} book={targetBtn} trigger={reportBtnPopUp} setTrigger={setReportBtnPopUp}>
                             <h3>Report</h3>
                             <hr></hr>
                             <form>
-                                <textarea  type="textarea" placeholder="Description:" rows="4" cols="50"></textarea > 
+                                {/* <textarea  type="textarea" placeholder="Description:" ></textarea >  */}
+                                <textarea
+                                    // className="input__style"   
+                                    placeholder="Description:"
+                                    rows="4" cols="50"
+                                    type="text"
+                                    value={description}
+                                    onChange={(e) => {setDescription(e.target.value)}}
+                                />
                                 <br></br>
                                 <br></br>
                             </form>
@@ -71,7 +80,7 @@ const BookList = (props) => {
                                 value="Unavailable"
                             ></input> 
                         }
-                        {currentUser && 
+                        {/* {currentUser && 
                             <input onClick={() => alert("Added to favorite >> Yet to be developed")} 
                                 className='book__favorite InActiveFavorite' 
                                 type="button" 
@@ -84,7 +93,7 @@ const BookList = (props) => {
                                 type="button" 
                                 value=""
                             ></input>  
-                        }
+                        } */}
 
                         <ContactPopup book={targetBtn} trigger={contactBtnPopUp} setTrigger={setContactBtnPopUp}>
                         </ContactPopup>

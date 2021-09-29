@@ -21,23 +21,17 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("")
   const [Userid, setId] = useState("")
-  const [favorites, setFavorites] = useState([])
+  // const [favorites, setFavorites] = useState([])
+  // const [favoriteBooksFiltered, setFavoriteBooksFiltered] = useState([])
+
 
   const [users, setUsers] = useState([])
-  const [books, setBooks] = useState([
-    // {id: 1, image: "/images/b1.jpg", title: "ABSALOM, ABSALOM! ", author:"Obeid Salem", category: "Novel", code: "0001", description: "in the Ecclesiastes, again part of the Old Testament. The anonymous author is a King of Jerusalem who  in the Ecclesiastes, again part of the Old Testament. The anonymous author is a King of Jerusalem "},
-    // {id: 2, image: "/images/b2.jpeg", title: "lkfjsdfs skfjkldj fl", author:"Salem", category: "Novel", code: "0002", description: "in the Ecclesiastes, again part of the Old Testament. The anonymous author is a King of Jerusalem who  in the Ecclesiastes, again part of the Old Testament. The anonymous author is a King of Jerusalem "},
-    // {id: 3, image: "/images/b3.jpeg", title: "lkjdfl ;gskjg fg", author:"Ahmed", category: "Novel", code: "0003", description: "in the Ecclesiastes, again part of the Old Testament. The anonymous author is a King of Jerusalem who  in the Ecclesiastes, again part of the Old Testament. The anonymous author is a King of Jerusalem "},
-    // {id: 4, image: "/images/b1.jpg", title: "jgdl fgj ddklfgj dg", author:"Khalid", category: "Novel", code: "0004", description: "in the Ecclesiastes, again part of the Old Testament. The anonymous author is a King of Jerusalem who  in the Ecclesiastes, again part of the Old Testament. The anonymous author is a King of Jerusalem "},
-    // {id: 5, image: "/images/b2.jpeg", title: "lkjdflg dfdgk dlg", author:"Hashim", category: "Novel", code: "0005", description: "in the Ecclesiastes, again part of the Old Testament. The anonymous author is a King of Jerusalem who  in the Ecclesiastes, again part of the Old Testament. The anonymous author is a King of Jerusalem "},
-    // {id: 6, image: "/images/b3.jpeg", title: "glkdfjdsf kg ", author:"Hassen", category: "Novel", code: "0006", description: "in the Ecclesiastes, again part of the Old Testament. The anonymous author is a King of Jerusalem who  in the Ecclesiastes, again part of the Old Testament. The anonymous author is a King of Jerusalem "},
-    // {id: 7, image: "/images/b1.jpg", title: "lgkdfjg ldg dflk", author:"Tariq", category: "Novel", code: "0007", description: "in the Ecclesiastes, again part of the Old Testament. The anonymous author is a King of Jerusalem who  in the Ecclesiastes, again part of the Old Testament. The anonymous author is a King of Jerusalem "},
-  ]);
+  const [books, setBooks] = useState([]);
 
   // const firebase = firebase
   const refBooks = firebase.firestore().collection("Books");
   const refUsers = firebase.firestore().collection("Users");
-  
+  const refReports = firebase.firestore().collection("Reports");
 
   function gitcreateAccount() {
     console.log("createAccount has been called")
@@ -74,6 +68,22 @@ function App() {
       setLoading(false);
       // console.log(firebase.auth().currentUser);
     });
+    const temp = []
+    // const targetBook = []
+    // for(let favorite = 0; favorite < favorites.length; favorite++) {
+    //   for (let book = 0; book <books.length; book++) {
+    //     if (favorites[favorite] == books[book].id) {
+    //       console.log("accessing")
+    //       // console.log(favorites[favorite])
+    //       // console.log(books[book].id)
+    //       // const targetBook = books[book]
+    //       // console.log(targetBook.id) 
+    //       temp.push(books[book])  
+    //     }
+    //   }
+    //   setFavoriteBooksFiltered(temp)
+    // }    
+
   }
 
   function getUsers() {
@@ -90,7 +100,7 @@ function App() {
         if (item.emailRef === firebase.auth().currentUser.email){
           Cid=item.id
           CFavorite = index
-          // console.log(items[CFavorite].favorite)
+          console.log(items[CFavorite].favorite)
           // console.log(Cid)
         }
         index++
@@ -98,33 +108,38 @@ function App() {
       setId(Cid)
       setUsers(items);
       // console.log(items[CFavorite].favorite)
-      setFavorites(items[CFavorite].favorite)
+      // setFavorites(items[CFavorite].favorite)
       setLoading(false);
       setEmail(firebase.auth().currentUser.email)
     });
   }
-  // function getTest() {
-  const favoriteBooksFiltered = []
-  // for(let i = 0; i < favorites.length; i++) {
-  //     let filtered = books.filter((book) => {
-  //       return book.id === favorites[i]
-  //     })
-  //     favoriteBooksFiltered.push(filtered)   
+
+  // function getFavorites() {
+  //   setLoading(true);
+  //   refBooks.onSnapshot((querySnapshot) => {
+  //     const items = [];
+  //     querySnapshot.forEach((doc) => {
+  //       items.push(doc.data());
+  //     });
+  //     setFavoriteBooksFiltered(items);
+  //     // console.log(books[1].id)
+  //     setLoading(false);
+  //     // console.log(firebase.auth().currentUser);
+  //   });
   // }
-  for(let i = 0; i < books.length; i++) {
-    for (let j = 0; j <favorites.length; j++) {
-      if (j.id === favorites[i]) {
-        favoriteBooksFiltered.push(books[j])   
-      }
-    }
-}
-  // console.log(favoriteBooksFiltered)
-  // console.log(books)
+
+  // function getFavorites() {
+    
+  
+  // console.log("favorites", favorites)
+  // console.log("favoriteBooksFiltered", favoriteBooksFiltered)
+  // console.logs(books)
 
   // }
   useEffect(() => {
     getUsers()
-    getBooks();
+    getBooks()
+    // getFavorites()
   }, []);
 
     
@@ -155,7 +170,8 @@ function App() {
                   email={email}
                   Userid= {Userid}
                   users={users.filter((user) => user.emailRef === email)}
-                  myFavorite={favoriteBooksFiltered}
+                  // favoritesInUsersCollections={favorites}
+                  // myFavorite={favoriteBooksFiltered}
                   myBooks={books.filter((book) => book.email === email)}
                   />
                 <Footer />
@@ -178,7 +194,10 @@ function App() {
             </Route>
             <Route exact path="/">
               <NavBar />
-              <Books books={books} />
+              <Books 
+                books={books}
+                refReports={refReports}
+              />
               <Footer />
             </Route>
           </Switch>
