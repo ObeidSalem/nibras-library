@@ -2,7 +2,7 @@ import React,{ useState } from 'react'
 import './Books.css'
 import BookList from './BookList'
 
-const Books = ({books}) => {
+const Books = ({refReports, books}) => {
 
     
 
@@ -19,7 +19,10 @@ const Books = ({books}) => {
             <hr className="searchLine"></hr>
 
             <div className="books__container">
-                <BookList books={books} />
+                <BookList 
+                    books={books}
+                    refReports={refReports} 
+                />
             </div>
 
         </div>

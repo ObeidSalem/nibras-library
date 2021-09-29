@@ -7,7 +7,7 @@ const UnavailablePopup = (props) => {
             <div className="popup__container">
                 <h2>This book currently unavailable.</h2>
                 <br/>
-                <h4>You may add this book to your favorite list.</h4>
+                <h4>The owner of this book has decided to mark this book as unavailable, as this book Potentially has been loaned to someone.</h4>
                 <br/><br/>
                 <button onClick={() => props.setTrigger(false)} className="close__button">CANCEL</button>
             </div>
