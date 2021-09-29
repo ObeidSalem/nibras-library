@@ -115,13 +115,20 @@ export default function AddBook({users}) {
                 value={author}
                 onChange={(e) => setAuthor(e.target.value)}
             />
-            <input
+            <select className="input__style">
+            <option>Novels</option>
+            <option>Study Materials</option>
+            <option>Others</option>             
+              
+              </select>
+            {/* <input
                 className="input__style"   
                 placeholder="Category"
                 type="text"
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
             />
+             */}
             <textarea
                 className="input__style"   
                 placeholder="Description"
