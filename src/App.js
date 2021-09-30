@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import './App.css';
 import NavBar from './Components/NavBar';
+import AboutUs from './Components/AboutUs';
 import ContactPopup from './Components/ContactPopup';
 import SingUp from './Components/singUp.js';
 import Login from './Components/Login';
@@ -151,7 +152,7 @@ function App() {
           <Switch>
             <Route path='/AboutUs'>
               <NavBar />
-              {/* <AboutUs /> */}
+              <AboutUs />
             
             </Route>
 
