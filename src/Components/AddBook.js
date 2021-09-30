@@ -23,11 +23,11 @@ export default function AddBook({users}) {
   const [error, setError] = useState("")
 
   const [isUploaded, setIsUploaded] = useState(false)
-  const [desabled, setDesabled] = useState(true);
+  const [disabled, setDisabled] = useState(true);
   const [coverPage, setCoverPage] = useState();
   const [title, setTitle] = useState();
   const [author, setAuthor] = useState();
-  const [category, setCategory] = useState();
+  const [category, setCategory] = useState("Novels");
   const [description, setDescription] = useState();
   const [owner, setOwner] = useState("");
   const uid = firebase.auth().currentUser.uid;
@@ -47,6 +47,7 @@ export default function AddBook({users}) {
     async function addBook(newBook) {
         // console.log(newBook)
         // uploadImage();
+        console.error("AddBook function has been called");
         ref
         //.doc() use if for some reason you want that firestore generates the id
         .doc(newBook.id)
@@ -60,7 +61,7 @@ export default function AddBook({users}) {
 
 
     const onFileChange = async (e) => {
-        setDesabled(false)
+        setDisabled(false)
         setIsUploaded(true)
         const file = e.target.files[0];
         const storageRef = firebase.storage().ref();
@@ -73,7 +74,7 @@ export default function AddBook({users}) {
         }));    
         setCoverPage(imageURL)
         setIsUploaded(false)
-        setDesabled(true)
+        setDisabled(true)
       };
 
   return (
@@ -117,12 +118,16 @@ export default function AddBook({users}) {
                 value={author}
                 onChange={(e) => setAuthor(e.target.value)}
             />
-            <select className="input__style">
-            <option>Novels</option>
-            <option>Study Materials</option>
-            <option>Others</option>             
+            <select 
+              className="input__style"
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+              >
+                <option>Novels</option>
+                <option>Study Materials</option>
+                <option>Others</option>             
               
-              </select>
+            </select>
             {/* <input
                 className="input__style"   
                 placeholder="Category"
@@ -139,7 +144,7 @@ export default function AddBook({users}) {
                 onChange={(e) => {setDescription(e.target.value)}}
             />
             <input onClick={() => { 
-              {desabled && title && author && category && description && 
+              {disabled && title && author && category && description && 
               addBook({ coverPage, title, description, author, category, id: uuidv4(), isAvailable, owner, email, phoneNo, location})}
             }}
                 type="submit" className="header__signUp center" value="Save">

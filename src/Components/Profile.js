@@ -140,8 +140,8 @@ const Profile = ({favoritesInUsersCollections, refBooks, refUsers, email, users,
                     <div className='profile__info'>
                         <h4 className='profile__details'>{(email) ? user.firstNameRef : ""}</h4>
                         <h4 className='profile__details'>{email && currentUser.email || ''}</h4>
-                        <h4 claclassNamess='profile__details'>{email && user.phoneRef || ''}</h4>
-                        <h4 clasclassNames='profile__details'>{email && user.addressRef || ''}</h4>
+                        <h4 className='profile__details'>{email && user.phoneRef || ''}</h4>
+                        <h4 className='profile__details'>{email && user.addressRef || ''}</h4>
                     </div>
                     <ImageUpdatePopup trigger={infoUpdateTrigger} setTrigger={setInfoUpdateTrigger}>
                         <h3>Update your Info</h3>
@@ -152,7 +152,7 @@ const Profile = ({favoritesInUsersCollections, refBooks, refUsers, email, users,
                                     className='input__failed ten__px__margin__to__right' 
                                     type="input" 
                                     placeholder="new Name:" 
-                                    Value={NameRef} 
+                                    value={NameRef} 
                                     onChange={(e) =>{setName(e.target.value)}} 
                                     required 
                                 ></input > 

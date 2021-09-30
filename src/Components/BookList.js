@@ -24,7 +24,7 @@ const BookList = ({books, refReports}) => {
                     <div className="book__content">
                         <input onClick={() => setReportBtnPopUp(true)}
                          className='book__report reportIcon' type="button" value=""></input>
-                        <ReportPopup refReports={refReports} book={targetBtn} trigger={reportBtnPopUp} setTrigger={setReportBtnPopUp}>
+                        <ReportPopup description={description} refReports={refReports} book={targetBtn} trigger={reportBtnPopUp} setTrigger={setReportBtnPopUp}>
                             <h3>Report</h3>
                             <hr></hr>
                             <form>

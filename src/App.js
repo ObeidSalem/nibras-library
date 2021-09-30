@@ -33,7 +33,7 @@ function App() {
   const refBooks = firebase.firestore().collection("Books");
   const refUsers = firebase.firestore().collection("Users");
   const refReports = firebase.firestore().collection("Reports");
-
+  
   function gitcreateAccount() {
     console.log("createAccount has been called")
     return new Promise(function(resolve, reject) {
