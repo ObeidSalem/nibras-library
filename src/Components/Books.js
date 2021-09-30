@@ -26,14 +26,6 @@ const Books = ({refReports, books}) => {
      
 //  }
 
-//        function show(){
-//         if(Filterbut== true){
-//             return Elements()
-//         }else if(FilterCatX == true) {
-//             return
-//         }
-//     }
-
     return (
         <div className="body">
             <div className="search__container">
