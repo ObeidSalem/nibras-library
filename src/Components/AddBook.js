@@ -1,4 +1,4 @@
-import "./AddBook.css";
+// import "./AddBook.css";
 import './singUp.css'
 import logo_pic from '../img/logo.jpeg'
 import React, { useRef, useState } from "react"
@@ -12,7 +12,7 @@ import { v4 as uuidv4 } from "uuid";
 const db = firebase.firestore();
 
 
-export default function AddBook() {
+export default function AddBook({users}) {
   const { signup } = useAuth()
   const firstNameRef = useRef()
   const lastNameRef = useRef()
@@ -22,28 +22,32 @@ export default function AddBook() {
   const passwordConfirmRef = useRef()
   const [error, setError] = useState("")
 
-  const [books, setBooks] = useState([])
   const [isUploaded, setIsUploaded] = useState(false)
-  const [loading, setLoading] = useState(false);
+  const [disabled, setDisabled] = useState(true);
   const [coverPage, setCoverPage] = useState();
   const [title, setTitle] = useState();
   const [author, setAuthor] = useState();
-  const [category, setCategory] = useState();
+  const [category, setCategory] = useState("Novels");
   const [description, setDescription] = useState();
-  const [owner, setOwner] = useState();
-  const [uid] = useState(firebase.auth().currentUser.uid);
-  const [email] = useState(firebase.auth().currentUser.email);
-  const [location, setLocation] = useState();
-  const [phoneNo, setPhoneNo] = useState();
+  const [owner, setOwner] = useState("");
+  const uid = firebase.auth().currentUser.uid;
+  const email = firebase.auth().currentUser.email;
+  const [location, setLocation] = useState("");
+  const [phoneNo, setPhoneNo] = useState("");
+  const [isAvailable, setIsAvailable] = useState(true)
   const [fileUrl, setFileUrl] = React.useState(null);
+  const user = users[0];
 
   const history = useHistory()
 
   const ref = firebase.firestore().collection("Books");
   console.log(firebase.auth().currentUser)
+  console.log(user)
 
     async function addBook(newBook) {
+        // console.log(newBook)
         // uploadImage();
+        console.error("AddBook function has been called");
         ref
         //.doc() use if for some reason you want that firestore generates the id
         .doc(newBook.id)
@@ -55,11 +59,9 @@ export default function AddBook() {
         history.push("/")
     }
 
-    // const uploadImage = async (e) => {
-      
-    // }
 
     const onFileChange = async (e) => {
+        setDisabled(false)
         setIsUploaded(true)
         const file = e.target.files[0];
         const storageRef = firebase.storage().ref();
@@ -72,19 +74,8 @@ export default function AddBook() {
         }));    
         setCoverPage(imageURL)
         setIsUploaded(false)
+        setDisabled(true)
       };
-
-    // const onSubmit = async (e) => {
-    //     e.preventDefault();
-    //     const username = e.target.username.value;
-    //     if (!username || !fileUrl) {
-    //       return;
-    //     }
-    //     await db.collection("users").doc(username).set({
-    //       name: username,
-    //       avatar: fileUrl,
-    //     });
-    //   };
 
   return (
      <>
@@ -110,7 +101,14 @@ export default function AddBook() {
                 placeholder="Book Title"
                 type="text"
                 value={title}
-                onChange={(e) => setTitle(e.target.value)}
+                onChange={(e) => {
+                  setTitle(e.target.value)
+                  setOwner(user.firstNameRef)
+                  setLocation(user.addressRef)
+                  setPhoneNo(user.phoneRef)
+                  setIsAvailable(true)
+                  // console.log(owner + location + phoneNo + uid)
+                }}
                 required 
             />
             <input
@@ -120,28 +118,41 @@ export default function AddBook() {
                 value={author}
                 onChange={(e) => setAuthor(e.target.value)}
             />
-            <input
+            <select 
+              className="input__style"
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+              >
+                <option>Novels</option>
+                <option>Study Materials</option>
+                <option>Others</option>             
+              
+            </select>
+            {/* <input
                 className="input__style"   
                 placeholder="Category"
                 type="text"
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
             />
+             */}
             <textarea
                 className="input__style"   
                 placeholder="Description"
                 type="text"
                 value={description}
-                onChange={(e) => setDescription(e.target.value)}
+                onChange={(e) => {setDescription(e.target.value)}}
             />
-            <input onClick={() => { title && author && category && description && addBook({ coverPage, title, description, author, category, id: uuidv4() })}}
-                type="submit" className="header__signUp" value="Save">
+            <input onClick={() => { 
+              {disabled && title && author && category && description && 
+              addBook({ coverPage, title, description, author, category, id: uuidv4(), isAvailable, owner, email, phoneNo, location})}
+            }}
+                type="submit" className="header__signUp center" value="Save">
             </input>
             {/* <button onClick={() => addBook({ title, desc, author, category, id: uuidv4() })}>
                 Submit
             </button> */}
         </div>
-        {loading ? <h1>Loading...</h1> : null}
         {/* {books.map((Book) => (
         <div className="Book" key={Book.id}>
             <p>{Book.title}</p>

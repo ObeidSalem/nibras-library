@@ -5,12 +5,11 @@ import {useState} from 'react'
 import "./Popup.css"
 
 const BookInfoPopup = (props) => {
-    const { id } = useParams()
     console.log(props)
 
     return ( props.trigger) ?  ( 
         <div className="popup">
-            <div className="popup__container">
+            <div className="popup__container left">
                 <h3>Contact Details</h3>
                 <hr></hr>
                 <h5>Book Name:   {props.book.title}</h5>
