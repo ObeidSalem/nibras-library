@@ -53,8 +53,7 @@
     margin-top: 0px;
 }
 
-.header__logo:hover,
-.header__logo:active {
+.header__logo:hover {
     width: 100px;
 }
 
@@ -78,6 +77,7 @@
 .link {
     text-decoration: none;
     font-size: 1.2rem;
+    color: #221246;
 }
 
 .header__buttons {
@@ -100,8 +100,7 @@
     min-width: 50px;
 }
 
-.header__signUp:hover,
-.header__signUp:active {
+.header__signUp:hover {
     font-size: 1.10em;
     border: 3px solid #221246;
     background-color: #472e85;
@@ -115,8 +114,7 @@
     letter-spacing: 0;
 }
 
-.btn:hover,
-.btn:active {
+.btn:hover {
   letter-spacing: 5px;
 }
 
@@ -169,8 +167,7 @@
 
 }
 
-.header__login:hover,
-.header__login:active {
+.header__login:hover{
     font-size: 1.10em;
     background-color: white;
     border: 3px solid #221246;
@@ -290,8 +287,7 @@
         text-align:left;
     }
     
-    .header__login:hover,
-    .header__login:active {
+    .header__login:hover {
         font-size: 1.10em;
         border: 3px solid #221246;
     }
