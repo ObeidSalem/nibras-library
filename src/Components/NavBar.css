@@ -282,6 +282,7 @@
 
     #signup__button, #login__button {
         min-width: 100px;
+        max-width: 150px;
         margin: 10px 10px;
         text-align:center; 
     }
