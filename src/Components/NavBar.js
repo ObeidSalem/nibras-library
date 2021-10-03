@@ -28,29 +28,29 @@ const NavBar = () => {
 
                         <div className="header__nav">
                             <div className="header__option">
-                                <Link className='link btn' to = '/'>Home</Link>
+                                <Link className='link btn' to = '/' onClick={()=>{setShow(1)}}>Home</Link>
                             </div>
                             <div className="header__option">
-                                <Link className='link btn' to = '/AboutUs'>About Us</Link>
+                                <Link className='link btn' to = '/AboutUs' onClick={()=>{setShow(1)}}>About Us</Link>
 
                             </div> 
                             <div className="header__option">
-                                <Link className='link btn' to = '/AddBook'>Add Book</Link>
+                                <Link className='link btn' to = '/AddBook' onClick={()=>{setShow(1)}}>Add Book</Link>
 
                             </div>
                         </div>
 
                         <div className="header__buttons">
-                            {currentUser &&  <Link className='btnlink' to = '/Profile'>
-                            <input type="button" className="sign__out" value="My Profile">
-                            </input>
-                            </Link> }
+                            {currentUser &&  
+                                <Link className='btnlink' to = '/Profile' onClick={()=>{setShow(1)}}>
+                                    <input type="button" className="sign__out" value="My Profile"></input>
+                                </Link> }
                             {!currentUser && 
                             <>
-                                <Link className='btnlink' to = '/login'>
+                                <Link className='btnlink' to = '/login' onClick={()=>{setShow(1)}}>
                                     <input type="button" className="header__signUp header__login" value="Login"></input>
                                 </Link>
-                                <Link className='btnlink' to = '/singUp'>
+                                <Link className='btnlink' to = '/singUp' onClick={()=>{setShow(1)}}>
                                     <input type="button" className="header__signUp" value="Sign Up"></input>
                                 </Link> 
                             </>
