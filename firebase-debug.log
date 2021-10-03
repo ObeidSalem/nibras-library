@@ -1,0 +1,36 @@
+[debug] [2021-10-03T15:11:23.989Z] ----------------------------------------------------------------------
+[debug] [2021-10-03T15:11:23.993Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\osale\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js serve
+[debug] [2021-10-03T15:11:23.994Z] CLI Version:   9.16.5
+[debug] [2021-10-03T15:11:23.994Z] Platform:      win32
+[debug] [2021-10-03T15:11:23.994Z] Node Version:  v14.17.5
+[debug] [2021-10-03T15:11:24.000Z] Time:          Sun Oct 03 2021 20:41:23 GMT+0530 (India Standard Time)
+[debug] [2021-10-03T15:11:24.001Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2021-10-03T15:11:24.122Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-10-03T15:11:24.123Z] > authorizing via signed-in user (nibrashs1@gmail.com)
+[debug] [2021-10-03T15:11:24.124Z] [iam] checking project nibras-development for permissions ["firebase.projects.get"]
+[debug] [2021-10-03T15:11:24.129Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2021-10-03T15:11:24.130Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-10-03T15:11:24.519Z] <<< HTTP RESPONSE 200 {"pragma":"no-cache","date":"Sun, 03 Oct 2021 15:11:24 GMT","expires":"Mon, 01 Jan 1990 00:00:00 GMT","cache-control":"no-cache, no-store, max-age=0, must-revalidate","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-10-03T15:11:24.554Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/nibras-development:testIamPermissions  
+ {"permissions":["firebase.projects.get"]}
+[debug] [2021-10-03T15:11:26.252Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sun, 03 Oct 2021 15:11:25 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=1223","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-10-03T15:11:26.255Z] > refreshing access token with scopes: []
+[debug] [2021-10-03T15:11:26.255Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-10-03T15:11:26.559Z] <<< HTTP RESPONSE 200 {"expires":"Mon, 01 Jan 1990 00:00:00 GMT","date":"Sun, 03 Oct 2021 15:11:26 GMT","cache-control":"no-cache, no-store, max-age=0, must-revalidate","pragma":"no-cache","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-10-03T15:11:26.593Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/nibras-development [none]
+[debug] [2021-10-03T15:11:27.046Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/nibras-development 200
+[debug] [2021-10-03T15:11:27.046Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/nibras-development {"projectId":"nibras-development","projectNumber":"796978388214","displayName":"nibras-development ","name":"projects/nibras-development","resources":{"hostingSite":"nibras-development","storageBucket":"nibras-development.appspot.com","locationId":"asia-northeast3"},"state":"ACTIVE"}
+[info] 
+[info] === Serving from 'G:\Desktop\Code-Projects\nibras-library'...
+[info] 
+[debug] [2021-10-03T15:11:27.054Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/nibras-development/sites 
+[debug] [2021-10-03T15:11:29.123Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/nibras-development/sites 200
+[debug] [2021-10-03T15:11:29.123Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/nibras-development/sites {"sites":[{"name":"projects/796978388214/sites/nibras-development","defaultUrl":"https://nibras-development.web.app","appId":"1:796978388214:web:99382bd888731f2c01e0d7","type":"DEFAULT_SITE"}]}
+[debug] [2021-10-03T15:11:29.124Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/nibras-development/webApps/1:796978388214:web:99382bd888731f2c01e0d7/config [none]
+[debug] [2021-10-03T15:11:30.761Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/nibras-development/webApps/1:796978388214:web:99382bd888731f2c01e0d7/config 200
+[debug] [2021-10-03T15:11:30.762Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/nibras-development/webApps/1:796978388214:web:99382bd888731f2c01e0d7/config {"projectId":"nibras-development","appId":"1:796978388214:web:99382bd888731f2c01e0d7","storageBucket":"nibras-development.appspot.com","locationId":"asia-northeast3","apiKey":"AIzaSyAvwN_aLF3th8fLaoWpCotv6BOXsDP52Wc","authDomain":"nibras-development.firebaseapp.com","messagingSenderId":"796978388214"}
+[info] i  hosting: Serving hosting files from: build {"metadata":{"emulator":{"name":"hosting"},"message":"Serving hosting files from: \u001b[1mbuild\u001b[22m"}}
+[info] +  hosting: Local server: http://localhost:5000 {"metadata":{"emulator":{"name":"hosting"},"message":"Local server: \u001b[4m\u001b[1mhttp://localhost:5000\u001b[22m\u001b[24m"}}
