@@ -33,11 +33,14 @@ const Profile = ({favoritesInUsersCollections, refBooks, refUsers, email, users,
     // console.log(Userid)
 
     async function handleSubmit() {
+        console.log(Userid)
         refUsers.doc(Userid).update({
         firstNameRef:NameRef,
         phoneRef:phoneRef,
         addressRef:addressRef
     });
+    console.log(Userid)
+
 }
 
     async function handleLogout() {

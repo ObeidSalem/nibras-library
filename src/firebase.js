@@ -14,8 +14,9 @@ const app = firebase.initializeApp({
   appId: process.env.REACT_APP_FIREBASE_APP_ID
 })
 
-
 const firestore = app.firestore()
+firestore.settings({timestampsInSnapshots: true,})
+
 export const database = {
   accounts: firestore.collection("accounts"),
   
@@ -24,7 +25,7 @@ export const database = {
   // },
   getCurrentTimestamp: firebase.firestore.FieldValue.serverTimestamp,
 }
-export const storage = app.storage()
 
+export const storage = app.storage()
 export const auth = app.auth()
 export default app
