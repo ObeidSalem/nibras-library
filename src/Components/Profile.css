@@ -53,6 +53,7 @@
     display: flex;
     margin: 0 auto;
     width: 185px;
+    height: 185px;
     object-fit: contain;
     margin-top: 0px;
     border-radius: 100px;
