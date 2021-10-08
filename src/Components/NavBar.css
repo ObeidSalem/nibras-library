@@ -182,7 +182,7 @@
         display:block;
         color: #221246;
         margin-top: 10px;
-        text-align: right;
+        text-align: center;
         padding: 10px;
         cursor: pointer;   
     }
@@ -190,7 +190,7 @@
    .close {
         display:block;
         color: #fff;
-        text-align: left;
+        text-align: center;
         cursor: pointer;
         padding: 30px 150px 10px 0px;
         /* background-color:cyan; */
@@ -203,7 +203,7 @@
         height: 100vh;
         width: 200px;
         top: 0;
-        text-align: left;
+        text-align: center;
         z-index: 2;
     }
     .active{
@@ -224,14 +224,15 @@
         height: 40%;
         margin-bottom: 120%;
         /* background-color: yellow; */
-        text-align: left;
+        text-align: center;
         flex-direction: column;
         order: 2;
 
     }
     
     .header__option {
-        text-align: left;
+        display: inline;
+        text-align: center;
         width:90%;
         padding: 15px 0px;
         font-size: 1.10em;
@@ -265,10 +266,11 @@
 
     }
     .header__login,  .header__signUp {
-        text-align: left;
+        text-align: center;
         padding: 15px 0px;
         font-size: 1.2em;
         margin: 10px 10px;
+        width: 90%;
         border-bottom: 1px solid white;
         /* border-radius: 0px; */
         color: white;
@@ -280,6 +282,7 @@
 
     #signup__button, #login__button {
         min-width: 100px;
+        max-width: 150px;
         margin: 10px 10px;
         text-align:center; 
     }

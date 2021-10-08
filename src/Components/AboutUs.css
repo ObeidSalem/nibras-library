@@ -75,7 +75,7 @@ html{
     
 }
 .background {
-    height: 50vh;
+    height: 70vh;
 	background-position: center;
 	position: relative;
     background-size: cover;
@@ -113,10 +113,13 @@ html{
         justify-content: center;
         align-items: center;
     }
+    .bigimage4{
+        min-height: 90vh;
+    }
     .Title{
         margin: 60px 0 0 0; 
         max-width: 100%;
-        font-size: 1.2rem; 
+        font-size: 1.8rem; 
         display: flex;
         justify-content: center;
         align-items: center;

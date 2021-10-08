@@ -33,11 +33,14 @@ const Profile = ({favoritesInUsersCollections, refBooks, refUsers, email, users,
     // console.log(Userid)
 
     async function handleSubmit() {
+        console.log(Userid)
         refUsers.doc(Userid).update({
         firstNameRef:NameRef,
         phoneRef:phoneRef,
         addressRef:addressRef
     });
+    console.log(Userid)
+
 }
 
     async function handleLogout() {
@@ -149,9 +152,9 @@ const Profile = ({favoritesInUsersCollections, refBooks, refUsers, email, users,
                         <form>
                             <div className='row__inputs'>
                                 <input  
-                                    className='input__failed ten__px__margin__to__right' 
+                                    className='input__failed ' 
                                     type="input" 
-                                    placeholder="new Name:" 
+                                    placeholder="New Name:" 
                                     value={NameRef} 
                                     onChange={(e) =>{setName(e.target.value)}} 
                                     required 
@@ -161,12 +164,12 @@ const Profile = ({favoritesInUsersCollections, refBooks, refUsers, email, users,
                                 <input  
                                     className='input__failed' 
                                     type="input" 
-                                    placeholder="new Phone Number:" 
+                                    placeholder="New Phone Number:" 
                                     value={phoneRef} 
                                     onChange={(e) => setPhoneNo(e.target.value)} 
                                     required 
                                 ></input > 
-                                <input  className='input__failed' type="input" placeholder="new address" value={addressRef} 
+                                <input  className='input__failed' type="input" placeholder="New address" value={addressRef} 
                                 onChange={(e) => setAddress(e.target.value)} required></input > 
                            
                             </div>

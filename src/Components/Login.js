@@ -1,4 +1,4 @@
-import logo_pic from '../img/logo.jpeg'
+import logo_pic from '../img/Authlogo.jpeg'
 import './Login.css'
 import React, { useRef, useState } from "react"
 import { Form, Alert } from "react-bootstrap"

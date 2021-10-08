@@ -30,8 +30,8 @@ export default function AddBook({users}) {
   const [category, setCategory] = useState("Novels");
   const [description, setDescription] = useState();
   const [owner, setOwner] = useState("");
-  const uid = firebase.auth().currentUser.uid;
-  const email = firebase.auth().currentUser.email;
+  let uid = null;
+  let email = null;
   const [location, setLocation] = useState("");
   const [phoneNo, setPhoneNo] = useState("");
   const [isAvailable, setIsAvailable] = useState(true)
@@ -76,11 +76,18 @@ export default function AddBook({users}) {
         setIsUploaded(false)
         setDisabled(true)
       };
+      function handleUser(){
+        email = firebase.auth().currentUser.email;
+        uid = firebase.auth().currentUser.uid
+      }
 
   return (
      <>
       {firebase.auth().currentUser ?
-        <div className="main add__book" >        
+        <div className="main add__book" > 
+          {
+            handleUser()
+          }       
             <div className="main-text">
               <br />
               <h2 >Add Book</h2>
