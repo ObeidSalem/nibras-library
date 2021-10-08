@@ -1,5 +1,7 @@
 import React from 'react'
 import './AboutUs.css'
+import hadhrami_pic from '../img/hadhrami_pic.png'
+
 
 const AboutUs = () => {
     return (
@@ -18,6 +20,9 @@ const AboutUs = () => {
                 <div className="AboutUs">
                     <h1>About Us</h1>
                 </div>
+            </div>
+            <div className="background bigimage1 section__container">
+                <img className="Chapter__image" src={hadhrami_pic}></img>
             </div>
             <div className="background bigimage2 section__container">
                 <div className="Title black">
