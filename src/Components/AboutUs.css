@@ -34,11 +34,6 @@ html{
 	align-items: center;
 	background-color: rgda(0,0,0,0.5); 
 }
-
-.Chapter__image{
-    height: 250px;;
-}
-
 .Title{
     margin: 50px 0; 
     margin: 10px; 
@@ -87,11 +82,9 @@ html{
     display: flex;
 	align-items: center;
 }
-.bigimage1{
-	background-image: url('../img/q1.jpg');
-}
 .bigimage2{
 	background-image: url('../img/q2.png');
+
 }
 .bigimage3{
 	background-image: url('../img/q3.png');
@@ -111,11 +104,6 @@ html{
     .AboutUs{
         font-size: 2rem; 
     }
-
-    .Chapter__image{
-        height: 150px;
-    }
-
     .background {
         min-height: 30vh;
         background-position: center;
@@ -125,7 +113,6 @@ html{
         justify-content: center;
         align-items: center;
     }
-    
     .bigimage4{
         min-height: 90vh;
     }

@@ -77,7 +77,6 @@
 
 .link {
     text-decoration: none;
-    color: #221246;
     font-size: 1.2rem;
 }
 
@@ -282,8 +281,8 @@
     
 
     #signup__button, #login__button {
-        min-width: 70px;
-        max-width: 90px;
+        min-width: 100px;
+        max-width: 150px;
         margin: 10px 10px;
         text-align:center; 
     }

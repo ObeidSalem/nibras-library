@@ -6,7 +6,6 @@ import ImageUpdatePopup from './ImageUpdatePopup';
 import { useAuth } from "../context/AuthContext"
 import { useHistory } from "react-router-dom"
 import firebase from "../firebase";
-import imageCompression from 'browser-image-compression';
 
 
 
@@ -29,6 +28,7 @@ const Profile = ({favoritesInUsersCollections, refBooks, refUsers, email, users,
     const [avatar, setAvatar] = useState('');
 
 
+
     
     // console.log(Userid)
 
@@ -45,6 +45,7 @@ const Profile = ({favoritesInUsersCollections, refBooks, refUsers, email, users,
         }
         console.log(user)
     }
+
 
     async function handleLogout() {
         setError("")
@@ -72,66 +73,24 @@ const Profile = ({favoritesInUsersCollections, refBooks, refUsers, email, users,
         // console.log("after " + book.isAvailable)
     }
 
-    async function handleImageUpload(event) {
-
+    const onFileChange = async (e) => {
         setIsUploaded(true)
-  
-        const imageFile = event.target.files[0];
+        const file = e.target.files[0];
         const storageRef = firebase.storage().ref();
-        const fileRef = storageRef.child(imageFile.name);
+        const fileRef = storageRef.child(file.name);
         let imageURL = "";
-        console.log('originalFile instanceof Blob', imageFile instanceof Blob); // true
-        console.log(`originalFile size ${imageFile.size / 1024 / 1024} MB`);
-      
-        const options = {
-          maxSizeMB: 2,
-          maxWidthOrHeight: 1920,
-          useWebWorker: true
-        }
-        try {
-          const compressedFile = await imageCompression(imageFile, options);
-          console.log('compressedFile instanceof Blob', compressedFile instanceof Blob); // true
-          console.log(`compressedFile size ${compressedFile.size / 1024 / 1024} MB`); // smaller than maxSizeMB
-      
-          await fileRef.put(compressedFile);
-          setFileUrl(await fileRef.getDownloadURL().then(url => {
-            console.log(url);
-            imageURL = url;
-          }));    
-          refUsers.doc(user.id).update({ 
+        await fileRef.put(file);
+        setFileUrl(await fileRef.getDownloadURL().then(url => {
+          console.log(url);
+          imageURL = url;
+        }));    
+        refUsers.doc(Userid).update({ 
             UserAvatar: imageURL
-          });
-          setAvatar(user.UserAvatar)
-          setIsUploaded(false)
-          setImageUpdateTrigger(false)
-          history.push("/Profile")
-        } catch (error) {
-          console.log(error);
-        }
-    }
-
-    async function handleDeleteImage() {
-
-        // const storageRef = firebase.storage().ref();        
-        // var deleteFile = storageRef.refFromURL(user.UserAvatar);
-
-        // deleteFile.delete().then(() => {
-        //     console.log("File Deleted")
-        // }).catch((error) => {
-        //     console.log(error)
-        // });
-
-        try {  
-            await refUsers.doc(user.id).update({ 
-              UserAvatar: '/images/blank-profile-image.png'
-            });
-            setAvatar(user.UserAvatar)
-            setImageUpdateTrigger(false)
-            history.push("/Profile")
-          } catch (error) {
-            console.log(error);
-          }
-    }
+        });
+        setAvatar(user.UserAvatar)
+        setIsUploaded(false)
+        history.push("/Profile")
+      };
 
     function handleUnfavored(book) {
         console.log("Unfavored Clicked")
@@ -146,7 +105,7 @@ const Profile = ({favoritesInUsersCollections, refBooks, refUsers, email, users,
         }
         console.log("unfavored after",unfavored)
 
-        refUsers.doc(user.id).update({ 
+        refUsers.doc(Userid).update({ 
             favorite: unfavored
         });
         history.push("/Profile")
@@ -167,14 +126,12 @@ const Profile = ({favoritesInUsersCollections, refBooks, refUsers, email, users,
                                 placeholder="Book Title"
                                 type="file"
                                 value={setFileUrl || ""}
-                                onChange={handleImageUpload}
+                                onChange={onFileChange}
                             />
                             {isUploaded && <p>Uploading...</p>}
                             <button 
-                                onClick={(e) => { 
-                                    e.preventDefault()
-                                    handleDeleteImage()
-                                    // setAvatar('/images/blank-profile-image.png')
+                                onClick={() => { 
+                                    setAvatar('/images/blank-profile-image.png')
                                   }}
                                 type='submit' 
                                 className="save__button">
@@ -189,15 +146,15 @@ const Profile = ({favoritesInUsersCollections, refBooks, refUsers, email, users,
 
                     <div className='profile__info'>
                         <h4 className='profile__details'>{(email) ? user.firstNameRef : ""}</h4>
-                        <h4 className='profile__details'>{(email) ? currentUser.email : ""}</h4>
-                        <h4 className='profile__details'>{(email) ?  user.phoneRef : ""}</h4>
-                        <h4 className='profile__details'>{(email) ?  user.addressRef : ""}</h4>
+                        <h4 className='profile__details'>{email && currentUser.email || ''}</h4>
+                        <h4 className='profile__details'>{email && user.phoneRef || ''}</h4>
+                        <h4 className='profile__details'>{email && user.addressRef || ''}</h4>
                     </div>
                     <ImageUpdatePopup trigger={infoUpdateTrigger} setTrigger={setInfoUpdateTrigger}>
                         <h3>Update your Info</h3>
                         <hr></hr>
                         <form>
-                            <div >
+                            <div className='row__inputs'>
                                 <input  
                                     className='input__failed ' 
                                     type="input" 
@@ -206,7 +163,8 @@ const Profile = ({favoritesInUsersCollections, refBooks, refUsers, email, users,
                                     onChange={(e) =>{setName(e.target.value)}} 
                                     required 
                                 ></input > 
-                            
+                            </div>
+                            <div >
                                 <input  
                                     className='input__failed' 
                                     type="input" 
@@ -215,21 +173,11 @@ const Profile = ({favoritesInUsersCollections, refBooks, refUsers, email, users,
                                     onChange={(e) => setPhoneNo(e.target.value)} 
                                     required 
                                 ></input > 
-                                <input  
-                                    className='input__failed' 
-                                    type="input" 
-                                    placeholder="New address" 
-                                    value={addressRef} 
-                                    onChange={(e) => setAddress(e.target.value)} 
-                                    required
-                                ></input > 
+                                <input  className='input__failed' type="input" placeholder="New address" value={addressRef} 
+                                onChange={(e) => setAddress(e.target.value)} required></input > 
                            
                             </div>
-                            <input onClick={(e) =>{
-                                e.preventDefault()
-                                handleSubmit()
-                                setInfoUpdateTrigger(false)
-                            }}
+                            <input onClick={() =>handleSubmit()}
                              type="submit" className="save__button" value="SAVE"></input>
                 
                             <br></br>
@@ -320,10 +268,12 @@ const Profile = ({favoritesInUsersCollections, refBooks, refUsers, email, users,
                         <div className="myProfileBook__container" key={book.id}>
                             <div className="myProfileBook__book">
                                 <div className="myBook__left">
-                                <img className="book__image" 
-                                    src={book.coverPage}
-                                    onError={(e)=>{e.target.onerror = null; e.target.src="https://static.scientificamerican.com/sciam/cache/file/1DDFE633-2B85-468D-B28D05ADAE7D1AD8_source.jpg?w=590&h=800&D80F3D79-4382-49FA-BE4B4D0C62A5C3ED"}}
-                                />                                </div>
+                                  <img className="book__image" 
+                                      src={book.coverPage}
+                                      onError={(e)=>{e.target.onerror = null; e.target.src="https://static.scientificamerican.com/sciam/cache/file/1DDFE633-2B85-468D-B28D05ADAE7D1AD8_source.jpg?w=590&h=800&D80F3D79-4382-49FA-BE4B4D0C62A5C3ED"}}
+                                  />
+                                </div>
+
                                 <div className='book__right__list'>
                                     <h5 className="left">{book.title}</h5>
                                     <h6 className="left">
