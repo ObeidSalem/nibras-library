@@ -84,7 +84,7 @@ const Profile = ({favoritesInUsersCollections, refBooks, refUsers, email, users,
           console.log(url);
           imageURL = url;
         }));    
-        refUsers.doc(Userid).update({ 
+        refUsers.doc(user.id).update({ 
             UserAvatar: imageURL
         });
         setAvatar(user.UserAvatar)
@@ -105,7 +105,7 @@ const Profile = ({favoritesInUsersCollections, refBooks, refUsers, email, users,
         }
         console.log("unfavored after",unfavored)
 
-        refUsers.doc(Userid).update({ 
+        refUsers.doc(user.id).update({ 
             favorite: unfavored
         });
         history.push("/Profile")
