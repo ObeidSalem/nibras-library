@@ -91,22 +91,22 @@ function App() {
     setLoading(true);
     refUsers.onSnapshot((querySnapshot) => {
       const items = [];
-      // var index = 0
-      // var item = ""
-      // let Cid = "1"
-      // let CFavorite = 0
+      var index = 0
+      var item = ""
+      let Cid = "1"
+      let CFavorite = 0
       querySnapshot.forEach((doc) => {
         items.push(doc.data());
-        // item = items[index]
-        // if (item.emailRef === firebase.auth().currentUser.email){
-        //   Cid=item.id
-        //   CFavorite = index
-        //   console.log(items[CFavorite].favorite)
-        //   // console.log(Cid)
-        // }
-        // index++
+        item = items[index]
+        if (item.emailRef === firebase.auth().currentUser.email){
+          Cid=item.id
+          CFavorite = index
+          console.log(items[CFavorite].favorite)
+          // console.log(Cid)
+        }
+        index++
       });
-      // setId(Cid)
+      setId(Cid)
       setUsers(items);
       // console.log(items[CFavorite].favorite)
       // setFavorites(items[CFavorite].favorite)
@@ -171,7 +171,7 @@ function App() {
                   refBooks={refBooks}
                   refUsers={refUsers}
                   email={email}
-                  // Userid= {Userid}
+                  Userid= {Userid}
                   users={users.filter((user) => user.emailRef === email)}
                   // favoritesInUsersCollections={favorites}
                   // myFavorite={favoriteBooksFiltered}
