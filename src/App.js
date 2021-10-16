@@ -111,7 +111,9 @@ function App() {
       // console.log(items[CFavorite].favorite)
       // setFavorites(items[CFavorite].favorite)
       setLoading(false);
-      setEmail(firebase.auth().currentUser.email)
+      if (firebase.auth().currentUser){
+        setEmail(firebase.auth().currentUser.email)
+      }    
     });
   }
 

@@ -302,7 +302,10 @@ html, body {
         right: 0px;
         width: 35px;
         height: 35px;
-       
+    }
+  
+    .book__content> .book__image {
+        max-width: 120px;
     }
 }
 

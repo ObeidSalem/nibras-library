@@ -10,7 +10,7 @@ import firebase from "../firebase";
 
 
 
-const Profile = ({favoritesInUsersCollections, refBooks, refUsers, email, users, myFavorite, myBooks , Userid}) => {
+const Profile = ({favoritesInUsersCollections, refBooks, refUsers, email, users, myFavorite, myBooks}) => {
     const [imageUpdateTrigger, setImageUpdateTrigger] = useState(false)
     const [infoUpdateTrigger, setInfoUpdateTrigger] = useState(false)
     const [isAvailable, setIsAvailable] = useState(true)
@@ -33,15 +33,19 @@ const Profile = ({favoritesInUsersCollections, refBooks, refUsers, email, users,
     // console.log(Userid)
 
     async function handleSubmit() {
-        console.log(Userid)
-        refUsers.doc(Userid).update({
-        firstNameRef:NameRef,
-        phoneRef:phoneRef,
-        addressRef:addressRef
-    });
-    console.log(Userid)
+        try {
+        // console.log(Userid)
+        await refUsers.doc(user.id).update({
+            firstNameRef:NameRef,
+            phoneRef:phoneRef,
+            addressRef:addressRef
+        })
+        } catch (error){
+            console.log(error);
+        }
+        console.log(user)
+    }
 
-}
 
     async function handleLogout() {
         setError("")
@@ -90,7 +94,7 @@ const Profile = ({favoritesInUsersCollections, refBooks, refUsers, email, users,
 
     function handleUnfavored(book) {
         console.log("Unfavored Clicked")
-        console.log("Userid", Userid)
+        console.log("User.id", user.id);
         console.log("book.id", book.id)
         console.log("favoritesInUsersCollections",favoritesInUsersCollections)
         const unfavored = favoritesInUsersCollections
@@ -264,8 +268,12 @@ const Profile = ({favoritesInUsersCollections, refBooks, refUsers, email, users,
                         <div className="myProfileBook__container" key={book.id}>
                             <div className="myProfileBook__book">
                                 <div className="myBook__left">
-                                    <img className="book__image" src={book.coverPage || "https://static.scientificamerican.com/sciam/cache/file/1DDFE633-2B85-468D-B28D05ADAE7D1AD8_source.jpg?w=590&h=800&D80F3D79-4382-49FA-BE4B4D0C62A5C3ED"}/>
+                                  <img className="book__image" 
+                                      src={book.coverPage}
+                                      onError={(e)=>{e.target.onerror = null; e.target.src="https://static.scientificamerican.com/sciam/cache/file/1DDFE633-2B85-468D-B28D05ADAE7D1AD8_source.jpg?w=590&h=800&D80F3D79-4382-49FA-BE4B4D0C62A5C3ED"}}
+                                  />
                                 </div>
+
                                 <div className='book__right__list'>
                                     <h5 className="left">{book.title}</h5>
                                     <h6 className="left">
