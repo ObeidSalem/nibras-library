@@ -99,6 +99,7 @@ const Profile = ({favoritesInUsersCollections, refBooks, refUsers, email, users,
             imageURL = url;
           }));    
           refUsers.doc(user.id).update({ 
+
             UserAvatar: imageURL
           });
           setAvatar(user.UserAvatar)
