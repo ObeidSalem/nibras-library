@@ -175,6 +175,7 @@ const Profile = ({favoritesInUsersCollections, refBooks, refUsers, email, users,
                                 onClick={(e) => { 
                                     e.preventDefault()
                                     handleDeleteImage()
+                                    setImageUpdateTrigger(false)
                                     // setAvatar('/images/blank-profile-image.png')
                                   }}
                                 type='submit' 
