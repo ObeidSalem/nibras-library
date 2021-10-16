@@ -11,7 +11,7 @@ import imageCompression from 'browser-image-compression';
 
 
 
-const Profile = ({favoritesInUsersCollections, refBooks, refUsers, email, users, myFavorite, myBooks , Userid}) => {
+const Profile = ({favoritesInUsersCollections, refBooks, refUsers, email, users, myFavorite, myBooks}) => {
     const [imageUpdateTrigger, setImageUpdateTrigger] = useState(false)
     const [infoUpdateTrigger, setInfoUpdateTrigger] = useState(false)
     const [isAvailable, setIsAvailable] = useState(true)
@@ -29,22 +29,21 @@ const Profile = ({favoritesInUsersCollections, refBooks, refUsers, email, users,
     const [avatar, setAvatar] = useState('');
 
 
-
     
     // console.log(Userid)
 
     async function handleSubmit() {
         try {
         // console.log(Userid)
-        await refUsers.doc(Userid).update({
-        firstNameRef:NameRef,
-        phoneRef:phoneRef,
-        addressRef:addressRef
+        await refUsers.doc(user.id).update({
+            firstNameRef:NameRef,
+            phoneRef:phoneRef,
+            addressRef:addressRef
         })
         } catch (error){
             console.log(error);
         }
-        console.log(Userid)
+        console.log(user)
     }
 
     async function handleLogout() {
@@ -99,11 +98,12 @@ const Profile = ({favoritesInUsersCollections, refBooks, refUsers, email, users,
             console.log(url);
             imageURL = url;
           }));    
-          refUsers.doc(Userid).update({ 
+          refUsers.doc(user.id).update({ 
             UserAvatar: imageURL
           });
           setAvatar(user.UserAvatar)
           setIsUploaded(false)
+          setImageUpdateTrigger(false)
           history.push("/Profile")
         } catch (error) {
           console.log(error);
@@ -122,10 +122,11 @@ const Profile = ({favoritesInUsersCollections, refBooks, refUsers, email, users,
         // });
 
         try {  
-            await refUsers.doc(Userid).update({ 
+            await refUsers.doc(user.id).update({ 
               UserAvatar: '/images/blank-profile-image.png'
             });
             setAvatar(user.UserAvatar)
+            setImageUpdateTrigger(false)
             history.push("/Profile")
           } catch (error) {
             console.log(error);
@@ -134,7 +135,7 @@ const Profile = ({favoritesInUsersCollections, refBooks, refUsers, email, users,
 
     function handleUnfavored(book) {
         console.log("Unfavored Clicked")
-        console.log("Userid", Userid)
+        console.log("User.id", user.id);
         console.log("book.id", book.id)
         console.log("favoritesInUsersCollections",favoritesInUsersCollections)
         const unfavored = favoritesInUsersCollections
@@ -145,7 +146,7 @@ const Profile = ({favoritesInUsersCollections, refBooks, refUsers, email, users,
         }
         console.log("unfavored after",unfavored)
 
-        refUsers.doc(Userid).update({ 
+        refUsers.doc(user.id).update({ 
             favorite: unfavored
         });
         history.push("/Profile")
@@ -227,6 +228,7 @@ const Profile = ({favoritesInUsersCollections, refBooks, refUsers, email, users,
                             <input onClick={(e) =>{
                                 e.preventDefault()
                                 handleSubmit()
+                                setInfoUpdateTrigger(false)
                             }}
                              type="submit" className="save__button" value="SAVE"></input>
                 
@@ -318,8 +320,10 @@ const Profile = ({favoritesInUsersCollections, refBooks, refUsers, email, users,
                         <div className="myProfileBook__container" key={book.id}>
                             <div className="myProfileBook__book">
                                 <div className="myBook__left">
-                                    <img className="book__image" src={book.coverPage || "https://static.scientificamerican.com/sciam/cache/file/1DDFE633-2B85-468D-B28D05ADAE7D1AD8_source.jpg?w=590&h=800&D80F3D79-4382-49FA-BE4B4D0C62A5C3ED"}/>
-                                </div>
+                                <img className="book__image" 
+                                    src={book.coverPage}
+                                    onError={(e)=>{e.target.onerror = null; e.target.src="https://static.scientificamerican.com/sciam/cache/file/1DDFE633-2B85-468D-B28D05ADAE7D1AD8_source.jpg?w=590&h=800&D80F3D79-4382-49FA-BE4B4D0C62A5C3ED"}}
+                                />                                </div>
                                 <div className='book__right__list'>
                                     <h5 className="left">{book.title}</h5>
                                     <h6 className="left">

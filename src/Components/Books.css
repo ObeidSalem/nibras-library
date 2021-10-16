@@ -83,7 +83,7 @@ html, body {
     display: flex;
     flex-direction: column;
     align-self: stretch;
-
+    max-width: 43%;
     background-color: white;
     justify-content:space-between;
     margin: 1% 1%;
@@ -96,6 +96,7 @@ html, body {
 
 .book__content> .book__image {
     height: 100px;
+    max-width: 180px;
     object-fit: contain;
     margin-top: 0px;
 }
@@ -302,7 +303,10 @@ html, body {
         right: 0px;
         width: 35px;
         height: 35px;
-       
+    }
+    
+    .book__content> .book__image {
+        max-width: 120px;
     }
 }
 
