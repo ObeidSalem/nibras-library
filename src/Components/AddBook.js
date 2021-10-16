@@ -7,7 +7,6 @@ import { useAuth } from "../context/AuthContext"
 import { Link, useHistory } from "react-router-dom"
 import firebase from "../firebase";
 import { v4 as uuidv4 } from "uuid";
-import imageCompression from 'browser-image-compression';
 
 
 const db = firebase.firestore();
@@ -60,43 +59,23 @@ export default function AddBook({users}) {
         history.push("/")
     }
 
-    async function handleImageUpload(event) {
 
-      setDisabled(false)
-      setIsUploaded(true)
-
-      const imageFile = event.target.files[0];
-      const storageRef = firebase.storage().ref();
-      const fileRef = storageRef.child(imageFile.name);
-      let imageURL = "";
-      console.log('originalFile instanceof Blob', imageFile instanceof Blob); // true
-      console.log(`originalFile size ${imageFile.size / 1024 / 1024} MB`);
-    
-      const options = {
-        maxSizeMB: 2,
-        maxWidthOrHeight: 1920,
-        useWebWorker: true
-      }
-      try {
-        const compressedFile = await imageCompression(imageFile, options);
-        console.log('compressedFile instanceof Blob', compressedFile instanceof Blob); // true
-        console.log(`compressedFile size ${compressedFile.size / 1024 / 1024} MB`); // smaller than maxSizeMB
-    
-        await fileRef.put(compressedFile);
+    const onFileChange = async (e) => {
+        setDisabled(false)
+        setIsUploaded(true)
+        const file = e.target.files[0];
+        const storageRef = firebase.storage().ref();
+        const fileRef = storageRef.child(file.name);
+        let imageURL = "";
+        await fileRef.put(file);
         setFileUrl(await fileRef.getDownloadURL().then(url => {
           console.log(url);
           imageURL = url;
         }));    
         setCoverPage(imageURL)
-      
-      } catch (error) {
-        console.log(error);
-      }
-      setIsUploaded(false)
-      setDisabled(true)
-    
-    }
-
+        setIsUploaded(false)
+        setDisabled(true)
+      };
       function handleUser(){
         email = firebase.auth().currentUser.email;
         uid = firebase.auth().currentUser.uid
@@ -121,7 +100,7 @@ export default function AddBook({users}) {
                 placeholder="Book Title"
                 type="file"
                 value={setFileUrl || ""}
-                onChange={handleImageUpload}
+                onChange={onFileChange}
             />
             {isUploaded && <p>Uploading...</p>}
             <input
