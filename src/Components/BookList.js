@@ -22,8 +22,8 @@ const BookList = ({books, refReports}) => {
             {books.map(book =>(
                 <div className="book__container" key={book.id} id={book.id}>
                     <div className="book__content">
-                       <input onClick={() => setReportBtnPopUp(true)}
-                       className='book__report reportIcon' type="button" value=""></input>
+                        <input onClick={() => setReportBtnPopUp(true)}
+                        className='book__report reportIcon' type="button" value=""></input>
                         <img className="book__image" 
                             src={book.coverPage}
                             onError={(e)=>{e.target.onerror = null; e.target.src="https://static.scientificamerican.com/sciam/cache/file/1DDFE633-2B85-468D-B28D05ADAE7D1AD8_source.jpg?w=590&h=800&D80F3D79-4382-49FA-BE4B4D0C62A5C3ED"}}
@@ -34,7 +34,7 @@ const BookList = ({books, refReports}) => {
                         <h6 className="left">
                         Category: {book.category}
                         </h6>
-                        </div>
+                    </div>
                     <div className="book__buttons__home">
                         {(book.isAvailable) ?
                             <input 
