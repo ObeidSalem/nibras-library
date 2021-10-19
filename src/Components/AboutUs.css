@@ -34,6 +34,11 @@ html{
 	align-items: center;
 	background-color: rgda(0,0,0,0.5); 
 }
+
+.Chapter__image{
+    height: 250px;;
+}
+
 .Title{
     margin: 50px 0; 
     margin: 10px; 
@@ -49,6 +54,11 @@ html{
 	align-items: center;
 	background-color: rgda(0,0,0,0.5); 
 }
+
+.bigimage1{
+	background-image: url('../img/q4.png');
+}
+
 .paragraph{
     margin: 50px 0; 
     max-width: 60%;
@@ -100,7 +110,9 @@ html{
         /* --maxWidth: 1920px; */
         --gap: 1rem;
     }
-
+    .Chapter__image{
+        height: 150px;
+    }
     .AboutUs{
         font-size: 2rem; 
     }

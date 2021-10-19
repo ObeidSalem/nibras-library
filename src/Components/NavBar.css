@@ -110,6 +110,8 @@
 
 .btnlink{
     align-items: stretch;
+    text-decoration: none;
+    color: #221246;
 }
 
 .btn {

@@ -23,7 +23,7 @@ export default function AddBook({users}) {
   const [error, setError] = useState("")
 
   const [isUploaded, setIsUploaded] = useState(false)
-  const [disabled, setDisabled] = useState(true);
+  const [disabled, setDisabled] = useState(false);
   const [coverPage, setCoverPage] = useState();
   const [title, setTitle] = useState();
   const [author, setAuthor] = useState();

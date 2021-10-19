@@ -7,8 +7,7 @@ import { useAuth } from "../context/AuthContext"
 import { useHistory } from "react-router-dom"
 import firebase from "../firebase";
 import imageCompression from 'browser-image-compression';
-
-
+import { Link } from "react-router-dom"
 
 
 const Profile = ({favoritesInUsersCollections, refBooks, refUsers, email, users, myFavorite, myBooks}) => {
@@ -159,7 +158,7 @@ const Profile = ({favoritesInUsersCollections, refBooks, refUsers, email, users,
                 <div className='profile__userInfo'>
                     <div>
                         <img className="profile__image" 
-                            src={email && user.UserAvatar} 
+                            src={(email)? user.UserAvatar : '/images/blank-profile-image.png'} 
                             onError={(e)=>{e.target.onerror = null; e.target.src='/images/blank-profile-image.png'}}
                             alt="Profile Image"
                         />
@@ -194,7 +193,7 @@ const Profile = ({favoritesInUsersCollections, refBooks, refUsers, email, users,
                     <div onClick={() => setImageUpdateTrigger(true)} className='right'><FiEdit className = 'edit__icon' /></div>
 
                     <div className='profile__info'>
-                        <h4 className='profile__details'>{(email) ? user.firstNameRef : ""}</h4>
+                        <h4 className='profile__details'>{(email) ? user.firstNameRef : "Loading"}</h4>
                         <h4 className='profile__details'>{(email) ? currentUser.email : ""}</h4>
                         <h4 className='profile__details'>{(email) ?  user.phoneRef : ""}</h4>
                         <h4 className='profile__details'>{(email) ?  user.addressRef : ""}</h4>
@@ -322,23 +321,25 @@ const Profile = ({favoritesInUsersCollections, refBooks, refUsers, email, users,
                         My Books
                     </h2>
                     <hr></hr>
-                    {myBooks.map(book =>(
+                    {(myBooks[0]) ? myBooks.map(book =>(
                         <div className="myProfileBook__container" key={book.id}>
                             <div className="myProfileBook__book">
                                 <div className="myBook__left">
                                 <img className="book__image" 
                                     src={book.coverPage}
-                                    onError={(e)=>{e.target.onerror = null; e.target.src="https://static.scientificamerican.com/sciam/cache/file/1DDFE633-2B85-468D-B28D05ADAE7D1AD8_source.jpg?w=590&h=800&D80F3D79-4382-49FA-BE4B4D0C62A5C3ED"}}
+                                    onError={(e)=>{e.target.onerror = null; e.target.src="/images/Book_cover_alt.jpg"}}
                                 />                                </div>
                                 <div className='book__right__list'>
                                     <h5 className="left">{book.title}</h5>
                                     <h6 className="left">
-                                    Category: {book.category}
+                                        Category: {book.category}
                                     </h6>
                                     <h6 className="left">
-                                    Author: {book.author}
+                                        Author: {book.author}
                                     </h6>
-        
+                                    <h6 className="left">
+                                        Description: {book.description}
+                                    </h6>
                                     
                                 </div>
                             </div>
@@ -369,7 +370,14 @@ const Profile = ({favoritesInUsersCollections, refBooks, refUsers, email, users,
                                 <input onClick={() => (handleDelete(book))} className='book__delete' type="button" value="Delete"></input> 
                             </div>
                         </div>
-                    ))}
+                    ))
+                    :
+                    <div className="no__book__msg">
+                        <img  className="no__book__msg"src={'/images/clarity_sad-face-line.png'} />
+                        <h3 className="gray no__book__msg">You have not added any book yet. </h3>
+                        <h3 className="gray no__book__msg">Would you like to add one? <Link to="/AddBook">Add Book</Link></h3>
+                    </div>
+                    }
                 </div>
             </div>
         </div>
