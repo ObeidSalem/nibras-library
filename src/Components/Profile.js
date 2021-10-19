@@ -158,7 +158,11 @@ const Profile = ({favoritesInUsersCollections, refBooks, refUsers, email, users,
             <div className="profile__right">
                 <div className='profile__userInfo'>
                     <div>
-                        <img className="profile__image" src={email && user.UserAvatar || '/images/blank-profile-image.png'} alt="Profile Image"/>
+                        <img className="profile__image" 
+                            src={email && user.UserAvatar} 
+                            onError={(e)=>{e.target.onerror = null; e.target.src='/images/blank-profile-image.png'}}
+                            alt="Profile Image"
+                        />
                         <ImageUpdatePopup trigger={imageUpdateTrigger} setTrigger={setImageUpdateTrigger}>
                         <h3>Update Image</h3>
                         <hr></hr>
@@ -175,6 +179,7 @@ const Profile = ({favoritesInUsersCollections, refBooks, refUsers, email, users,
                                 onClick={(e) => { 
                                     e.preventDefault()
                                     handleDeleteImage()
+                                    setImageUpdateTrigger(false)
                                     // setAvatar('/images/blank-profile-image.png')
                                   }}
                                 type='submit' 
