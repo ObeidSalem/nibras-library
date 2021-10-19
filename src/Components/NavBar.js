@@ -50,8 +50,8 @@ const NavBar = () => {
                                 <Link className='btnlink header__signUp header__login' to = '/login' onClick={()=>{setShow(1)}}>
                                     Login
                                 </Link>
-                                <Link className='btnlink' to = '/singUp' onClick={()=>{setShow(1)}}>
-                                    <input type="button" className="header__signUp" value="Sign Up"></input>
+                                <Link className='btnlink header__signUp' to = '/singUp' onClick={()=>{setShow(1)}}>
+                                    Sign Up
                                 </Link> 
                             </>
                             }
