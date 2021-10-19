@@ -26,8 +26,9 @@ const BookList = ({books, refReports}) => {
                         className='book__report reportIcon' type="button" value=""></input>
                         <img className="book__image" 
                             src={book.coverPage}
-                            onError={(e)=>{e.target.onerror = null; e.target.src="https://static.scientificamerican.com/sciam/cache/file/1DDFE633-2B85-468D-B28D05ADAE7D1AD8_source.jpg?w=590&h=800&D80F3D79-4382-49FA-BE4B4D0C62A5C3ED"}}
-                        />                        <h5 className="left">{book.title}</h5>
+                            onError={(e)=>{e.target.onerror = null; e.target.src="/images/Book_cover_alt.jpg"}}
+                        />                        
+                        <h5 className="left">{book.title}</h5>
                         <h6 className="left">
                         Author: {book.author}
                         </h6>
@@ -37,14 +38,17 @@ const BookList = ({books, refReports}) => {
                     </div>
                     <div className="book__buttons__home">
                         {(book.isAvailable) ?
-                            <input 
-                                onClick={currentUser ? (()=>{setTargetBtn(book); setContactBtnPopUp(true)}) :  (()=>history.push("/LogIn"))}  
+                            <div 
+                                onClick={currentUser ? (()=>{
+                                    setTargetBtn(book); 
+                                    setContactBtnPopUp(true)
+                                }) :  (()=>history.push("/LogIn"))}  
                                 className='book__contact' 
-                                type="button" 
-                                value="Contact"
-                            ></input> 
+                            >
+                                Contact
+                            </div> 
                         : 
-                            <input 
+                            <div 
                                 onClick={() => setAvailabilityBtnPopUp(true) } 
                                 className='book__contact' 
                                 type="button"
@@ -54,21 +58,19 @@ const BookList = ({books, refReports}) => {
                                     backgroundColor: "#eee"
                                 }}  
                                 value="Unavailable"
-                            ></input> 
+                            >
+                                Unavailable
+                            </div> 
                         }
                         {/* {currentUser && 
-                            <input onClick={() => alert("Added to favorite >> Yet to be developed")} 
+                            <div onClick={() => alert("Added to favorite >> Yet to be developed")} 
                                 className='book__favorite InActiveFavorite' 
-                                type="button" 
-                                value=""
-                            ></input>  
+                            ></div>  
                         }
                         {!currentUser && 
-                            <input onClick={() => history.push("/LogIn")} 
+                            <div onClick={() => history.push("/LogIn")} 
                                 className='book__favorite InActiveFavorite' 
-                                type="button" 
-                                value=""
-                            ></input>  
+                            ></div>  
                         } */}
                     </div>
                 </div>

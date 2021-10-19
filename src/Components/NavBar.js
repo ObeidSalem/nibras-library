@@ -42,13 +42,13 @@ const NavBar = () => {
 
                         <div className="header__buttons">
                             {currentUser &&  
-                                <Link className='btnlink' to = '/Profile' onClick={()=>{setShow(1)}}>
-                                    <input type="button" className="sign__out" value="My Profile"></input>
+                                <Link className='btnlink sign__out' to = '/Profile' onClick={()=>{setShow(1)}}>
+                                    My Profile
                                 </Link> }
                             {!currentUser && 
                             <>
-                                <Link className='btnlink' to = '/login' onClick={()=>{setShow(1)}}>
-                                    <input type="button" className="header__signUp header__login" value="Login"></input>
+                                <Link className='btnlink header__signUp header__login' to = '/login' onClick={()=>{setShow(1)}}>
+                                    Login
                                 </Link>
                                 <Link className='btnlink' to = '/singUp' onClick={()=>{setShow(1)}}>
                                     <input type="button" className="header__signUp" value="Sign Up"></input>

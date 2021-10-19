@@ -15,6 +15,7 @@ export default function Signup() {
   const [phoneRef, setPhoneNo] = useState("")
   const [addressRef, setAddress] = useState("")
   const [emailRef, setEmail] = useState("")
+  const [UserAvatar, setUserAvatar] = useState("")
   const [passwordRef, setPassword] = useState("")
   const [passwordConfirmRef, setPasswordConfirm] = useState("")
   const [error, setError] = useState("")
@@ -49,6 +50,7 @@ export default function Signup() {
           console.error(err);
       });
       history.push("/")
+      window.location.reload();
     } catch (err) {
       setError("Failed to save")
       console.log(err)
@@ -74,7 +76,10 @@ export default function Signup() {
                 placeholder="Name"
                 type="text"
                 value={firstNameRef}
-                onChange={(e) => setName(e.target.value)}
+                onChange={(e) => {
+                  setName(e.target.value)
+                  setUserAvatar('/images/blank-profile-image.png')
+                }}
                 required 
             />
             <input
@@ -113,7 +118,7 @@ export default function Signup() {
                 onChange={(e) => setAddress(e.target.value)}
             />
            
-            <input onClick={() =>handleSubmit({ firstNameRef, emailRef, phoneRef, addressRef, id: uuidv4() })}
+            <input onClick={() =>handleSubmit({ firstNameRef, emailRef, phoneRef, addressRef, UserAvatar, id: uuidv4() })}
               type="submit" id="signup__button" className="header__signUp" value="Sign Up"></input>
           <div >
           Already have an account? <Link to="/login">Log In</Link>
