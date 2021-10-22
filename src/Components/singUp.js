@@ -87,7 +87,7 @@ export default function Signup() {
                 placeholder="Email"
                 type="email"
                 value={emailRef}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => setEmail(e.target.value.toLowerCase())}
             />
             <input
                 className="input__style"   
