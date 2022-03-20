@@ -1,6 +1,8 @@
 import React from 'react'
 import './AboutUs.css'
 import hadhrami_pic from '../img/hadhrami_pic.png'
+import logo from '../img/logo.png'
+
 
 
 const AboutUs = () => {
@@ -24,14 +26,28 @@ const AboutUs = () => {
             <div className="background bigimage1 section__container">
                 <img className="Chapter__image" src={hadhrami_pic}></img>
             </div>
-            <div className="background bigimage2 section__container">
-                <div className="Title black">
+            <div className="background bigimage5 section__container">
+                <div className="Title white">
                     <h2>Who We Are?</h2>
                 </div>
-                <div className="paragraph black">
+                <div className="paragraph white">
                     <p>
-                    A students society dedicated for all Hadhrami students enrolled in the Malaysian universities in Malaysia, and qualify its members in different sectors of life through the various activities	
-                    </p>
+                    An NGO that aims to build the character of the Hadhrami students. Encouraging them to serve their surrounding community by achieving projects, organizing events and engaging with the international community.                    </p>
+                </div>
+            </div>
+            <div className="background bigimage2 section__container">
+                <div className="">
+                    {/* <h2>Our Goals</h2> */}
+                    <img className="Chapter__image" src={logo}></img>
+                    <div className="black">
+                        <h2>
+                        Where knowledge is shared
+                        </h2>
+                        <br />
+                        <h3>
+                        Throwing away books is a waste, keeping those books on the shelf is STILL a waste. 
+                        </h3>
+                    </div>
                 </div>
             </div>
             <div className="background bigimage3 section__container">
@@ -40,8 +56,7 @@ const AboutUs = () => {
                 </div>
                 <div className="paragraph white">
                     <p>
-                    Hadrami Student Society was a dream of every Hadrami student here in Malaysia. Huge efforts were made to make it come true, by business men, students and educational institutions all hand by hand until Hadrami Student Society saw the light.
-                    </p>
+                    Nibras is a sustainable project was initiated by the Hadhrami students chapter-IIUM. Nibras is a virtual library platform that offers the IIUM community the magnificent opportunity to lend & borrow books. Nibras Library aims to facilitate the process of learning and sharing knowledge.                    </p>
                 </div>
             </div>
             <div className="background bigimage4 section__container">
@@ -50,20 +65,11 @@ const AboutUs = () => {
                 </div>
                 <div className="paragraph black">
                     <p>
-                    Spread cultural awareness of Hadhrami civilization, history and heritage.
-                    <br/>Strengthen social bonds among Hadrami Students during their abroad study in Malaysia.
-                    <br/>Help the students overcome any obstacles or challenges during his stay here in Kuala Lumpur.
-                    <br/>Communicate with the cultural attaché to solve any problem that might face the students.
-                    </p>
-                </div>
-            </div>
-            <div className="background  bigimage5 section__container">
-                <div className="Title white">
-                    <h2>Our Vision</h2>
-                </div>
-                <div className="paragraph white">
-                    <p>
-                    Create Hadrami society that represent Hadrami students in all activities and events
+                    To facilitate the process of learning and spreading the knowledge.                    
+                    <br/>To encourage the IIUM community to share the knowledge.
+                    <br/>To urge students to make the best use of knowledge.
+                    <br/>To grant students the ability to make an intellectual meaningful content.
+                    <br/>To enlighten the IIUM community about modern intellectual issues.
                     </p>
                 </div>
             </div>
