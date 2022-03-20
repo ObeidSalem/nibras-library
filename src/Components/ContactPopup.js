@@ -5,7 +5,6 @@ import {useState} from 'react'
 import "./Popup.css"
 
 const BookInfoPopup = (props) => {
-    console.log(props)
 
     return ( props.trigger) ?  ( 
         <div className="popup">

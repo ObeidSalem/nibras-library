@@ -22,8 +22,8 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("")
   const [Userid, setId] = useState("")
-  // const [favorites, setFavorites] = useState([])
-  // const [favoriteBooksFiltered, setFavoriteBooksFiltered] = useState([])
+  const [favorites, setFavorites] = useState([])
+  const [favoriteBooksFiltered, setFavoriteBooksFiltered] = useState([])
 
 
   const [users, setUsers] = useState([])
@@ -33,7 +33,8 @@ function App() {
   const refBooks = firebase.firestore().collection("Books");
   const refUsers = firebase.firestore().collection("Users");
   const refReports = firebase.firestore().collection("Reports");
-  
+  const refFirebase = firebase.firestore;
+
   function gitcreateAccount() {
     console.log("createAccount has been called")
     return new Promise(function(resolve, reject) {
@@ -65,51 +66,47 @@ function App() {
         items.push(doc.data());
       });
       setBooks(items);
+      console.log(items)
       // console.log(books[1].id)
-      setLoading(false);
       // console.log(firebase.auth().currentUser);
     });
     const temp = []
-    // const targetBook = []
-    // for(let favorite = 0; favorite < favorites.length; favorite++) {
-    //   for (let book = 0; book <books.length; book++) {
-    //     if (favorites[favorite] == books[book].id) {
-    //       console.log("accessing")
-    //       // console.log(favorites[favorite])
-    //       // console.log(books[book].id)
-    //       // const targetBook = books[book]
-    //       // console.log(targetBook.id) 
-    //       temp.push(books[book])  
-    //     }
-    //   }
-    //   setFavoriteBooksFiltered(temp)
-    // }    
-
+    const targetBook = []
+    for(let favorite = 0; favorite < favorites.length; favorite++) {
+      for (let book = 0; book <books.length; book++) {
+        if (favorites[favorite] == books[book].id) {
+          console.log("accessing")
+          console.log(favorites[favorite])
+          console.log(books[book].id)
+          const targetBook = books[book]
+          console.log(targetBook.id) 
+          temp.push(books[book])  
+        }
+      }
+      // setFavoriteBooksFiltered(temp)
+    }    
+    setLoading(false);
   }
 
   function getUsers() {
     setLoading(true);
     refUsers.onSnapshot((querySnapshot) => {
       const items = [];
-      // var index = 0
-      // var item = ""
-      // let Cid = "1"
-      // let CFavorite = 0
+      var index = 0
+      var item = ""
+      let CFavorite = 0
       querySnapshot.forEach((doc) => {
         items.push(doc.data());
-        // item = items[index]
-        // if (item.emailRef === firebase.auth().currentUser.email){
-        //   Cid=item.id
-        //   CFavorite = index
-        //   console.log(items[CFavorite].favorite)
-        //   // console.log(Cid)
-        // }
-        // index++
+        item = items[index]
+        if (item.emailRef === firebase.auth().currentUser.email){
+          CFavorite = index
+          console.log(items[CFavorite].favorite)
+        }
+        index++
       });
-      // setId(Cid)
       setUsers(items);
-      // console.log(items[CFavorite].favorite)
-      // setFavorites(items[CFavorite].favorite)
+      console.log(items[CFavorite].favorite)
+      setFavorites(items[CFavorite].favorite)
       setLoading(false);
       if (firebase.auth().currentUser){
         setEmail(firebase.auth().currentUser.email)
@@ -117,32 +114,9 @@ function App() {
     });
   }
 
-  // function getFavorites() {
-  //   setLoading(true);
-  //   refBooks.onSnapshot((querySnapshot) => {
-  //     const items = [];
-  //     querySnapshot.forEach((doc) => {
-  //       items.push(doc.data());
-  //     });
-  //     setFavoriteBooksFiltered(items);
-  //     // console.log(books[1].id)
-  //     setLoading(false);
-  //     // console.log(firebase.auth().currentUser);
-  //   });
-  // }
-
-  // function getFavorites() {
-    
-  
-  // console.log("favorites", favorites)
-  // console.log("favoriteBooksFiltered", favoriteBooksFiltered)
-  // console.logs(books)
-
-  // }
   useEffect(() => {
     getUsers()
     getBooks()
-    // getFavorites()
   }, []);
 
     
@@ -173,8 +147,8 @@ function App() {
                   email={email}
                   // Userid= {Userid}
                   users={users.filter((user) => user.emailRef === email)}
-                  // favoritesInUsersCollections={favorites}
-                  // myFavorite={favoriteBooksFiltered}
+                  favoritesInUsersCollections={favorites}
+                  myFavorite={favorites}
                   myBooks={books.filter((book) => book.email === email)}
                   />
                 <Footer />
@@ -199,7 +173,11 @@ function App() {
               <NavBar />
               <Books 
                 books={books}
+                refUsers={refUsers}
+                users={users.filter((user) => user.emailRef === email)}
+                myFavorite={favorites}
                 refReports={refReports}
+                refFirebase={refFirebase}
               />
               <Footer />
             </Route>

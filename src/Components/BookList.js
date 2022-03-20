@@ -7,7 +7,7 @@ import { useAuth } from "../context/AuthContext"
 import { useHistory } from "react-router-dom"
 
 
-const BookList = ({books, refReports}) => {
+const BookList = ({books, refFirebase, refReports, myFavorite, refUsers, user}) => {
     const [contactBtnPopUp, setContactBtnPopUp] = useState(false)
     const [reportBtnPopUp, setReportBtnPopUp] = useState(false)
     const [availabilityBtnPopUp, setAvailabilityBtnPopUp] = useState(false)
@@ -16,7 +16,74 @@ const BookList = ({books, refReports}) => {
     const { currentUser } = useAuth()
     const history = useHistory()
 
+    const [favorites, setFavorites] = useState(myFavorite)
+    const [isFavorite, setIsFavorite] = useState(0);
+    const style = ["book__favorite InActiveFavorite", "book__favorite ActiveFavorite"]
     
+    console.log(myFavorite)
+
+    // let myFilter = books.favoriteBy.find(book =>  
+    //     {for (let favorite = 0; favorite < myFavorite.length; favorite++){
+    //         if (book.id === myFavorite[favorite]){
+    //             return book
+    //         }
+    //     }}
+    // )
+
+    // async function handleFavorite() {
+    //     try {
+    //     console.log(user.id)
+    //     console.log(favoriteID)
+    //     const FieldValue = require('firebase-admin').firestore.FieldValue;
+    //     await refUsers.doc(user.id).update({
+    //         favorite: FieldValue.arrayUnion(favoriteID)
+    //     })
+    //     } catch (error){
+    //         console.log(error);
+    //     }
+    //     console.log(user.favorite)
+    // }
+
+    async function handleFavorite(bookId) {
+        if (!currentUser){
+            history.push("/LogIn")
+        }
+
+        try {
+            setFavorites(myFavorite)
+            console.log(`user.id = ${user.id}`)
+            console.log(`bookId = ${bookId}`)
+            if (!favorites.includes(bookId)) {
+                favorites.push(bookId)
+                console.log(favorites)
+                await refUsers.doc(user.id).update({ favorite: favorites })
+            } 
+            
+            else if (favorites.includes(bookId)){
+                const unfavored = favorites
+                const Index = unfavored.indexOf(bookId)
+                if (Index > -1) {
+                    unfavored.splice(Index, 1)
+                    setFavorites(unfavored)
+                }
+                console.log("unfavored after",unfavored)
+        
+                refUsers.doc(user.id).update({ 
+                    favorite: favorites
+                });
+            }
+        // const FieldValue = require('firebase-admin').firestore.FieldValue;
+            // await refUsers.doc(user.id).update({ favorite: refFirebase.FieldValue.delete()})
+            // await refUsers.doc(user.id).collection(favorites).doc(favoriteID).set(favoriteID)
+            // await refUsers.doc(user.id).update({ favorite: new Array(favorites) })
+
+        } catch (error){    
+            console.log(error);
+        }
+        console.log(user.favorite)
+    }
+
+
     return (
         <>
             {books.map(book =>(
@@ -62,16 +129,16 @@ const BookList = ({books, refReports}) => {
                                 Unavailable
                             </div> 
                         }
-                        {/* {currentUser && 
-                            <div onClick={() => alert("Added to favorite >> Yet to be developed")} 
-                                className='book__favorite InActiveFavorite' 
-                            ></div>  
+                        {(book.id == favorites)? 
+                            <div onClick={() =>  {handleFavorite(book.id)}} 
+                                className={style[1]}
+                            ></div> 
+                            : 
+                            
+                            <div onClick={() => {handleFavorite(book.id)}} 
+                                className={style[0]} 
+                            ></div> 
                         }
-                        {!currentUser && 
-                            <div onClick={() => history.push("/LogIn")} 
-                                className='book__favorite InActiveFavorite' 
-                            ></div>  
-                        } */}
                     </div>
                 </div>
             ))}

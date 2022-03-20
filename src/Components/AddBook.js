@@ -49,7 +49,6 @@ export default function AddBook({users}) {
         // uploadImage();
         console.error("AddBook function has been called");
         ref
-        //.doc() use if for some reason you want that firestore generates the id
         .doc(newBook.id)
         .set(newBook)
         .catch((err) => {

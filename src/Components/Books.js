@@ -2,29 +2,10 @@ import React,{ useState } from 'react'
 import './Books.css'
 import BookList from './BookList'
 
-const Books = ({refReports, books}) => {
+const Books = ({refFirebase, refReports, books, myFavorite, refUsers, users}) => {
 
- const [Searchterm, SetSearchTerm] = useState("")
-//  const [FilterCatNov, SetSFilterCatNov] = useState(false)
-//  const [FilterCatStu, SetSFilterCatStu] = useState(false)
-//  const [FilterCatOth, SetSFilterCatOth] = useState(false)
-//  const [FilterCatX, SetSFilterCatX] = useState(false)
-//  const [Filterbut, SetFilterbut] = useState(false)
-
-//  function Elements() {  
-//   const x = (
-      
-//       <div >
-//      <button className="button___filter" onClick={(e) => {SetSFilterCatNov (true)}}>Novels</button>
-//      <button className="button___filter"onClick={(e) => {SetSFilterCatStu (true)}}>Study Materials</button>
-//      <button className="button___filter"onClick={(e) => {SetSFilterCatOth (true)}}>Others</button>
-//      <br />
-//      <button className="button___xfilter" onClick={(e) => {SetSFilterCatX (true)}}>X</button>
-//   </div>
-//   )
-//      return x
-     
-//  }
+    const user = users[0]
+    const [Searchterm, SetSearchTerm] = useState("")
 
     return (
         <div className="body">
@@ -39,7 +20,11 @@ const Books = ({refReports, books}) => {
 
             <div className="books__container">
                 <BookList 
+                    user={user}
+                    myFavorite={myFavorite}
+                    refUsers={refUsers}
                     refReports={refReports} 
+                    refFirebase = {refFirebase}
                     books={books.filter(value => {
                         if ( Searchterm ==""){
                             return value

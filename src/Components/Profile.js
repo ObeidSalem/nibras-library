@@ -27,6 +27,14 @@ const Profile = ({favoritesInUsersCollections, refBooks, refUsers, email, users,
     const [isUploaded, setIsUploaded] = useState(false)
     const [avatar, setAvatar] = useState('');
 
+    let myFilter = myBooks.filter(book =>  
+        {for (let favorite = 0; favorite < myFavorite.length; favorite++){
+            if (book.id === myFavorite[favorite]){
+                return book
+            }
+        }}
+    )
+
 
     
     // console.log(Userid)
@@ -246,12 +254,12 @@ const Profile = ({favoritesInUsersCollections, refBooks, refUsers, email, users,
                 </div>
             </div>
             <div className="profile__left">
-                {/* <div className="profile__myFavorite">
+                <div className="profile__myFavorite">
                     <h2 className="left">
                         My Favorite Books
                     </h2>
                     <hr></hr>
-                    {myFavorite.map(book =>(
+                    {myFilter.map(book =>(
                         <div className="myProfileBook__container" key={book.id}>
                             <div className="myProfileBook__book">
                                 <div className="myBook__left">
@@ -265,17 +273,18 @@ const Profile = ({favoritesInUsersCollections, refBooks, refUsers, email, users,
                                     <h6 className="left">
                                     Author: {book.author}
                                     </h6>
-        
-                                    
+                                    <h6 className="left">
+                                        Description: {book.description}
+                                    </h6>
                                 </div>
                             </div>
-                            <div className="book__buttons__profile"> */}
-                                {/* <input 
+                            <div className="book__buttons__profile">
+                                <input 
                                     className='book__contact' 
                                     type="button" 
                                     value="Contact"
-                                ></input>  */}
-                                {/* {(book.isAvailable) ?
+                                ></input> 
+                                {(book.isAvailable) ?
                                     <input 
                                         onClick={currentUser ? (()=>{
                                             // setTargetBtn(book); 
@@ -287,8 +296,8 @@ const Profile = ({favoritesInUsersCollections, refBooks, refUsers, email, users,
                                         type="button" 
                                         value="Contact"
                                     ></input> 
-                                :  */}
-                                    {/* <input 
+                                : 
+                                    <input 
                                         onClick={() => 
                                             // setAvailabilityBtnPopUp(true) 
                                             console.log("Unavailable")
@@ -314,7 +323,7 @@ const Profile = ({favoritesInUsersCollections, refBooks, refUsers, email, users,
                             </div>
                         </div>
                     ))}
-                </div> */}
+                </div>
                 <div className="profile__myBooks">
                     <h2 className="left">
                         <br></br>
